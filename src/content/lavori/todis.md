@@ -1,0 +1,30 @@
+---
+cliente: "Todis"
+settore: "GDO, retail organizzato"
+durata: "[DA DEFINIRE]"
+ambito: "[DA DEFINIRE]"
+titolo: "[TITOLO DA SCRIVERE]"
+tesi: "[TESI DI APERTURA DA SCRIVERE]"
+inVetrina: true
+ordineVetrina: 3
+draft: false
+heroImage: "/assets/lavori/todis-hero.png"
+heroImageAlt: "Progetto strategico per Todis"
+descrizione: "[META DESCRIPTION DA SCRIVERE - 140-155 caratteri]"
+---
+
+## Il contesto
+
+[DA SCRIVERE]
+
+## La domanda strategica
+
+[DA SCRIVERE]
+
+## Il ruolo che giochiamo
+
+[DA SCRIVERE]
+
+## Cosa resta
+
+[DA SCRIVERE]

@@ -1,0 +1,201 @@
+---
+---
+
+<header class="site-header">
+  <div class="site-header-container">
+    <a href="/" class="site-logo" aria-label="Mandarino — torna alla home">
+      <span class="site-logo-name">mandarino</span>
+      <span class="site-logo-tagline">agenzia di comunicazione strategica</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigazione principale">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox" aria-hidden="true">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Apri menu">
+        <span class="nav-toggle-icon" aria-hidden="true"></span>
+      </label>
+
+      <ul class="site-nav-list">
+        <li><a href="/metodo/">(Metodo)</a></li>
+        <li><a href="/lavori/">(Lavori)</a></li>
+        <li><a href="/agenzia/">(Agenzia)</a></li>
+        <li><a href="/pensiero/">(Pensiero)</a></li>
+        <li><a href="/contatti/">(Contatti)</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bianco-sporco);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-quick), background var(--transition-quick);
+}
+
+/* Quando si scrolla, l'header diventa "sigillato" visivamente */
+.site-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-grigio-saggio-soft);
+  opacity: 0;
+  transition: opacity var(--transition-quick);
+}
+
+/* Attivato via IntersectionObserver opzionale - ma per ora sempre visibile dopo scroll iniziale */
+/* Per ora usa solo un bordo statico sottile */
+.site-header {
+  border-bottom: 1px solid rgba(74, 94, 120, 0.15);
+}
+
+.site-header-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+/* Logo */
+.site-logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--color-grigio-saggio);
+  line-height: 1.1;
+}
+
+.site-logo-name {
+  font-family: var(--font-ribelle);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-lg);
+  letter-spacing: -0.01em;
+}
+
+.site-logo-tagline {
+  font-family: var(--font-ribelle);
+  font-weight: var(--weight-regular);
+  font-size: 0.75rem;
+  color: var(--color-grigio-saggio-soft);
+  margin-top: 2px;
+}
+
+/* Nav */
+.site-nav-list {
+  display: flex;
+  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav-list a {
+  font-family: var(--font-ribelle);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-sm);
+  color: var(--color-grigio-saggio);
+  text-decoration: none;
+  transition: color var(--transition-quick);
+}
+
+.site-nav-list a:hover,
+.site-nav-list a[aria-current="page"] {
+  color: var(--color-arancio-ribelle);
+}
+
+/* Mobile menu (hidden on desktop) */
+.nav-toggle-checkbox,
+.nav-toggle-label {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .site-header-container {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .site-logo-tagline {
+    display: none;
+  }
+
+  .nav-toggle-label {
+    display: block;
+    cursor: pointer;
+    width: 28px;
+    height: 20px;
+    position: relative;
+  }
+
+  .nav-toggle-icon,
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-grigio-saggio);
+    transition: transform var(--transition-quick), opacity var(--transition-quick);
+  }
+
+  .nav-toggle-icon {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .nav-toggle-icon::before {
+    content: '';
+    top: -8px;
+  }
+
+  .nav-toggle-icon::after {
+    content: '';
+    bottom: -8px;
+  }
+
+  /* Checkbox trick: quando checked, trasforma in X e apre il menu */
+  .nav-toggle-checkbox:checked ~ .nav-toggle-label .nav-toggle-icon {
+    background: transparent;
+  }
+
+  .nav-toggle-checkbox:checked ~ .nav-toggle-label .nav-toggle-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .nav-toggle-checkbox:checked ~ .nav-toggle-label .nav-toggle-icon::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+  }
+
+  .site-nav-list {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-bianco-sporco);
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-6) var(--space-4);
+    overflow-y: auto;
+  }
+
+  .nav-toggle-checkbox:checked ~ .site-nav-list {
+    display: flex;
+  }
+
+  .site-nav-list a {
+    font-size: var(--text-xl);
+    padding: var(--space-2) 0;
+  }
+}
+</style>

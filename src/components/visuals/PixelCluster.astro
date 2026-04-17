@@ -1,0 +1,147 @@
+---
+// Componente SVG del sistema Nitido/Pixel di Mandarino.
+// Genera cluster asimmetrici di pixel per angoli, separatori orizzontali e sigilli finali,
+// utilizzando blocchi <rect> ottimizzati in base a form factor, scala e tinta richiesti.
+
+interface Props {
+  size?: 'small' | 'medium' | 'large';
+  variant?: 'corner' | 'separator' | 'seal';
+  color?: 'arancio' | 'grigio' | 'bianco';
+  ariaLabel?: string;
+}
+
+const {
+  size = 'medium',
+  variant = 'corner',
+  color = 'arancio',
+  ariaLabel
+} = Astro.props;
+
+const colorMap = {
+  arancio: 'var(--color-arancio-ribelle)',
+  grigio: 'var(--color-grigio-saggio)',
+  bianco: 'var(--color-bianco-sporco)',
+};
+
+const fill = colorMap[color] || colorMap.arancio;
+
+// Configurazioni geometriche (Pixel 8x8 con gap 4px, ergo pitch di 12px)
+const configs = {
+  corner: {
+    small: {
+      viewBox: "0 0 20 20",
+      rects: [
+        { x: 0, y: 0 }, { x: 12, y: 0 },
+        { x: 0, y: 12 }
+      ]
+    },
+    medium: {
+      viewBox: "0 0 32 32",
+      rects: [
+        { x: 0, y: 0 }, { x: 12, y: 0 },
+        { x: 12, y: 12 }, { x: 24, y: 12 },
+        { x: 24, y: 24 }
+      ]
+    },
+    large: {
+      viewBox: "0 0 44 32",
+      rects: [
+        { x: 0, y: 0 }, { x: 12, y: 0 }, { x: 24, y: 0 },
+        { x: 12, y: 12 }, { x: 24, y: 12 }, { x: 36, y: 12 },
+        { x: 36, y: 24 }
+      ]
+    }
+  },
+  separator: {
+    small: {
+      viewBox: "0 0 56 8",
+      rects: Array.from({ length: 5 }).map((_, i) => ({ x: i * 12, y: 0 }))
+    },
+    medium: {
+      viewBox: "0 0 80 8",
+      rects: Array.from({ length: 7 }).map((_, i) => ({ x: i * 12, y: 0 }))
+    },
+    large: {
+      viewBox: "0 0 104 8",
+      rects: Array.from({ length: 9 }).map((_, i) => ({ x: i * 12, y: 0 }))
+    }
+  },
+  seal: {
+    // Il seal è una griglia 3x3 con pixel centrale svuotato (8 rect totali).
+    render: () => {
+      const rects = [];
+      for (let r = 0; r < 3; r++) {
+        for (let c = 0; c < 3; c++) {
+          if (r === 1 && c === 1) continue;
+          rects.push({ x: c * 12, y: r * 12 });
+        }
+      }
+      return {
+        viewBox: "0 0 32 32",
+        rects
+      };
+    }
+  }
+};
+
+// Genera la config attiva
+let activeConfig;
+if (variant === 'seal') {
+  activeConfig = configs.seal.render();
+} else {
+  activeConfig = configs[variant][size] || configs[variant].medium;
+}
+
+const { viewBox, rects } = activeConfig;
+const width = viewBox.split(' ')[2];
+const height = viewBox.split(' ')[3];
+---
+
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  viewBox={viewBox} 
+  width={width} 
+  height={height}
+  aria-hidden={ariaLabel ? "false" : "true"}
+  aria-label={ariaLabel}
+  role={ariaLabel ? "img" : undefined}
+  class={`pixel-cluster pixel-${variant} pixel-size-${size}`}
+>
+  {rects.map(rect => (
+    <rect x={rect.x} y={rect.y} width="8" height="8" fill={fill} />
+  ))}
+</svg>
+
+<style>
+  .pixel-cluster {
+    overflow: visible;
+  }
+  
+  .pixel-cluster rect {
+    animation: pixel-pulse 2s infinite ease-in-out;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  
+  @keyframes pixel-pulse {
+    0%, 100% { 
+      opacity: 0.8; 
+      transform: translateY(0) scale(1);
+    }
+    50% { 
+      opacity: 1; 
+      transform: translateY(-3px) scale(1.1);
+    }
+  }
+  
+  /* Ritmo asincrono per dare vita organica (max 9 rects per i separator grandi) */
+  .pixel-cluster rect:nth-child(1) { animation-delay: 0.0s; }
+  .pixel-cluster rect:nth-child(2) { animation-delay: 0.2s; }
+  .pixel-cluster rect:nth-child(3) { animation-delay: 0.4s; }
+  .pixel-cluster rect:nth-child(4) { animation-delay: 0.6s; }
+  .pixel-cluster rect:nth-child(5) { animation-delay: 0.8s; }
+  .pixel-cluster rect:nth-child(6) { animation-delay: 1.0s; }
+  .pixel-cluster rect:nth-child(7) { animation-delay: 1.2s; }
+  .pixel-cluster rect:nth-child(8) { animation-delay: 1.4s; }
+  .pixel-cluster rect:nth-child(9) { animation-delay: 1.6s; }
+</style>

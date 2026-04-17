@@ -1,0 +1,142 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Import local fonts to get correctly hashed URLs for preloading
+import loraFontSrc from '../assets/fonts/lora/lora-latin-400-normal.woff2?url';
+import workSansFontSrc from '../assets/fonts/work-sans/work-sans-latin-400-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+}
+
+const { title, description, path, ogImage = 'https://mandarino.agency/placeholder-og.jpg' } = Astro.props;
+const canonicalURL = `https://mandarino.agency${path}`;
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Mandarino",
+  "legalName": "Mandarino ADV S.r.l.",
+  "url": "https://mandarino.agency",
+  "logo": "https://mandarino.agency/logo.svg",
+  "email": "info@mandarino.agency",
+  "telephone": "+39 0773 665106",
+  "vatID": "IT02345120592",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Le Corbusier 393 scala B",
+    "addressLocality": "Latina",
+    "addressRegion": "LT",
+    "postalCode": "04100",
+    "addressCountry": "IT"
+  },
+  "sameAs": [
+    "[LINKEDIN URL DA DEFINIRE]",
+    "[INSTAGRAM URL DA DEFINIRE]"
+  ]
+};
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ? `${title} — Mandarino` : 'Mandarino'}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+    <ClientRouter />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title ? `${title} — Mandarino` : 'Mandarino'} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preload critici: Lora e Work Sans (solo fallback principali per LCP) -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href={loraFontSrc} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href={workSansFontSrc} />
+
+    <!-- JSON-LD Organization Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+  </head>
+  <body>
+    <!-- Custom cursor — pixel arancione -->
+    <div class="custom-cursor" aria-hidden="true"></div>
+
+    <!-- Skip link accessibile per tastiera -->
+    <a class="skip-link" href="#main">Salta al contenuto principale</a>
+
+    <!-- Header Component -->
+    <Header />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+    
+    <!-- Animazioni Native (Niente GSAP) -->
+    <script is:inline src="/scripts/reveal.js" defer></script>
+
+    <script is:inline>
+      // Flag per evitare registrazioni multiple dei listener post-transizione
+      if (!window.customCursorInitialized && window.matchMedia('(pointer: fine)').matches) {
+        window.customCursorInitialized = true;
+        
+        // Move cursor with mouse
+        document.addEventListener('mousemove', (e) => {
+          const cursor = document.querySelector('.custom-cursor');
+          if (cursor) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+          }
+        });
+
+        // Hover states
+        const interactiveElements = 'a, button, [role="button"], input, textarea, select, label';
+        const textElements = 'p, h1, h2, h3, h4, h5, h6, span, li';
+
+        document.addEventListener('mouseover', (e) => {
+          const cursor = document.querySelector('.custom-cursor');
+          if (!cursor) return;
+          const target = e.target;
+          if (target.closest(interactiveElements)) {
+            cursor.classList.add('is-hovering');
+            cursor.classList.remove('is-text');
+          } else if (target.closest(textElements)) {
+            cursor.classList.add('is-text');
+            cursor.classList.remove('is-hovering');
+          } else {
+            cursor.classList.remove('is-hovering', 'is-text');
+          }
+        });
+
+        // Hide when leaving window
+        document.addEventListener('mouseleave', () => {
+          const cursor = document.querySelector('.custom-cursor');
+          if (cursor) cursor.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', () => {
+          const cursor = document.querySelector('.custom-cursor');
+          if (cursor) cursor.style.opacity = '1';
+        });
+      }
+    </script>
+  </body>
+</html>

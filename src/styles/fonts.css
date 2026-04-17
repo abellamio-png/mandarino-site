@@ -1,0 +1,67 @@
+/* ==========================================================================
+   SELF-HOSTED FONTS
+   ========================================================================== */
+
+/* Lora - Regular */
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../assets/fonts/lora/lora-latin-400-normal.woff2') format('woff2');
+}
+
+/* Lora - Italic */
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../assets/fonts/lora/lora-latin-400-italic.woff2') format('woff2');
+}
+
+/* Lora - Bold */
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('../assets/fonts/lora/lora-latin-700-normal.woff2') format('woff2');
+}
+
+/* Lora - Bold Italic */
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url('../assets/fonts/lora/lora-latin-700-italic.woff2') format('woff2');
+}
+
+
+/* Work Sans - Regular */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../assets/fonts/work-sans/work-sans-latin-400-normal.woff2') format('woff2');
+}
+
+/* Work Sans - Medium */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('../assets/fonts/work-sans/work-sans-latin-500-normal.woff2') format('woff2');
+}
+
+/* Work Sans - Bold */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('../assets/fonts/work-sans/work-sans-latin-700-normal.woff2') format('woff2');
+}

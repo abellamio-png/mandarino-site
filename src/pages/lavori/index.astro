@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PixelCluster from '../../components/visuals/PixelCluster.astro';
+import '../../styles/pages/lavori.css';
+
+// Recupera tutti i case non-draft
+const tuttiLavori = await getCollection('lavori', ({ data }) => !data.draft);
+
+// Ordina per vetrina
+const vetrina = tuttiLavori
+  .filter(l => l.data.inVetrina)
+  .sort((a, b) => (a.data.ordineVetrina || 999) - (b.data.ordineVetrina || 999));
+
+const archivio = tuttiLavori
+  .filter(l => !l.data.inVetrina);
+---
+
+<BaseLayout
+  title="Lavori"
+  description="I lavori selezionati di Mandarino. Case study strategici per clienti come AS Roma, Avio Interiors, Todis, Francia Latticini."
+  path="/lavori/"
+>
+  <div class="lavori-page">
+    <section class="lavori-hero fade-up-element">
+      <span class="section-label">(Lavori)</span>
+      <h1>Quattro casi, quattro pensieri.</h1>
+      <p class="lead">Ogni progetto Mandarino parte da una domanda strategica. Qui ne vedete quattro, raccontati per quello che sono davvero.</p>
+    </section>
+
+    <section class="vetrina-section" aria-labelledby="vetrina-title">
+      <h2 id="vetrina-title" class="visually-hidden">Lavori in vetrina</h2>
+
+      <div class="bento-grid">
+        {vetrina.map((lavoro, index) => (
+          <a href={`/lavori/${lavoro.id}/`} class={`bento-card fade-up-element bento-${index % 4}`}>
+            <div class="work-card-image" aria-hidden="true">
+              {lavoro.data.heroVideo ? (
+                <video src={lavoro.data.heroVideo} autoplay loop muted playsinline></video>
+              ) : (
+                <img src={lavoro.data.heroImage} alt="" />
+              )}
+              <div style="position: absolute; bottom: 0; right: 0;">
+                <PixelCluster size="small" variant="corner" color="arancio" />
+              </div>
+            </div>
+            
+            <div class="work-card-content">
+              <p class="work-card-meta">{lavoro.data.cliente} · {lavoro.data.settore}</p>
+              <h3 class="work-card-title">{lavoro.data.titolo}</h3>
+              <p class="work-card-tesi">{lavoro.data.tesi}</p>
+              
+              <div class="work-card-hover-element" aria-hidden="true">
+                <PixelCluster size="medium" variant="corner" color="grigio" />
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {archivio.length > 0 && (
+      <section class="archivio-section" aria-labelledby="archivio-title">
+        <span class="section-label">(Archivio completo)</span>
+        <h2 id="archivio-title">Altri clienti e progetti.</h2>
+        <p>Vent'anni di lavoro non entrano in una vetrina. Qui gli array dei clienti storici.</p>
+
+        <div class="archivio-grid">
+          {archivio.map(lavoro => (
+            <a href={`/lavori/${lavoro.id}/`} class="archivio-item fade-up-element">
+              <h3 class="archivio-cliente">{lavoro.data.cliente}</h3>
+              <p class="archivio-ambito">{lavoro.data.settore}</p>
+              <p class="archivio-anno">{lavoro.data.durata || '—'}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+
+</BaseLayout>

@@ -1,0 +1,674 @@
+/* ==========================================================================
+   HOME PAGE SYTLES
+   ========================================================================== */
+
+/* Layout generale */
+.home {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+@media (max-width: 767px) {
+  .home {
+    padding: 0 var(--space-3);
+  }
+}
+
+/* Spaziatura tra sezioni */
+.home section {
+  padding-block: var(--space-16);
+}
+
+@media (max-width: 767px) {
+  .home section {
+    padding-block: var(--space-12);
+  }
+}
+
+.home .hero-section {
+  padding-block: var(--space-20) 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.home .hero-visual {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--space-4); /* Curvatura accentuata come Ikea */
+  overflow: hidden;
+  background: var(--color-grigio-saggio);
+  position: relative;
+}
+
+.home .hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 2s ease;
+  transform: scale(1.02);
+}
+.home .hero-visual:hover .hero-video {
+  transform: scale(1.05);
+}
+
+/* Stile Overlay Testo "Sottostante" */
+.hero-visual-overlay {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-8);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+  color: var(--color-bianco-sporco);
+  pointer-events: none;
+}
+.hero-visual-caption {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.hero-visual-title {
+  font-family: var(--font-saggio);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+@media (max-width: 900px) {
+  .home .hero-section {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    padding-block: var(--space-16) 0;
+  }
+  .home .hero-visual {
+    aspect-ratio: 16/9;
+  }
+}
+
+.home .signature-section {
+  padding-bottom: var(--space-12);
+}
+
+/* Section label (etichette tra parentesi) */
+.section-label {
+  display: block;
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-arancio-ribelle);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.02em;
+}
+
+/* Tipografia della home */
+.home h1 {
+  font-size: var(--text-4xl);
+  line-height: 1.15;
+  max-width: 16ch;
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.015em;
+}
+
+@media (max-width: 767px) {
+  .home h1 {
+    font-size: var(--text-3xl);
+  }
+}
+
+.home h2 {
+  font-size: var(--text-3xl);
+  line-height: 1.2;
+  max-width: 20ch;
+}
+
+@media (max-width: 767px) {
+  .home h2 {
+    font-size: var(--text-2xl);
+  }
+}
+
+.home .lead {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--color-grigio-saggio-soft);
+  max-width: var(--container-reading);
+}
+
+.home p {
+  max-width: var(--container-reading);
+  margin-bottom: var(--space-3);
+}
+
+/* Classi contenitore specifiche */
+.hero-section {
+  background: none;
+}
+
+.thesis-section {
+  max-width: var(--container-reading);
+  margin: 0 auto;
+}
+
+.thesis-section p:first-of-type::first-letter {
+  font-family: var(--font-saggio);
+  font-size: 1.3em;
+  color: var(--color-grigio-saggio);
+}
+
+.thesis-section em {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  color: var(--color-grigio-saggio);
+  font-weight: var(--weight-bold);
+  background-image: linear-gradient(120deg, rgba(232, 119, 34, 0.2) 0%, rgba(232, 119, 34, 0.2) 100%);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  background-position: 0 80%;
+  transition: background-size 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.thesis-section:hover em {
+  background-size: 100% 100%;
+}
+
+.method-section {
+  position: relative;
+  background-color: var(--color-bianco);
+  background-image: linear-gradient(rgba(74, 94, 120, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 94, 120, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+  border: 1px solid var(--color-grigio-saggio-soft);
+  border-radius: 0;
+  padding: var(--space-8);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Sovrascrivi padding block interno se necessario */
+.home .method-section {
+  padding-block: var(--space-8);
+}
+
+@media (max-width: 767px) {
+  .home .method-section {
+    padding: var(--space-4);
+  }
+}
+
+.audience-section {
+  position: relative;
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding-top: var(--space-12);
+}
+
+.works-section {
+  width: 100%;
+}
+
+.summary-section {
+  position: relative;
+  background-color: var(--color-grigio-saggio);
+  color: var(--color-bianco-sporco);
+  padding: var(--space-16) var(--space-12);
+  margin: var(--space-16) 0; 
+  border-radius: var(--space-4); 
+}
+
+@media (max-width: 900px) {
+  .summary-section {
+    padding: var(--space-8) var(--space-6);
+  }
+}
+
+.summary-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-12);
+}
+
+@media (max-width: 900px) {
+  .summary-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+.summary-section h2 {
+  color: var(--color-bianco-sporco);
+}
+
+.summary-section .section-label {
+  color: var(--color-arancio-ribelle);
+  margin-bottom: var(--space-8);
+}
+
+.summary-section p {
+  color: var(--color-bianco-sporco);
+  max-width: 100%;
+}
+
+.summary-section p:first-of-type {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-6);
+}
+
+.summary-table-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.summary-section .colophon-table {
+  margin-top: 0;
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+.summary-section .colophon-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: var(--space-4) 0;
+  vertical-align: top;
+}
+
+.summary-section .colophon-table td:first-child {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: rgba(250, 247, 242, 0.6);
+  white-space: nowrap;
+  width: 35%;
+  padding-right: var(--space-4);
+}
+
+.summary-section .colophon-table td:last-child {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  color: var(--color-bianco-sporco);
+}
+
+.contact-section {
+  text-align: center;
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding-block: var(--space-16);
+}
+
+.contact-section h2 {
+  font-style: italic;
+}
+
+.signature-section {
+  text-align: center;
+  padding-block: var(--space-16);
+  position: relative;
+}
+
+
+
+/* Metodo — lista fasi (sezione 3) */
+.method-phases {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0;
+  counter-reset: phase;
+}
+
+.method-phases li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-4) var(--space-2);
+  border-top: 1px solid var(--color-grigio-saggio-soft);
+  counter-increment: phase;
+  transition: all var(--transition-smooth);
+  cursor: default;
+}
+
+.method-phases li:hover {
+  background-color: rgba(74, 94, 120, 0.04);
+  padding-left: var(--space-6);
+  border-top-color: var(--color-arancio-ribelle);
+}
+
+.method-phases li:hover + li {
+  border-top-color: transparent; /* Nasconde il top dell'elemento successivo se c'è ombra, pulizia UI */
+}
+
+.method-phases li:last-child {
+  border-bottom: 1px solid var(--color-grigio-saggio-soft);
+}
+.method-phases li:last-child:hover {
+  border-bottom-color: var(--color-arancio-ribelle);
+}
+
+.method-phases li::before {
+  content: counter(phase, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-arancio-ribelle);
+  transition: color var(--transition-smooth);
+}
+.method-phases li:hover::before {
+  color: var(--color-grigio-saggio);
+}
+
+.method-phase-name {
+  font-family: var(--font-saggio);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-lg);
+  color: var(--color-grigio-saggio);
+  transition: color var(--transition-smooth);
+}
+.method-phases li:hover .method-phase-name {
+  color: var(--color-arancio-ribelle);
+}
+
+.method-phase-question {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  color: var(--color-grigio-saggio-soft);
+  font-size: var(--text-base);
+  transition: transform var(--transition-smooth), color var(--transition-smooth);
+}
+.method-phases li:hover .method-phase-question {
+  color: var(--color-grigio-saggio);
+  transform: translateX(-10px);
+}
+
+/* Tabella colophon (versione base per altre sezioni se presente) */
+.colophon-table {
+  border-collapse: collapse;
+  margin-top: var(--space-6);
+  width: 100%;
+  max-width: 600px;
+}
+
+.colophon-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-grigio-saggio-soft);
+  vertical-align: top;
+}
+
+.colophon-table td:first-child {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-grigio-saggio-soft);
+  white-space: nowrap;
+  width: 40%;
+}
+
+.colophon-table td:last-child {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+}
+
+/* Firma finale (sezione 8) */
+.signature {
+  text-align: center;
+  padding: var(--space-16) 0;
+}
+
+.signature-primary {
+  font-family: var(--font-saggio);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-2) 0;
+}
+
+@media (max-width: 767px) {
+  .signature-primary {
+    font-size: var(--text-2xl);
+  }
+}
+
+.signature-secondary {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-xl);
+  color: var(--color-grigio-saggio-soft);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .signature-secondary {
+    font-size: var(--text-lg);
+  }
+}
+
+/* CTA contatti (sezione 7) */
+.contact-cta {
+  text-align: center;
+  margin-top: var(--space-6);
+}
+
+.contact-cta-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(74, 94, 120, 0.15);
+  flex-wrap: wrap;
+}
+
+.contact-cta-link {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-lg);
+  color: var(--color-grigio-saggio);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.contact-cta-link:hover {
+  color: var(--color-arancio-ribelle);
+}
+
+/* Link "Scopri il metodo →" e "Tutti i lavori →" */
+.section-link {
+  display: inline-block;
+  margin-top: var(--space-4);
+  font-family: var(--font-ribelle);
+  font-weight: var(--weight-medium);
+  color: var(--color-grigio-saggio);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: color var(--transition-quick);
+}
+
+.section-link:hover {
+  color: var(--color-arancio-ribelle);
+}
+
+.summary-section .section-link {
+  color: var(--color-bianco-sporco);
+}
+
+/* ==========================================================================
+   MOVIMENTO & INTERAZIONI (Stile Scandinavo / Astro)
+   ========================================================================== */
+.fade-up-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.fade-up-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.works-grid .bento-card.fade-up-element:nth-child(even) {
+  transition-delay: 0.15s;
+}
+
+/* ==========================================================================
+   TEXT REVEAL (Ikea style)
+   ========================================================================== */
+.ikea-reveal-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.ikea-reveal-line {
+  display: block;
+  overflow: hidden; /* Taglia via il testo finché non sale */
+  line-height: 1.15;
+}
+.ikea-reveal-text {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform;
+}
+.is-visible .ikea-reveal-text {
+  transform: translateY(0);
+}
+
+.ikea-fade {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.is-visible .ikea-fade {
+  opacity: 1;
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/* Hero title — animazione parola per parola */
+.hero-title-animated {
+  overflow: hidden;
+}
+
+.hero-title-animated .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: word-enter 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--delay);
+}
+
+@keyframes word-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Il lead (sottotitolo) entra dopo tutte le parole */
+.hero-section .lead {
+  opacity: 0;
+  animation: word-enter 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 600ms;
+}
+
+/* Il video (figura) entra dopo il lead */
+.hero-visual {
+  opacity: 0;
+  animation: word-enter 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 800ms;
+}
+
+/* Reduced motion: appare tutto istantaneamente */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-animated .word,
+  .hero-section .lead,
+  .hero-visual {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* Scroll reveal — stato iniziale (nascosto) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Stato visibile (triggerato dall'IntersectionObserver) */
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger: sezioni vicine entrano con delay progressivo */
+[data-reveal]:nth-of-type(2) { transition-delay: 50ms; }
+[data-reveal]:nth-of-type(3) { transition-delay: 100ms; }
+
+/* Reduced motion: tutto visibile subito */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   STEP 5 - ACCENTI ARANCIO (Massa Cromatica)
+   ========================================================================== */
+
+/* 5a - Summary Section */
+.summary-section {
+  border-left: 6px solid var(--color-arancio-ribelle);
+  padding-left: calc(var(--space-8) - 6px); /* Compensate per il bordo */
+}
+
+@media (max-width: 768px) {
+  .summary-section {
+    border-left: none;
+    border-top: 6px solid var(--color-arancio-ribelle);
+    padding-left: var(--space-4);
+  }
+}
+
+/* 5b - Accent word in Hero */
+.word--accent {
+  color: var(--color-arancio-ribelle);
+}
+
+/* 5c - Section link hover nel Metodo */
+.method-section .section-link {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-arancio-ribelle);
+  color: var(--color-arancio-ribelle);
+  text-decoration: none;
+  border-radius: var(--space-1);
+  transition: background var(--transition-quick), color var(--transition-quick);
+  display: inline-block;
+  margin-top: var(--space-4);
+}
+
+.method-section .section-link:hover {
+  background: var(--color-arancio-ribelle);
+  color: var(--color-bianco-sporco);
+}

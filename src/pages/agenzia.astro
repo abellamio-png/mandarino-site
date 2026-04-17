@@ -1,0 +1,236 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PixelCluster from '../components/visuals/PixelCluster.astro';
+import PersonaggioSaggio from '../components/visuals/PersonaggioSaggio.astro';
+import PersonaggioRibelle from '../components/visuals/PersonaggioRibelle.astro';
+import '../styles/pages/agenzia.css';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Mandarino",
+  "legalName": "Mandarino ADV S.r.l.",
+  "url": "https://mandarino.agency",
+  "logo": "https://mandarino.agency/logo.svg",
+  "foundingDate": "2004",
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "Latina, Italia"
+  },
+  "email": "info@mandarino.agency",
+  "telephone": "+39 0773 665106",
+  "vatID": "IT02345120592",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Le Corbusier 393 scala B",
+    "addressLocality": "Latina",
+    "addressRegion": "LT",
+    "postalCode": "04100",
+    "addressCountry": "IT"
+  },
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "minValue": 4,
+    "maxValue": 10
+  },
+  "description": "Mandarino è un'agenzia di comunicazione strategica italiana fondata nel 2004 a Latina. Boutique indipendente, lavora con aziende mid-market italiane attraverso il Metodo Fondamenta, un processo strategico in cinque fasi.",
+  "member": [
+    {
+      "@type": "Person",
+      "name": "Andrea Bellamio",
+      "jobTitle": "CEO"
+    },
+    {
+      "@type": "Person",
+      "name": "Federico Quagliotto",
+      "jobTitle": "Creative Director"
+    },
+    {
+      "@type": "Person",
+      "name": "Fabrizio Matarrese",
+      "jobTitle": "[TITOLO DA CONFERMARE]"
+    },
+    {
+      "@type": "Person",
+      "name": "Carmine Capone",
+      "jobTitle": "Account Manager"
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Agenzia"
+  description="Mandarino è un'agenzia di comunicazione strategica italiana, fondata nel 2004 a Latina. Boutique indipendente, saggia e ribelle. Il pensiero prima dell'azione, da vent'anni."
+  path="/agenzia/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <div class="agenzia-page">
+
+    <!-- HERO -->
+    <header class="agenzia-hero" data-reveal>
+      <span class="section-label">(Agenzia)</span>
+      <h1>Siamo Mandarino.</h1>
+      <p class="hero-sub">Vent'anni corsi alla velocità della luce.</p>
+      <PixelCluster size="medium" variant="corner" color="arancio" />
+    </header>
+
+    <!-- STORIA -->
+    <section class="agenzia-storia" aria-labelledby="storia-title" data-reveal>
+      <h2 id="storia-title" class="visually-hidden">La nostra storia</h2>
+      <p>Tutto ebbe inizio da un campo di calcio di Latina, nei primi anni duemila. Tra un calcio al pallone e un esame all'università, nasceva l'idea Mandarino.</p>
+      <p>Nel 2004 aprimmo la prima sede — sedici metri quadri nel centro di Latina. Qui nacque il nome, qui condividemmo i valori fondanti, qui costruimmo il modello che ancora oggi è l'identità dell'agenzia. Da allora abbiamo cambiato quattro sedi, attraversato vent'anni di cambiamenti, rivoluzioni piccole e grandi. Gente di passaggio e gente entrata per restare. Scoperte, sperimentazioni, giornate spese a costruire — a volte lucidamente, a volte no.</p>
+      <p>Quello che non è cambiato è la convinzione che il pensiero venga prima dell'azione. Che la comunicazione sia la conseguenza di una strategia, non un sostituto. Che si lavori meglio con meno clienti e più profondità, che con molti clienti e poca attenzione.</p>
+      <p>Oggi siamo a Latina, al quinto piano del Latinafiori, con una finestra sul Circeo e un occhio fisso su quel campo di calcio dove tutto ebbe inizio.</p>
+    </section>
+
+    <!-- SEPARATORE -->
+    <div style="display: flex; justify-content: center; padding: var(--space-4) 0;" aria-hidden="true">
+      <PixelCluster size="small" variant="separator" color="arancio" />
+    </div>
+
+    <!-- TEAM -->
+    <section class="agenzia-team" aria-labelledby="team-title" data-reveal>
+      <span class="section-label">(Il team)</span>
+      <h2 id="team-title" class="visually-hidden">Il team</h2>
+
+      <div class="team-grid">
+
+        <article class="team-card">
+          <div class="team-card-photo" aria-label="Foto di Andrea Bellamio">
+            <!-- Placeholder: sostituire con <img src="/assets/team/andrea-bellamio.jpg" alt="Andrea Bellamio"> -->
+          </div>
+          <div class="team-card-info">
+            <p class="team-card-nome">Andrea Bellamio</p>
+            <p class="team-card-ruolo">CEO</p>
+          </div>
+        </article>
+
+        <article class="team-card">
+          <div class="team-card-photo" aria-label="Foto di Federico Quagliotto">
+            <!-- Placeholder: sostituire con <img src="/assets/team/federico-quagliotto.jpg" alt="Federico Quagliotto"> -->
+          </div>
+          <div class="team-card-info">
+            <p class="team-card-nome">Federico Quagliotto</p>
+            <p class="team-card-ruolo">Creative Director</p>
+          </div>
+        </article>
+
+        <article class="team-card">
+          <div class="team-card-photo" aria-label="Foto di Fabrizio Matarrese">
+            <!-- Placeholder: sostituire con <img src="/assets/team/fabrizio-matarrese.jpg" alt="Fabrizio Matarrese"> -->
+          </div>
+          <div class="team-card-info">
+            <p class="team-card-nome">Fabrizio Matarrese</p>
+            <p class="team-card-ruolo">[TITOLO DA CONFERMARE]</p>
+          </div>
+        </article>
+
+        <article class="team-card">
+          <div class="team-card-photo" aria-label="Foto di Carmine Capone">
+            <!-- Placeholder: sostituire con <img src="/assets/team/carmine-capone.jpg" alt="Carmine Capone"> -->
+          </div>
+          <div class="team-card-info">
+            <p class="team-card-nome">Carmine Capone</p>
+            <p class="team-card-ruolo">Account Manager</p>
+          </div>
+        </article>
+
+      </div>
+
+      <p style="margin-top: var(--space-8); max-width: var(--container-reading); font-size: var(--text-base); line-height: var(--leading-relaxed); color: var(--color-grigio-saggio-soft);">
+        Lavoriamo con una rete di collaboratori specializzati: account, ricercatori, art director, copywriter, web designer, sviluppatori, videomaker, fotografi, social media manager, strategist. Li chiamiamo quando servono, per quello che sanno fare meglio. Non manteniamo strutture gonfiate — manteniamo relazioni solide.
+      </p>
+    </section>
+
+    <!-- SAGGI E RIBELLI -->
+    <section class="agenzia-dualismo" aria-labelledby="dualismo-title" data-reveal>
+      <span class="section-label">(Chi siamo)</span>
+      <h2 id="dualismo-title" class="visually-hidden">Saggi e Ribelli</h2>
+
+      <div class="dualismo-grid">
+
+        <div class="dualismo-polo dualismo-polo--saggio">
+          <h3 class="dualismo-polo-titolo">Saggi.</h3>
+          <p class="dualismo-polo-testo">Guidiamo il cliente attraverso la consulenza. Non vendiamo un servizio a commessa, ma un ragionamento condiviso. Portiamo esperienza, metodo, e la capacità di guardare al problema prima della soluzione. Questo è il lato che pensa prima di agire.</p>
+          <div class="dualismo-polo-personaggio">
+            <PersonaggioSaggio />
+          </div>
+          <PixelCluster size="small" variant="corner" color="bianco" />
+        </div>
+
+        <div class="dualismo-polo dualismo-polo--ribelle">
+          <h3 class="dualismo-polo-titolo">Ribelli.</h3>
+          <p class="dualismo-polo-testo">Non ci conformiamo alle regole del mercato quando le regole non funzionano. Sfidiamo i metodi consolidati quando portano risultati consolidati ma mediocri. Non per provocazione, ma perché crediamo che il cliente meriti soluzioni migliori di quelle che ha già visto.</p>
+          <div class="dualismo-polo-personaggio">
+            <PersonaggioRibelle />
+          </div>
+          <PixelCluster size="small" variant="corner" color="arancio" />
+        </div>
+
+      </div>
+
+      <blockquote style="max-width: var(--container-reading); margin: var(--space-8) auto 0; font-family: var(--font-saggio); font-style: italic; font-size: var(--text-lg); color: var(--color-grigio-saggio-soft); border-left: 3px solid var(--color-arancio-ribelle); padding-left: var(--space-4);">
+        Questa tensione — tra saggezza e ribellione, tra metodo e rottura — è quello che rende Mandarino diversa da un consulente puro e da un'agenzia creativa pura. Siamo entrambe le cose, nella misura giusta.
+      </blockquote>
+    </section>
+
+    <!-- VALORI OPERATIVI -->
+    <section class="agenzia-valori" aria-labelledby="valori-title" data-reveal>
+      <div class="agenzia-valori-inner">
+        <span class="section-label">(Come lavoriamo)</span>
+        <h2 id="valori-title" class="visually-hidden">Come lavoriamo</h2>
+
+        <div class="valori-grid">
+          <div class="valore-item">
+            <h3>Indipendenti.</h3>
+            <p>Non apparteniamo a network, non rispondiamo a holding, non abbiamo conflitti di interesse tra clienti. Quando lavoriamo con voi, lavoriamo solo per voi.</p>
+          </div>
+          <div class="valore-item">
+            <h3>Competenti.</h3>
+            <p>Vent'anni di clienti diversi in settori diversi ci hanno insegnato a entrare velocemente dentro problemi complessi. Non vendiamo expertise verticale su un settore — vendiamo la capacità di leggere qualunque settore con occhi freschi e metodo solido.</p>
+          </div>
+          <div class="valore-item">
+            <h3>Presenti.</h3>
+            <p>Non deleghiamo i clienti importanti ai junior. Chi firma il contratto è chi lavora sul progetto.</p>
+          </div>
+          <div class="valore-item">
+            <h3>Misurabili.</h3>
+            <p>La comunicazione non è arte. Ha obiettivi, ha KPI, ha risultati. Ogni piano strategico che consegniamo ha metriche di valutazione chiare.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOPHON -->
+    <section class="agenzia-colophon" aria-labelledby="colophon-title" data-reveal>
+      <span class="section-label">(Colophon)</span>
+      <h2 id="colophon-title" class="visually-hidden">Informazioni su Mandarino</h2>
+      <table aria-label="Informazioni su Mandarino">
+        <tbody>
+          <tr><td>(Fondata)</td><td>2004, Latina</td></tr>
+          <tr><td>(Forma)</td><td>Mandarino ADV S.r.l.</td></tr>
+          <tr><td>(Modello)</td><td>Boutique strategica indipendente</td></tr>
+          <tr><td>(Settori)</td><td>Food, Sport, Retail, Manifatturiero, Associazioni</td></tr>
+          <tr><td>(Clienti storici)</td><td>AS Roma, Avio Interiors, Todis, Francia Latticini, Fipe Confcommercio</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SEPARATORE FINALE -->
+    <div style="display: flex; justify-content: center; padding: var(--space-8) 0;" aria-hidden="true">
+      <PixelCluster size="medium" variant="separator" color="arancio" />
+    </div>
+
+    <!-- FIRMA -->
+    <section class="agenzia-firma" aria-label="Firma Mandarino" data-reveal>
+      <p class="agenzia-firma-primary">Orgogliosamente indipendenti.</p>
+      <p class="agenzia-firma-secondary">Saggi e Ribelli. Dal 2004.</p>
+      <div style="margin-top: var(--space-6);" aria-hidden="true">
+        <PixelCluster size="large" variant="seal" color="arancio" />
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

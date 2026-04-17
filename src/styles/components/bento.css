@@ -1,0 +1,222 @@
+/* Grid case study (sezione 5) - BENTO LAYOUT */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  grid-auto-flow: dense;
+}
+
+@media (max-width: 900px) {
+  .bento-grid {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.bento-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--space-4);
+  text-decoration: none;
+  color: var(--color-nero-testo);
+  background-color: var(--color-bianco-sporco);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.bento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Modificatori Asimmetrici */
+/* Blocchi 0 e 1 (Affiancati 50/50 - Stile Overlay) */
+.bento-0, .bento-1 {
+  grid-column: span 6;
+  padding: 0;
+  background-color: var(--color-grigio-saggio);
+  aspect-ratio: 1 / 1;
+}
+
+.bento-0 .work-card-image, .bento-1 .work-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+}
+
+.bento-0 .work-card-content, .bento-1 .work-card-content {
+  position: absolute;
+  inset: 0;
+  padding: var(--space-8);
+  background: linear-gradient(to top, rgba(16, 21, 23, 0.95) 0%, rgba(16, 21, 23, 0) 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 2;
+  margin: 0; /* Override margin defaults */
+}
+
+.bento-0 .work-card-title, .bento-1 .work-card-title {
+  color: var(--color-bianco-sporco);
+  margin-bottom: 0;
+}
+
+.bento-0 .work-card-meta, .bento-1 .work-card-meta {
+  color: rgba(250, 247, 242, 0.8);
+}
+
+.bento-0 .work-card-tesi, .bento-1 .work-card-tesi {
+  display: none; /* Nascondiamo la tesi per replicare lo stile minimale Ikea */
+}
+
+@media (max-width: 900px) {
+  .bento-0, .bento-1 {
+    aspect-ratio: 4 / 5; /* Formato più verticale su mobile */
+  }
+}
+
+/* Blocco 2 Orizzontale a piena larghezza (Ikea Style!) */
+.bento-2 {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  padding: 0;
+  background-color: var(--color-grigio-saggio-soft);
+  color: var(--color-bianco-sporco);
+  align-items: stretch;
+}
+
+/* Blocco 3 Orizzontale inverso (Variante editoriale) */
+.bento-3 {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  padding: 0;
+  background-color: var(--color-grigio-saggio);
+  color: var(--color-bianco-sporco);
+  align-items: stretch;
+}
+.bento-3 .work-card-image {
+  order: 2; /* Sposta l'immagine a destra */
+}
+.bento-3 .work-card-content {
+  order: 1; /* Il testo a sinistra */
+}
+
+/* Gestione Media Query per blocchi orizzontali */
+@media (max-width: 900px) {
+  .bento-2, .bento-3 {
+    display: flex;
+    flex-direction: column;
+  }
+  .bento-3 .work-card-image { order: 1; }
+  .bento-3 .work-card-content { order: 2; }
+}
+
+/* Inner elements logic */
+.work-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--space-2);
+  flex-shrink: 0; /* Previene il collasso dell'aspect-ratio dentro flex column */
+}
+
+/* I blocchi orizzontali non hanno bordi interni arrotondati né margini fissi */
+.bento-2 .work-card-image, .bento-3 .work-card-image {
+  border-radius: 0;
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 450px;
+}
+
+.work-card-image img, .work-card-image video {
+  position: absolute;
+  top: -10%; /* Margine per il Parallax */
+  left: 0;
+  width: 100%;
+  height: 120%; /* Maggiorata per lo scrubbing GSAP */
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+  display: block;
+}
+
+.bento-card:hover .work-card-image img, .bento-card:hover .work-card-image video {
+  transform: scale(1.05);
+}
+
+.work-card-content {
+  padding: var(--space-4) 0 0 0;
+  position: relative;
+}
+
+.bento-2 .work-card-content, .bento-3 .work-card-content {
+  padding: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .bento-2 .work-card-content, .bento-3 .work-card-content {
+    padding: var(--space-8);
+  }
+}
+
+.work-card-meta {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-grigio-saggio-soft);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+.bento-2 .work-card-meta, .bento-3 .work-card-meta {
+  color: rgba(250, 247, 242, 0.7); /* Variante chiara del bianco sporco */
+}
+
+.work-card-title {
+  font-family: var(--font-saggio);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-nero-testo);
+  margin-bottom: var(--space-3);
+  margin-top: 0;
+}
+
+.bento-2 .work-card-title, .bento-3 .work-card-title {
+  color: var(--color-bianco-sporco);
+}
+
+.work-card-tesi {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  color: var(--color-grigio-saggio);
+  line-height: var(--leading-normal);
+}
+
+.bento-2 .work-card-tesi, .bento-3 .work-card-tesi {
+  color: rgba(250, 247, 242, 0.9);
+}
+
+.work-card-hover-element {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.bento-card:hover .work-card-hover-element {
+  transform: translateX(0);
+  opacity: 1;
+}

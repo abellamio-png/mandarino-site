@@ -1,0 +1,124 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PixelCluster from '../../components/visuals/PixelCluster.astro';
+import '../../styles/pages/lavori.css';
+
+export async function getStaticPaths() {
+  const lavori = await getCollection('lavori', ({ data }) => !data.draft);
+  return lavori.map(lavoro => ({
+    params: { slug: lavoro.id },
+    props: { lavoro },
+  }));
+}
+
+interface Props {
+  lavoro: CollectionEntry<'lavori'>;
+}
+
+const { lavoro } = Astro.props;
+const { Content } = await render(lavoro);
+
+// Trova case precedente e successivo nella vetrina
+const tuttiVetrina = (await getCollection('lavori', ({ data }) => !data.draft && data.inVetrina))
+  .sort((a, b) => (a.data.ordineVetrina || 999) - (b.data.ordineVetrina || 999));
+
+const indexCorrente = tuttiVetrina.findIndex(l => l.id === lavoro.id);
+const casePrec = indexCorrente > 0 ? tuttiVetrina[indexCorrente - 1] : null;
+const caseSucc = indexCorrente < tuttiVetrina.length - 1 ? tuttiVetrina[indexCorrente + 1] : null;
+
+// JSON-LD per CreativeWork
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": lavoro.data.titolo,
+  "about": lavoro.data.cliente,
+  "description": lavoro.data.descrizione,
+  "creator": {
+    "@type": "Organization",
+    "name": "Mandarino",
+    "url": "https://mandarino.agency"
+  },
+  "url": `https://mandarino.agency/lavori/${lavoro.id}/`,
+};
+---
+
+<BaseLayout
+  title={`${lavoro.data.cliente} — ${lavoro.data.titolo}`}
+  description={lavoro.data.descrizione}
+  path={`/lavori/${lavoro.id}/`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <article class="case-page">
+    <header class="case-hero">
+      <span class="section-label">(Case)</span>
+
+      <div class="case-meta-row">
+        <div class="case-meta-item">
+          <span class="case-meta-label">(Cliente)</span>
+          <span class="case-meta-value">{lavoro.data.cliente}</span>
+        </div>
+        <div class="case-meta-item">
+          <span class="case-meta-label">(Settore)</span>
+          <span class="case-meta-value">{lavoro.data.settore}</span>
+        </div>
+        <div class="case-meta-item">
+          <span class="case-meta-label">(Durata)</span>
+          <span class="case-meta-value">{lavoro.data.durata}</span>
+        </div>
+        <div class="case-meta-item">
+          <span class="case-meta-label">(Ambito)</span>
+          <span class="case-meta-value">{lavoro.data.ambito}</span>
+        </div>
+      </div>
+
+      <h1 class="case-title">{lavoro.data.titolo}</h1>
+      <p class="case-tesi">{lavoro.data.tesi}</p>
+
+      <div class="case-hero-image" aria-label={lavoro.data.heroImageAlt || ''} style="overflow: hidden; position: relative; background-color: var(--color-grigio-saggio); border-radius: var(--space-4);">
+        {lavoro.data.heroVideo ? (
+          <video src={lavoro.data.heroVideo} autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+        ) : (
+          <img src={lavoro.data.heroImage} alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+        )}
+        <div style="position: absolute; bottom: 0; right: 0;">
+          <PixelCluster size="medium" variant="corner" color="arancio" />
+        </div>
+      </div>
+    </header>
+
+    <div class="case-body">
+      <Content />
+    </div>
+
+    <footer class="case-footer">
+      <PixelCluster size="medium" variant="separator" color="arancio" />
+
+      <p style="margin-top: var(--space-6);">
+        <a href="/contatti/" class="section-link">Parliamone insieme →</a>
+      </p>
+
+      <nav class="case-navigation" aria-label="Altri lavori">
+        {casePrec ? (
+          <a href={`/lavori/${casePrec.id}/`} class="case-nav-link">
+            <span class="case-nav-link-label">← Case precedente</span>
+            <span>{casePrec.data.cliente}</span>
+          </a>
+        ) : <div></div>}
+
+        {caseSucc ? (
+          <a href={`/lavori/${caseSucc.id}/`} class="case-nav-link" style="text-align: right;">
+            <span class="case-nav-link-label">Case successivo →</span>
+            <span>{caseSucc.data.cliente}</span>
+          </a>
+        ) : <div></div>}
+      </nav>
+
+      <p style="margin-top: var(--space-8);">
+        <a href="/lavori/" class="section-link">← Tutti i lavori</a>
+      </p>
+    </footer>
+  </article>
+</BaseLayout>

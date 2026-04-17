@@ -12,6 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource/lora": "^5.2.8",
+    "@fontsource/work-sans": "^5.2.8",
     "astro": "^6.1.7"
   }
 }

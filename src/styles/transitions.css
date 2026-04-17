@@ -1,0 +1,47 @@
+/* View Transitions personalizzate */
+
+/* Fade di default — pagina esce veloce, entra lenta */
+::view-transition-old(root) {
+  animation: 200ms ease-in both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 400ms ease-out both fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Transizione speciale per le card dei lavori:
+   quando si naviga da /lavori/ a un singolo case,
+   il titolo del case fa una transizione "expanding" */
+.vetrina-card-title,
+.case-title {
+  view-transition-name: case-title;
+}
+
+/* Evita conflitti su pagine con più card */
+.bento-card:nth-child(1) .work-card-title { view-transition-name: case-title-1; }
+.bento-card:nth-child(2) .work-card-title { view-transition-name: case-title-2; }
+.bento-card:nth-child(3) .work-card-title { view-transition-name: case-title-3; }
+.bento-card:nth-child(4) .work-card-title { view-transition-name: case-title-4; }
+
+/* Il logo nell'header non deve animarsi durante le transizioni */
+.site-logo {
+  view-transition-name: site-logo;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

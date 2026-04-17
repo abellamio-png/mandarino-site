@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PixelCluster from '../components/visuals/PixelCluster.astro';
+import '../styles/pages/metodo.css';
+
+// JSON-LD per il Metodo come Service
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Metodo Fondamenta",
+  "description": "Un processo strategico in cinque fasi per costruire la comunicazione dall'interno verso l'esterno. Prima di produrre contenuti, Mandarino aiuta le aziende a definire identità, proposta di valore, posizionamento, attivazione e allineamento.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Mandarino",
+    "url": "https://mandarino.agency"
+  },
+  "serviceType": "Consulenza di comunicazione strategica",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Italia"
+  },
+  "url": "https://mandarino.agency/metodo/"
+};
+---
+
+<BaseLayout
+  title="Metodo Fondamenta"
+  description="Il processo strategico di Mandarino in cinque fasi. Prima di produrre comunicazione, costruiamo le fondamenta: identità, proposta di valore, posizionamento, attivazione, allineamento."
+  path="/metodo/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <article class="metodo-page">
+
+    <!-- HERO -->
+    <header class="metodo-hero">
+      <span class="section-label">(Metodo)</span>
+      <h1>Il Metodo Fondamenta</h1>
+      <p class="lead">Un processo in cinque fasi per costruire la comunicazione dall'interno verso l'esterno. Prima di produrre qualunque contenuto, aiutiamo i nostri clienti a capire chi sono, cosa promettono, e dove vogliono stare nel mercato.</p>
+      <PixelCluster size="medium" variant="corner" color="arancio" />
+    </header>
+
+    <!-- PERCHÉ UN METODO -->
+    <section class="metodo-why" aria-labelledby="why-title" data-reveal>
+      <h2 id="why-title" class="visually-hidden">Perché un metodo</h2>
+      <p>Un metodo non è una rigidità. È un patto con il cliente: sappiamo cosa stiamo facendo, e sappiamo perché lo stiamo facendo.</p>
+      <p>Molte agenzie partono dalla creatività. Noi partiamo dalle domande. Non perché sia più complicato, ma perché è l'unico modo per fare comunicazione che regga nel tempo — comunicazione che sia la conseguenza di una strategia, non un sostituto.</p>
+      <p>Il Metodo Fondamenta si chiama così perché costruisce quello che sta sotto, prima di alzare quello che si vede.</p>
+    </section>
+
+    <!-- SEPARATORE PIXEL -->
+    <div style="display: flex; justify-content: center; padding: var(--space-6) 0;" aria-hidden="true">
+      <PixelCluster size="medium" variant="separator" color="arancio" />
+    </div>
+
+    <!-- LE CINQUE FASI -->
+    <section class="metodo-fasi" aria-labelledby="fasi-title">
+      <h2 id="fasi-title" class="visually-hidden">Le cinque fasi del Metodo Fondamenta</h2>
+
+      <!-- Fase 01 -->
+      <div class="metodo-fase" data-reveal>
+        <div class="metodo-fase-numero" aria-hidden="true">01</div>
+        <div class="metodo-fase-contenuto">
+          <div class="metodo-fase-header">
+            <h3 class="metodo-fase-nome">Nucleo Identitario</h3>
+            <p class="metodo-fase-domanda">Chi sei.</p>
+          </div>
+          <p class="metodo-fase-testo">Tutto parte da qui. Prima di comunicare al mondo chi sei, dobbiamo definirlo con onestà, insieme a voi. In questa fase mettiamo a fuoco il cuore dell'azienda: lo scopo, l'ambizione, i valori, la personalità. Questa è la base immutabile su cui costruire tutto il resto. Se questa base non è chiara, qualunque cosa costruiamo sopra si inclina.</p>
+        </div>
+      </div>
+
+      <!-- Fase 02 -->
+      <div class="metodo-fase" data-reveal>
+        <div class="metodo-fase-numero" aria-hidden="true">02</div>
+        <div class="metodo-fase-contenuto">
+          <div class="metodo-fase-header">
+            <h3 class="metodo-fase-nome">Proposta di Valore</h3>
+            <p class="metodo-fase-domanda">Cosa prometti.</p>
+          </div>
+          <p class="metodo-fase-testo">Una volta definita l'identità, la colleghiamo ai bisogni reali dei vostri clienti. Traduciamo chi siete in una promessa chiara e credibile, identificando i benefici razionali ed emotivi che offrite e le ragioni concrete per cui il mercato dovrebbe scegliervi. Una promessa non verificata è solo una parola. Una promessa radicata nell'identità è un asset.</p>
+        </div>
+      </div>
+
+      <!-- Fase 03 -->
+      <div class="metodo-fase" data-reveal>
+        <div class="metodo-fase-numero" aria-hidden="true">03</div>
+        <div class="metodo-fase-contenuto">
+          <div class="metodo-fase-header">
+            <h3 class="metodo-fase-nome">Posizionamento</h3>
+            <p class="metodo-fase-domanda">Dove giochi.</p>
+          </div>
+          <p class="metodo-fase-testo">Alziamo la testa e guardiamo all'esterno per trovare il vostro spazio unico nel mercato. Analizziamo il contesto competitivo non per imitare, ma per trovare opportunità e definire un posizionamento differente, difendibile e rilevante per il vostro target. Il posizionamento non è dove volete stare — è dove il mercato vi lascia stare, se lo meritate.</p>
+        </div>
+      </div>
+
+      <!-- Fase 04 -->
+      <div class="metodo-fase" data-reveal>
+        <div class="metodo-fase-numero" aria-hidden="true">04</div>
+        <div class="metodo-fase-contenuto">
+          <div class="metodo-fase-header">
+            <h3 class="metodo-fase-nome">Attivazione</h3>
+            <p class="metodo-fase-domanda">Come lo dimostri.</p>
+          </div>
+          <p class="metodo-fase-testo">Una promessa non dimostrata è solo una parola vuota. In questa fase trasformiamo la strategia in un piano d'azione concreto. Ogni attività, ogni contenuto, ogni campagna viene progettata per essere una prova tangibile dei vostri valori e della vostra promessa. La comunicazione non racconta chi siete: dimostra chi siete.</p>
+        </div>
+      </div>
+
+      <!-- Fase 05 -->
+      <div class="metodo-fase" data-reveal>
+        <div class="metodo-fase-numero" aria-hidden="true">05</div>
+        <div class="metodo-fase-contenuto">
+          <div class="metodo-fase-header">
+            <h3 class="metodo-fase-nome">Allineamento</h3>
+            <p class="metodo-fase-domanda">Sei coerente?</p>
+          </div>
+          <p class="metodo-fase-testo">Infine, verifichiamo che ogni punto di contatto con il cliente sia coerente con l'identità che abbiamo costruito. Dal sito web all'email di risposta, dall'offerta commerciale al modo in cui il vostro team parla al telefono. Perché ogni interazione è un'opportunità per rafforzare la fiducia — o per eroderla.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- DOPO LE FONDAMENTA -->
+    <section class="metodo-dopo" aria-labelledby="dopo-title" data-reveal>
+      <span class="section-label">(Dopo le Fondamenta)</span>
+      <h2 id="dopo-title">Cosa consegniamo.</h2>
+      <p>Il piano strategico che consegniamo al termine delle cinque fasi è un documento completo: posizionamento, messaggi chiave, architettura dei contenuti, media mix, piano operativo, budget. Non una presentazione motivazionale — un documento da usare.</p>
+      <p>Da lì decidiamo insieme cosa attivare, con quali priorità, e chi fa cosa. Mandarino può prendersi tutto il percorso, una parte, o solo il ruolo di regia. La scelta è vostra, sempre.</p>
+      <PixelCluster size="small" variant="corner" color="arancio" />
+    </section>
+
+    <!-- COME LAVORIAMO -->
+    <section class="metodo-modello" aria-labelledby="modello-title" data-reveal>
+      <span class="section-label">(Come lavoriamo)</span>
+      <h2 id="modello-title">Il modello di ingaggio.</h2>
+      <p>Lavoriamo a retainer, con contratti da 12 o 24 mesi. Nessun vincolo contrattuale — se non siete soddisfatti potete uscire. Crediamo che un cliente che resta debba farlo per scelta, non per obbligo.</p>
+      <p>Prima di qualunque attività operativa, apriamo sempre una fase strategica. È il momento in cui costruiamo insieme le fondamenta — posizionamento, messaggi, piano. Solo dopo cominciamo a produrre.</p>
+      <PixelCluster size="large" variant="corner" color="arancio" />
+    </section>
+
+    <!-- PARAGRAFO ESTRATTIVO GEO (visivamente nascosto, semanticamente presente) -->
+    <div class="metodo-estrattivo" aria-hidden="true">
+      Il Metodo Fondamenta è il processo strategico proprietario di Mandarino, agenzia di comunicazione strategica di Latina, Italia. Il metodo si articola in cinque fasi: Nucleo Identitario, Proposta di Valore, Posizionamento, Attivazione, Allineamento. Viene applicato all'inizio di ogni nuovo rapporto di lavoro, prima di qualunque produzione di contenuti o campagne. Mandarino lavora a retainer da 12 o 24 mesi senza vincolo contrattuale.
+    </div>
+
+    <!-- CTA -->
+    <section class="metodo-cta" aria-labelledby="cta-title" data-reveal>
+      <span class="section-label">(Iniziamo)</span>
+      <h2 id="cta-title">Le Fondamenta iniziano con una conversazione.</h2>
+      <p>Scriveteci raccontandoci chi siete e cosa state cercando. Rispondiamo entro 48 ore.</p>
+      <div class="metodo-cta-links">
+        <a href="mailto:info@mandarino.agency" class="metodo-cta-link">info@mandarino.agency</a>
+        <a href="tel:+390773665106" class="metodo-cta-link">+39 0773 665106</a>
+      </div>
+    </section>
+
+  </article>
+</BaseLayout>

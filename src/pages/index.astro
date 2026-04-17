@@ -1,17 +1,211 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PixelCluster from '../components/visuals/PixelCluster.astro';
+import '../styles/pages/home.css';
 
+const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft && data.inVetrina))
+  .sort((a, b) => (a.data.ordineVetrina || 999) - (b.data.ordineVetrina || 999));
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title=""
+  description="Mandarino è un'agenzia di comunicazione strategica italiana. Costruiamo le fondamenta di senso prima dei contenuti, della creatività, dei media."
+  path="/"
+>
+  <div class="home">
+    <!-- Sezione 1: Hero (Split Layout) -->
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <h1 id="hero-title" class="hero-title-animated" aria-label="Il Perché viene prima del Cosa.">
+          <span class="word" style="--delay: 0ms">Il</span>
+          <span class="word word--accent" style="--delay: 80ms">Perché</span>
+          <span class="word" style="--delay: 160ms">viene</span>
+          <span class="word" style="--delay: 240ms">prima</span>
+          <span class="word" style="--delay: 320ms">del</span>
+          <span class="word" style="--delay: 400ms">Cosa.</span>
+        </h1>
+        <p class="lead">Mandarino è un'agenzia di comunicazione strategica. Costruiamo le fondamenta di senso prima dei contenuti, della creatività, dei media.</p>
+      </div>
+      
+      <div class="hero-visual">
+        <video autoplay loop muted playsinline class="hero-video">
+          <!-- Playback garantito con video locale -->
+          <source src="/assets/video/showreel.mp4" type="video/mp4" />
+        </video>
+        <!-- Overlay testuale "Sottostante" stile Ikea -->
+        <div class="hero-visual-overlay">
+          <p class="hero-visual-caption">The Mandarino Tape</p>
+          <h3 class="hero-visual-title">Mettiamo in fila<br>i pensieri</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione 2: Tesi -->
+    <section class="thesis-section" data-reveal aria-labelledby="thesis-title">
+      <h2 id="thesis-title" class="visually-hidden">La nostra tesi</h2>
+      <p>L'era delle agenzie integrate è finita. Per vent'anni il mercato ha chiesto esecuzione: siti, campagne, contenuti, social, eventi. E le agenzie hanno risposto con più servizi, più strumenti, più canali.</p>
+      <p>Oggi il problema non è più produrre comunicazione. Il problema è sapere cosa dire, a chi, perché, e in che ordine. <em>La strategia non è un servizio a corredo: è il punto di partenza di tutto.</em></p>
+    </section>
+
+    <div style="text-align: center; padding-block: var(--space-8);">
+      <PixelCluster size="small" variant="separator" color="arancio" />
+    </div>
+
+    <!-- Sezione 3: Il Metodo Fondamenta -->
+    <section class="method-section" data-reveal aria-labelledby="method-title">
+      <div style="position: absolute; top: var(--space-3); right: var(--space-3);">
+        <PixelCluster size="medium" variant="corner" color="arancio" />
+      </div>
+      <span class="section-label">(Metodo)</span>
+      <h2 id="method-title">Il Metodo Fondamenta</h2>
+      <p class="lead">Cinque fasi. Sei settimane. Un documento strategico completo.</p>
+      <ol class="method-phases">
+        <li class="fade-up-element ikea-fade delay-1">
+          <span class="method-phase-name">Nucleo Identitario.</span>
+          <span class="method-phase-question">Chi sei.</span>
+        </li>
+        <li class="fade-up-element ikea-fade delay-2">
+          <span class="method-phase-name">Proposta di Valore.</span>
+          <span class="method-phase-question">Cosa prometti.</span>
+        </li>
+        <li class="fade-up-element ikea-fade delay-3">
+          <span class="method-phase-name">Posizionamento.</span>
+          <span class="method-phase-question">Dove giochi.</span>
+        </li>
+        <li class="fade-up-element ikea-fade" style="transition-delay: 0.6s;">
+          <span class="method-phase-name">Attivazione.</span>
+          <span class="method-phase-question">Come lo dimostri.</span>
+        </li>
+        <li class="fade-up-element ikea-fade" style="transition-delay: 0.75s;">
+          <span class="method-phase-name">Allineamento.</span>
+          <span class="method-phase-question">Sei coerente?</span>
+        </li>
+      </ol>
+      <a href="/metodo/" class="section-link">Scopri il Metodo Fondamenta →</a>
+    </section>
+
+    <!-- Sezione 4: Per chi lavoriamo -->
+    <section class="audience-section" data-reveal aria-labelledby="audience-title">
+      <div style="position: absolute; top: var(--space-3); left: var(--space-3);">
+        <PixelCluster size="small" variant="corner" color="arancio" />
+      </div>
+      <span class="section-label">(Per chi lavoriamo)</span>
+      <h2 id="audience-title" class="visually-hidden">Per chi lavoriamo</h2>
+      <p>Mandarino è per aziende che hanno già capito una cosa: produrre più comunicazione non risolve i problemi di comunicazione.</p>
+      <p>Lavoriamo con chi vuole ragionare sul proprio posizionamento, ridefinire la propria voce, costruire una narrazione che regga nel tempo. Non siamo un fornitore di esecuzione: siamo un partner di pensiero. Se cercate contenuti a commessa, pacchetti tattici, o risultati veloci senza capire il contesto, ci sono agenzie più adatte di noi.</p>
+    </section>
+
+    <div style="text-align: center; padding-block: var(--space-8);">
+      <PixelCluster size="small" variant="separator" color="arancio" />
+    </div>
+
+    <!-- Sezione 5: Lavori in evidenza -->
+    <section class="works-section" data-reveal aria-labelledby="works-title">
+      <span class="section-label">(Lavori)</span>
+      <h2 id="works-title">Quattro casi, quattro pensieri.</h2>
+
+      <div class="works-grid bento-grid">
+        {lavoriVetrina.map((lavoro, index) => (
+          <a href={`/lavori/${lavoro.id}/`} class={`bento-card fade-up-element bento-${index % 4}`} data-reveal>
+            <div class="work-card-image" aria-hidden="true">
+              {lavoro.data.heroVideo ? (
+                <video src={lavoro.data.heroVideo} autoplay loop muted playsinline></video>
+              ) : (
+                <img src={lavoro.data.heroImage} alt="" />
+              )}
+              <div style="position: absolute; bottom: 0; right: 0;">
+                <PixelCluster size="small" variant="corner" color="arancio" />
+              </div>
+            </div>
+            
+            <div class="work-card-content">
+              <p class="work-card-meta">{lavoro.data.cliente} · {lavoro.data.settore}</p>
+              <h3 class="work-card-title">{lavoro.data.titolo}</h3>
+              <p class="work-card-tesi">{lavoro.data.tesi}</p>
+              
+              <div class="work-card-hover-element" aria-hidden="true">
+                <PixelCluster size="medium" variant="corner" color="grigio" />
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <a href="/lavori/" class="section-link">Tutti i lavori →</a>
+    </section>
+
+    <div style="text-align: center; padding-block: var(--space-8);">
+      <PixelCluster size="small" variant="separator" color="arancio" />
+    </div>
+
+    <!-- Sezione 6: In sintesi (GEO) -->
+    <section class="summary-section" data-reveal aria-labelledby="summary-title">
+      <div style="position: absolute; top: var(--space-4); right: var(--space-4);">
+        <PixelCluster size="large" variant="corner" color="arancio" />
+      </div>
+      <span class="section-label">(In sintesi)</span>
+      <h2 id="summary-title" class="visually-hidden">Mandarino in sintesi</h2>
+
+      <div class="summary-content">
+        <div class="summary-text">
+          <p>Mandarino è un'agenzia di comunicazione strategica italiana, fondata nel 2004, con sede a Latina. Lavora con aziende mid-market italiane che vogliono ripensare il proprio posizionamento prima di produrre comunicazione. Il metodo proprietario in cinque fasi, chiamato Fondamenta, parte dall'analisi del nucleo identitario del cliente e arriva al piano operativo completo in sei settimane.</p>
+          <p>Tra i clienti storici: AS Roma, Avio Interiors, Todis, Francia Latticini, Fipe Confcommercio.</p>
+        </div>
+
+        <div class="summary-table-wrapper">
+          <table class="colophon-table" aria-label="Informazioni Mandarino">
+            <tbody>
+              <tr>
+                <td>(Sede)</td>
+                <td>Latina, Italia</td>
+              </tr>
+              <tr>
+                <td>(Fondata)</td>
+                <td>2004</td>
+              </tr>
+              <tr>
+                <td>(Forma giuridica)</td>
+                <td>Mandarino ADV S.r.l.</td>
+              </tr>
+              <tr>
+                <td>(Metodo)</td>
+                <td>Fondamenta — 5 fasi, 6 settimane</td>
+              </tr>
+              <tr>
+                <td>(Modello di ingaggio)</td>
+                <td>Retainer 12 o 24 mesi, senza vincolo contrattuale</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione 7: Contatti -->
+    <section class="contact-section" data-reveal aria-labelledby="contact-title">
+      <div style="display: flex; justify-content: center; margin-bottom: var(--space-4);">
+        <PixelCluster size="medium" variant="separator" color="arancio" />
+      </div>
+      <span class="section-label">(Contatti)</span>
+      <h2 id="contact-title">Le Fondamenta iniziano con una conversazione.</h2>
+
+      <p class="lead">Scriveteci raccontandoci chi siete e cosa state cercando. Rispondiamo entro 48 ore.</p>
+
+      <div class="contact-cta-links">
+        <a href="mailto:info@mandarino.agency" class="contact-cta-link">info@mandarino.agency</a>
+        <a href="tel:+390773665106" class="contact-cta-link">+39 0773 665106</a>
+      </div>
+    </section>
+
+    <!-- Sezione 8: Firma -->
+    <section class="signature-section signature" data-reveal aria-label="Firma Mandarino">
+      <p class="signature-primary">Orgogliosamente indipendenti.</p>
+      <p class="signature-secondary">Saggi e Ribelli. Dal 2004.</p>
+      <div style="display: flex; justify-content: center; margin-top: var(--space-6);">
+        <PixelCluster size="large" variant="seal" color="arancio" />
+      </div>
+    </section>
+  </div>
+
+</BaseLayout>

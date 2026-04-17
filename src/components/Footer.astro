@@ -1,0 +1,211 @@
+---
+// src/components/Footer.astro
+// Footer istituzionale Mandarino
+---
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <!-- Sezione 1: identità -->
+    <section class="footer-identity">
+      <h2 class="footer-logo">Mandarino</h2>
+      <p class="footer-tagline">Agenzia di comunicazione strategica.</p>
+    </section>
+
+    <!-- Sezione 2: navigazione -->
+    <nav class="footer-nav" aria-label="Navigazione footer">
+      <h3 class="footer-section-title">(Navigazione)</h3>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/metodo/">Metodo</a></li>
+        <li><a href="/lavori/">Lavori</a></li>
+        <li><a href="/agenzia/">Agenzia</a></li>
+        <li><a href="/pensiero/">Pensiero</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
+    </nav>
+
+    <!-- Sezione 3: contatti -->
+    <section class="footer-contacts">
+      <h3 class="footer-section-title">(Contatti)</h3>
+      <address>
+        <p>Via Le Corbusier 393 scala B<br>04100 Latina</p>
+        <p><a href="mailto:info@mandarino.agency">info@mandarino.agency</a></p>
+        <p><a href="tel:+390773665106">+39 0773 665106</a></p>
+      </address>
+    </section>
+
+    <!-- Sezione 4: social -->
+    <section class="footer-social">
+      <h3 class="footer-section-title">(Social)</h3>
+      <ul>
+        <li><a href="[LINKEDIN URL DA DEFINIRE]" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
+        <li><a href="[INSTAGRAM URL DA DEFINIRE]" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+      </ul>
+    </section>
+
+    <!-- Sezione 5: colophon -->
+    <section class="footer-colophon">
+      <h3 class="footer-section-title">(Colophon)</h3>
+      <p>Sito costruito con Astro. Tipografia: Lora e Work Sans. Design system proprietario basato su scala modulare 1.25. Ospitato su Cloudflare.</p>
+    </section>
+
+    <!-- Sezione 6: legale + firma -->
+    <section class="footer-legal">
+      <p class="footer-legal-info">
+        Mandarino ADV S.r.l. — P.IVA 02345120592
+      </p>
+      <ul class="footer-legal-links">
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/cookie-policy/">Cookie Policy</a></li>
+        <li><a href="/termini-e-condizioni/">Termini e Condizioni</a></li>
+      </ul>
+      <p class="footer-certification">Impresa Rosa — Regione Lazio</p>
+      <p class="footer-signature">Orgogliosamente indipendenti.</p>
+    </section>
+
+  </div>
+</footer>
+
+<style>
+  /* Base - Mobile first (Single column below 768px) */
+  .site-footer {
+    background-color: var(--color-grigio-saggio);
+    color: var(--color-bianco-sporco);
+    padding: var(--space-12) 0 var(--space-6);
+    margin-top: var(--space-24);
+  }
+
+  .footer-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4); /* reduced gap for mobile */
+  }
+
+  /* Identity */
+  .footer-logo {
+    font-family: var(--font-saggio);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    margin: 0 0 var(--space-1);
+  }
+
+  .footer-tagline {
+    margin: 0;
+  }
+
+  /* Structural elements & reset */
+  .footer-section-title {
+    font-family: var(--font-ribelle);
+    text-transform: none;
+    font-weight: 500;
+    font-size: var(--text-sm);
+    color: var(--color-arancio-ribelle);
+    margin-top: 0;
+    margin-bottom: var(--space-2);
+  }
+
+  .footer-nav ul,
+  .footer-social ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-nav li,
+  .footer-social li {
+    margin-bottom: var(--space-1);
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  address p {
+    margin-top: 0;
+    margin-bottom: var(--space-1);
+  }
+
+  .footer-colophon p {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Links */
+  .site-footer a {
+    color: var(--color-bianco-sporco);
+    text-decoration: none;
+    transition: color var(--transition-quick);
+  }
+
+  .site-footer a:hover,
+  .site-footer a:focus {
+    color: var(--color-arancio-ribelle);
+    text-decoration: underline;
+  }
+
+  /* Legal & Signature area */
+  .footer-legal {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--color-grigio-saggio-soft);
+    padding-top: var(--space-4);
+    margin-top: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+
+  .footer-legal-info,
+  .footer-certification {
+    margin: 0;
+  }
+
+  .footer-legal-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-signature {
+    font-family: var(--font-saggio);
+    font-style: italic;
+    font-size: var(--text-base);
+    color: var(--color-bianco-sporco);
+    margin: 0;
+  }
+
+  /* Desktop Grid (768px+) */
+  @media (min-width: 768px) {
+    .footer-container {
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--space-6);
+    }
+    
+    .footer-identity {
+      grid-column: span 4;
+    }
+
+    .footer-nav,
+    .footer-contacts,
+    .footer-social,
+    .footer-colophon {
+      grid-column: span 2;
+    }
+
+    .footer-legal {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+    }
+  }
+</style>

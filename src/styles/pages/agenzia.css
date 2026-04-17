@@ -1,0 +1,291 @@
+/* =====================
+   PAGINA AGENZIA
+   ===================== */
+
+/* Hero */
+.agenzia-hero {
+  padding-block: var(--space-16) var(--space-8);
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding-inline: var(--space-4);
+  position: relative;
+}
+
+.agenzia-hero h1 {
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-3);
+}
+
+.agenzia-hero .hero-sub {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-2xl);
+  color: var(--color-grigio-saggio-soft);
+  margin: 0;
+}
+
+/* Storia */
+.agenzia-storia {
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-4);
+}
+
+.agenzia-storia p {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.agenzia-storia p:first-of-type {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+}
+
+/* Team */
+.agenzia-team {
+  padding: var(--space-12) var(--space-4);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.team-card {
+  position: relative;
+  border: 1px solid rgba(74, 94, 120, 0.15);
+  padding: 0;
+}
+
+.team-card-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--color-grigio-saggio);
+  position: relative;
+  overflow: hidden;
+}
+
+.team-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.team-card-info {
+  padding: var(--space-3);
+  border-top: 1px solid rgba(74, 94, 120, 0.15);
+}
+
+.team-card-nome {
+  font-family: var(--font-saggio);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-base);
+  color: var(--color-grigio-saggio);
+  margin: 0 0 var(--space-1);
+}
+
+.team-card-ruolo {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-arancio-ribelle);
+  margin: 0;
+}
+
+/* Sezione Saggi e Ribelli */
+.agenzia-dualismo {
+  padding: var(--space-12) var(--space-4);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.dualismo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 768px) {
+  .dualismo-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.dualismo-polo {
+  position: relative;
+  padding: var(--space-8);
+}
+
+.dualismo-polo--saggio {
+  background: var(--color-grigio-saggio);
+  color: var(--color-bianco-sporco);
+}
+
+.dualismo-polo--ribelle {
+  background: var(--color-bianco);
+  border: 1px solid rgba(74, 94, 120, 0.2);
+  color: var(--color-grigio-saggio);
+}
+
+.dualismo-polo-titolo {
+  font-family: var(--font-saggio);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-4);
+  line-height: 1;
+}
+
+.dualismo-polo--saggio .dualismo-polo-titolo {
+  color: var(--color-bianco-sporco);
+}
+
+.dualismo-polo--ribelle .dualismo-polo-titolo {
+  color: var(--color-arancio-ribelle);
+}
+
+.dualismo-polo-testo {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  max-width: 480px;
+}
+
+.dualismo-polo--saggio .dualismo-polo-testo {
+  color: rgba(250, 247, 242, 0.85);
+}
+
+/* Personaggio illustrativo dentro il polo */
+.dualismo-polo-personaggio {
+  margin-top: var(--space-6);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dualismo-polo-personaggio svg {
+  width: 120px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* Valori operativi */
+.agenzia-valori {
+  background: var(--color-bianco-sporco);
+  padding: var(--space-12) var(--space-4);
+  border-top: 1px solid rgba(74, 94, 120, 0.1);
+  border-bottom: 1px solid rgba(74, 94, 120, 0.1);
+}
+
+.agenzia-valori-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.valori-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 768px) {
+  .valori-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .valori-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.valore-item h3 {
+  font-family: var(--font-saggio);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  margin-bottom: var(--space-2);
+}
+
+.valore-item p {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-nero-testo);
+  margin: 0;
+}
+
+/* Colophon */
+.agenzia-colophon {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-4);
+}
+
+.agenzia-colophon table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.agenzia-colophon td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid rgba(74, 94, 120, 0.15);
+  vertical-align: top;
+}
+
+.agenzia-colophon td:first-child {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-arancio-ribelle);
+  white-space: nowrap;
+  width: 35%;
+}
+
+.agenzia-colophon td:last-child {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  color: var(--color-nero-testo);
+}
+
+/* Firma finale */
+.agenzia-firma {
+  text-align: center;
+  padding: var(--space-16) var(--space-4);
+  position: relative;
+}
+
+.agenzia-firma-primary {
+  font-family: var(--font-saggio);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-2);
+}
+
+.agenzia-firma-secondary {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-xl);
+  color: var(--color-grigio-saggio-soft);
+}

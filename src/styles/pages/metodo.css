@@ -1,0 +1,215 @@
+/* =====================
+   PAGINA METODO
+   ===================== */
+
+/* Hero */
+.metodo-hero {
+  padding-block: var(--space-16) var(--space-8);
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding-inline: var(--space-4);
+  position: relative;
+}
+
+.metodo-hero h1 {
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-4);
+}
+
+.metodo-hero .lead {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-grigio-saggio-soft);
+  line-height: var(--leading-normal);
+  max-width: var(--container-reading);
+}
+
+/* Sezione perché un metodo */
+.metodo-why {
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-4);
+}
+
+.metodo-why p:first-of-type {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-xl);
+  color: var(--color-grigio-saggio);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-6);
+}
+
+/* Sezione fasi */
+.metodo-fasi {
+  padding: var(--space-12) var(--space-4);
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Singola fase */
+.metodo-fase {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--space-6);
+  padding: var(--space-8) 0;
+  border-top: 1px solid rgba(74, 94, 120, 0.15);
+  position: relative;
+}
+
+.metodo-fase:last-child {
+  border-bottom: 1px solid rgba(74, 94, 120, 0.15);
+}
+
+@media (max-width: 768px) {
+  .metodo-fase {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+
+/* Numero della fase */
+.metodo-fase-numero {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-arancio-ribelle);
+  letter-spacing: 0.05em;
+  padding-top: 6px; /* Allineamento visivo con il titolo */
+}
+
+/* Contenuto della fase */
+.metodo-fase-contenuto {
+  /* niente */
+}
+
+.metodo-fase-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.metodo-fase-nome {
+  font-family: var(--font-saggio);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  margin: 0;
+  line-height: var(--leading-tight);
+}
+
+.metodo-fase-domanda {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-arancio-ribelle);
+  margin: 0;
+}
+
+.metodo-fase-testo {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-nero-testo);
+  max-width: 600px;
+  margin: 0;
+}
+
+/* Sezione dopo le fondamenta */
+.metodo-dopo {
+  background: var(--color-bianco);
+  border: 1px solid rgba(74, 94, 120, 0.15);
+  border-left: 6px solid var(--color-arancio-ribelle);
+  padding: var(--space-8);
+  max-width: 900px;
+  margin: var(--space-12) auto;
+  position: relative;
+}
+
+.metodo-dopo h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-4);
+}
+
+.metodo-dopo p {
+  max-width: 600px;
+  line-height: var(--leading-relaxed);
+}
+
+/* Sezione come lavoriamo */
+.metodo-modello {
+  background: var(--color-grigio-saggio);
+  color: var(--color-bianco-sporco);
+  padding: var(--space-12) var(--space-8);
+  position: relative;
+}
+
+.metodo-modello .section-label {
+  color: var(--color-arancio-ribelle);
+}
+
+.metodo-modello h2 {
+  color: var(--color-bianco-sporco);
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-6);
+}
+
+.metodo-modello p {
+  color: var(--color-bianco-sporco);
+  max-width: var(--container-reading);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-3);
+}
+
+/* Sezione CTA */
+.metodo-cta {
+  text-align: center;
+  padding: var(--space-16) var(--space-4);
+  max-width: var(--container-reading);
+  margin: 0 auto;
+}
+
+.metodo-cta h2 {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-2xl);
+  color: var(--color-grigio-saggio);
+  margin-bottom: var(--space-6);
+}
+
+.metodo-cta-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(74, 94, 120, 0.15);
+}
+
+.metodo-cta-link {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-lg);
+  color: var(--color-grigio-saggio);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color var(--transition-quick);
+}
+
+.metodo-cta-link:hover {
+  color: var(--color-arancio-ribelle);
+}
+
+/* JSON-LD estrattivo GEO — visivamente nascosto ma presente nell'HTML */
+.metodo-estrattivo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
