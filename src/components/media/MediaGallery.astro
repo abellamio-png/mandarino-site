@@ -1,0 +1,115 @@
+---
+// MediaGallery — griglia di immagini nel corpo di un case study
+// Uso in MDX:
+// <MediaGallery
+//   immagini={[
+//     { src: "/assets/...", alt: "...", didascalia: "..." },
+//     { src: "/assets/..." },
+//   ]}
+//   colonne={2}
+// />
+
+interface Immagine {
+  src: string;
+  alt: string;
+  didascalia?: string;
+}
+
+interface Props {
+  immagini: Immagine[];
+  colonne?: 2 | 3; // default: 2
+  didascalia?: string; // didascalia generale della gallery
+}
+
+const {
+  immagini,
+  colonne = 2,
+  didascalia
+} = Astro.props;
+---
+
+<figure class={`media-gallery media-gallery--col${colonne}`}>
+  <div class="media-gallery-grid">
+    {immagini.map((img) => (
+      <div class="media-gallery-item">
+        <img
+          src={img.src}
+          alt={img.alt}
+          loading="lazy"
+          decoding="async"
+        />
+        {img.didascalia && (
+          <p class="media-gallery-item-didascalia">{img.didascalia}</p>
+        )}
+      </div>
+    ))}
+  </div>
+  {didascalia && (
+    <figcaption class="media-didascalia">{didascalia}</figcaption>
+  )}
+</figure>
+
+<style>
+  .media-gallery {
+    margin: var(--space-10) 0;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .media-gallery-grid {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .media-gallery--col2 .media-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .media-gallery--col3 .media-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    .media-gallery--col2 .media-gallery-grid,
+    .media-gallery--col3 .media-gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .media-gallery-item {
+    overflow: hidden;
+    background: var(--color-grigio-saggio);
+    position: relative;
+  }
+
+  .media-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 16 / 10;
+    transition: transform 400ms ease-out;
+  }
+
+  .media-gallery-item:hover img {
+    transform: scale(1.02);
+  }
+
+  .media-gallery-item-didascalia {
+    font-family: var(--font-ribelle);
+    font-size: var(--text-xs);
+    color: var(--color-grigio-saggio-soft);
+    margin-top: var(--space-1);
+    font-style: italic;
+  }
+
+  .media-didascalia {
+    font-family: var(--font-ribelle);
+    font-size: var(--text-sm);
+    color: var(--color-grigio-saggio-soft);
+    margin-top: var(--space-3);
+    text-align: center;
+    font-style: italic;
+  }
+</style>

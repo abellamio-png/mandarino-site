@@ -1,0 +1,396 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PixelCluster from '../components/visuals/PixelCluster.astro';
+import '../styles/pages/contatti.css';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contatti — Mandarino",
+  "url": "https://mandarino.agency/contatti/",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Mandarino",
+    "email": "info@mandarino.agency",
+    "telephone": "+39 0773 665106",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Le Corbusier 393 scala B",
+      "addressLocality": "Latina",
+      "postalCode": "04100",
+      "addressCountry": "IT"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title="Contatti"
+  description="Scriveteci raccontandoci chi siete e cosa state cercando. Rispondiamo entro 48 ore. Mandarino, agenzia di comunicazione strategica — Latina."
+  path="/contatti/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <div class="contatti-page">
+
+    <!-- HERO -->
+    <header class="contatti-hero" data-reveal>
+      <span class="section-label">(Contatti)</span>
+      <h1>Le Fondamenta iniziano con una conversazione.</h1>
+      <p class="lead">
+        Scriveteci raccontandoci chi siete e cosa state cercando.
+        Rispondiamo entro 48 ore.
+      </p>
+      <PixelCluster size="medium" variant="corner" color="arancio" />
+    </header>
+
+    <!-- GRID: FORM + INFO -->
+    <div class="contatti-grid" data-reveal>
+
+      <!-- COLONNA SINISTRA: FORM -->
+      <div class="contatti-form-col">
+
+        <!-- Messaggio di successo (nascosto finché non inviato) -->
+        <div class="form-success" id="form-success" role="alert" aria-live="polite">
+          <p class="form-success-title">Messaggio ricevuto.</p>
+          <p class="form-success-text">
+            Vi risponderemo entro 48 ore all'indirizzo che avete indicato.
+            Nel frattempo, potete esplorare il
+            <a href="/metodo/" style="color: var(--color-arancio-ribelle);">Metodo Fondamenta</a>
+            per capire come lavoriamo.
+          </p>
+        </div>
+
+        <!-- Errore generale (nascosto finché non serve) -->
+        <div class="form-general-error" id="form-general-error" role="alert" aria-live="polite">
+          Si è verificato un errore nell'invio. Riprovate o scriveteci
+          direttamente a
+          <a href="mailto:info@mandarino.agency">info@mandarino.agency</a>.
+        </div>
+
+        <!-- Il form -->
+        <form
+          class="contatti-form"
+          id="contatti-form"
+          novalidate
+          aria-label="Modulo di contatto"
+        >
+
+          <div class="form-field">
+            <label class="form-label" for="nome">
+              Nome e cognome
+            </label>
+            <input
+              class="form-input"
+              type="text"
+              id="nome"
+              name="nome"
+              autocomplete="name"
+              required
+              aria-required="true"
+              aria-describedby="nome-error"
+            />
+            <span class="form-error" id="nome-error" role="alert">
+              Inserite il vostro nome.
+            </span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="azienda">
+              Azienda
+            </label>
+            <input
+              class="form-input"
+              type="text"
+              id="azienda"
+              name="azienda"
+              autocomplete="organization"
+              required
+              aria-required="true"
+              aria-describedby="azienda-error"
+            />
+            <span class="form-error" id="azienda-error" role="alert">
+              Inserite il nome dell'azienda.
+            </span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="email">
+              Email
+            </label>
+            <input
+              class="form-input"
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              required
+              aria-required="true"
+              aria-describedby="email-error"
+            />
+            <span class="form-error" id="email-error" role="alert">
+              Inserite un indirizzo email valido.
+            </span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="telefono">
+              Telefono
+              <span class="form-label-optional">(opzionale)</span>
+            </label>
+            <input
+              class="form-input"
+              type="tel"
+              id="telefono"
+              name="telefono"
+              autocomplete="tel"
+              aria-describedby="telefono-hint"
+            />
+            <span class="form-error" id="telefono-hint" style="color: var(--color-grigio-saggio-soft); display: block;">
+              Utile se preferite essere ricontattati per telefono.
+            </span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="messaggio">
+              Messaggio
+            </label>
+            <textarea
+              class="form-textarea"
+              id="messaggio"
+              name="messaggio"
+              required
+              aria-required="true"
+              aria-describedby="messaggio-error"
+              placeholder="Raccontateci chi siete e cosa state cercando."
+            ></textarea>
+            <span class="form-error" id="messaggio-error" role="alert">
+              Inserite un messaggio.
+            </span>
+          </div>
+
+          <button
+            class="form-submit"
+            type="submit"
+            id="form-submit-btn"
+          >
+            Invia messaggio
+          </button>
+
+        </form>
+      </div>
+
+      <!-- COLONNA DESTRA: INFO -->
+      <div class="contatti-info-col">
+
+        <div class="contatti-info-section">
+          <span class="contatti-info-label">(Email)</span>
+          <a
+            href="mailto:info@mandarino.agency"
+            class="contatti-info-link"
+          >
+            info@mandarino.agency
+          </a>
+        </div>
+
+        <div class="contatti-info-section">
+          <span class="contatti-info-label">(Telefono)</span>
+          <a
+            href="tel:+390773665106"
+            class="contatti-info-link"
+          >
+            +39 0773 665106
+          </a>
+        </div>
+
+        <div class="contatti-info-section">
+          <span class="contatti-info-label">(Sede)</span>
+          <p class="contatti-info-value">
+            Via Le Corbusier 393 scala B<br>
+            04100 Latina (LT)<br>
+            Italia
+          </p>
+        </div>
+
+        <div class="contatti-colophon">
+          <div class="contatti-colophon-row">
+            <span class="contatti-colophon-key">(Risposta)</span>
+            <span class="contatti-colophon-val">Entro 48 ore</span>
+          </div>
+          <div class="contatti-colophon-row">
+            <span class="contatti-colophon-key">(Lingua)</span>
+            <span class="contatti-colophon-val">Italiano</span>
+          </div>
+          <div class="contatti-colophon-row">
+            <span class="contatti-colophon-key">(P.IVA)</span>
+            <span class="contatti-colophon-val">IT02345120592</span>
+          </div>
+          <div class="contatti-colophon-row">
+            <span class="contatti-colophon-key">(SDI)</span>
+            <span class="contatti-colophon-val">[SDI DA INSERIRE]</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+(function () {
+  // ================================================
+  // FORM CONTATTI — Invio a HighLevel via webhook
+  // ================================================
+
+  // PLACEHOLDER: sostituire con l'URL webhook reale di HighLevel
+  // prima del deploy. Trovarlo in HighLevel:
+  // Settings → Integrations → Webhooks → oppure nel workflow/funnel.
+  const WEBHOOK_URL = '[HIGHLEVEL_WEBHOOK_URL]';
+
+  const form = document.getElementById('contatti-form');
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-general-error');
+  const submitBtn = document.getElementById('form-submit-btn');
+
+  if (!form) return;
+
+  // --- Validazione ---
+
+  function validateField(input) {
+    const field = input.closest('.form-field');
+    const error = field ? field.querySelector('.form-error') : null;
+    let valid = true;
+
+    if (input.required && !input.value.trim()) {
+      valid = false;
+    }
+
+    if (input.type === 'email' && input.value.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(input.value.trim())) {
+        valid = false;
+      }
+    }
+
+    if (error) {
+      if (!valid) {
+        input.classList.add('is-error');
+        error.classList.add('is-visible');
+      } else {
+        input.classList.remove('is-error');
+        error.classList.remove('is-visible');
+      }
+    }
+
+    return valid;
+  }
+
+  // Valida al blur (quando si esce dal campo)
+  form.querySelectorAll('.form-input, .form-textarea').forEach(function (input) {
+    input.addEventListener('blur', function () {
+      validateField(input);
+    });
+
+    // Rimuovi errore mentre si digita
+    input.addEventListener('input', function () {
+      if (input.classList.contains('is-error')) {
+        validateField(input);
+      }
+    });
+  });
+
+  function validateAll() {
+    let allValid = true;
+    form.querySelectorAll('[required]').forEach(function (input) {
+      if (!validateField(input)) {
+        allValid = false;
+      }
+    });
+    return allValid;
+  }
+
+  // --- Invio ---
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // Nascondi errori precedenti
+    errorEl.classList.remove('is-visible');
+
+    // Valida tutti i campi
+    if (!validateAll()) {
+      // Focus sul primo campo con errore
+      const firstError = form.querySelector('.is-error');
+      if (firstError) firstError.focus();
+      return;
+    }
+
+    // Controlla che il webhook URL sia configurato
+    if (WEBHOOK_URL === '[HIGHLEVEL_WEBHOOK_URL]') {
+      console.warn('⚠️ Webhook URL non configurato. Configura WEBHOOK_URL prima del deploy.');
+      // In sviluppo: simula successo per testare il flusso UI
+      showSuccess();
+      return;
+    }
+
+    // Stato loading
+    submitBtn.disabled = true;
+    submitBtn.classList.add('is-loading');
+    submitBtn.textContent = 'Invio in corso';
+
+    // Raccolta dati
+    const formData = {
+      nome: form.querySelector('#nome').value.trim(),
+      azienda: form.querySelector('#azienda').value.trim(),
+      email: form.querySelector('#email').value.trim(),
+      telefono: form.querySelector('#telefono').value.trim(),
+      messaggio: form.querySelector('#messaggio').value.trim(),
+      source: 'mandarino.agency/contatti',
+      timestamp: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        showSuccess();
+      } else {
+        throw new Error('Response not ok: ' + response.status);
+      }
+    } catch (err) {
+      console.error('Errore invio form:', err);
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('is-loading');
+      submitBtn.textContent = 'Invia messaggio';
+      errorEl.classList.add('is-visible');
+    }
+  });
+
+  function showSuccess() {
+    form.style.display = 'none';
+    successEl.classList.add('is-visible');
+    successEl.focus();
+
+    // Scroll al messaggio di successo
+    successEl.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  }
+
+  // Re-inizializza dopo View Transitions
+  document.addEventListener('astro:page-load', function () {
+    // Il form viene ri-renderizzato ad ogni navigazione —
+    // gli event listener vengono riattaccati automaticamente
+    // perché lo script is:inline viene ri-eseguito.
+  });
+
+})();
+</script>

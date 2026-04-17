@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const lavoriCollection = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/lavori" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/lavori" }),
   schema: z.object({
     // Metadata principali
     cliente: z.string(),                    // "A.S. Roma"
@@ -31,4 +31,16 @@ const lavoriCollection = defineCollection({
 
 export const collections = {
   lavori: lavoriCollection,
+  pensiero: defineCollection({
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/pensiero" }),
+    schema: z.object({
+      titolo: z.string(),
+      sottotitolo: z.string().optional(),
+      data: z.string(),          // formato: "YYYY-MM-DD"
+      tempoLettura: z.number(),  // minuti
+      descrizione: z.string(),   // meta description SEO
+      draft: z.boolean().default(false),
+    }),
+  }),
+
 };

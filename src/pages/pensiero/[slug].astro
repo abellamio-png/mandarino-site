@@ -1,0 +1,211 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PixelCluster from '../../components/visuals/PixelCluster.astro';
+import '../../styles/pages/pensiero.css';
+
+export async function getStaticPaths() {
+  const articoli = await getCollection('pensiero', ({ data }) => !data.draft);
+  return articoli.map((articolo) => ({
+    params: { slug: articolo.id },
+    props: { articolo },
+  }));
+}
+
+interface Props {
+  articolo: CollectionEntry<'pensiero'>;
+}
+
+const { articolo } = Astro.props;
+const { Content } = await render(articolo);
+
+// Articolo precedente e successivo
+const tuttiArticoli = (await getCollection('pensiero', ({ data }) => !data.draft))
+  .sort((a, b) => new Date(b.data.data).getTime() - new Date(a.data.data).getTime());
+
+const indexCorrente = tuttiArticoli.findIndex((a) => a.id === articolo.id);
+const articoloPrec = indexCorrente < tuttiArticoli.length - 1
+  ? tuttiArticoli[indexCorrente + 1]
+  : null;
+const articoloSucc = indexCorrente > 0
+  ? tuttiArticoli[indexCorrente - 1]
+  : null;
+
+// Formatta data
+function formatData(dataStr: string): string {
+  const data = new Date(dataStr);
+  return data.toLocaleDateString('it-IT', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+// JSON-LD Article
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": articolo.data.titolo,
+  "description": articolo.data.descrizione,
+  "datePublished": articolo.data.data,
+  "author": {
+    "@type": "Organization",
+    "name": "Mandarino",
+    "url": "https://mandarino.agency"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mandarino",
+    "url": "https://mandarino.agency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mandarino.agency/logo.svg"
+    }
+  },
+  "url": `https://mandarino.agency/pensiero/${articolo.id}/`,
+  "mainEntityOfPage": `https://mandarino.agency/pensiero/${articolo.id}/`
+};
+
+// JSON-LD Breadcrumb
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mandarino.agency/" },
+    { "@type": "ListItem", "position": 2, "name": "Pensiero", "item": "https://mandarino.agency/pensiero/" },
+    { "@type": "ListItem", "position": 3, "name": articolo.data.titolo, "item": `https://mandarino.agency/pensiero/${articolo.id}/` }
+  ]
+};
+---
+
+<BaseLayout
+  title={articolo.data.titolo}
+  description={articolo.data.descrizione}
+  path={`/pensiero/${articolo.slug}/`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+
+  <article class="articolo-page">
+
+    <!-- Breadcrumb -->
+    <nav class="case-breadcrumb" aria-label="Percorso di navigazione">
+      <ol class="breadcrumb-list">
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true"><span class="breadcrumb-separator">→</span></li>
+        <li><a href="/pensiero/">Pensiero</a></li>
+        <li aria-hidden="true"><span class="breadcrumb-separator">→</span></li>
+        <li>{articolo.data.titolo}</li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <header class="articolo-header" data-reveal>
+      <div class="articolo-header-meta">
+        <span>{formatData(articolo.data.data)}</span>
+        <span aria-hidden="true">·</span>
+        <span style="color: var(--color-arancio-ribelle);">
+          {articolo.data.tempoLettura} min
+        </span>
+      </div>
+      <h1 class="articolo-header-titolo">{articolo.data.titolo}</h1>
+      {articolo.data.sottotitolo && (
+        <p class="articolo-header-sottotitolo">
+          {articolo.data.sottotitolo}
+        </p>
+      )}
+      <PixelCluster size="small" variant="corner" color="arancio" />
+    </header>
+
+    <!-- Body -->
+    <div class="articolo-body" data-reveal>
+      <Content />
+    </div>
+
+    <!-- Footer -->
+    <footer class="articolo-footer" data-reveal>
+      <div aria-hidden="true" style="display: flex; justify-content: center; margin-bottom: var(--space-8);">
+        <PixelCluster size="medium" variant="separator" color="arancio" />
+      </div>
+
+      <nav class="articolo-footer-nav" aria-label="Navigazione articoli">
+        <a href="/pensiero/" class="articolo-back">
+          ← Tutti gli articoli
+        </a>
+        <span class="articolo-firma">
+          Mandarino · {formatData(articolo.data.data)}
+        </span>
+      </nav>
+
+      {(articoloPrec || articoloSucc) && (
+        <div style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-4);
+          margin-top: var(--space-8);
+          padding-top: var(--space-6);
+          border-top: 1px solid rgba(74, 94, 120, 0.1);
+        ">
+          {articoloPrec ? (
+            <a href={`/pensiero/${articoloPrec.id}/`} style="text-decoration: none; color: inherit;">
+              <span style="display: block; font-family: var(--font-ribelle); font-size: var(--text-xs); color: var(--color-arancio-ribelle); letter-spacing: 0.05em; margin-bottom: var(--space-1);">← Articolo precedente</span>
+              <span style="display: block; font-family: var(--font-saggio); font-size: var(--text-base); font-weight: 700; color: var(--color-grigio-saggio); line-height: 1.3;">{articoloPrec.data.titolo}</span>
+            </a>
+          ) : <div></div>}
+
+          {articoloSucc ? (
+            <a href={`/pensiero/${articoloSucc.id}/`} style="text-decoration: none; color: inherit; text-align: right;">
+              <span style="display: block; font-family: var(--font-ribelle); font-size: var(--text-xs); color: var(--color-arancio-ribelle); letter-spacing: 0.05em; margin-bottom: var(--space-1);">Articolo successivo →</span>
+              <span style="display: block; font-family: var(--font-saggio); font-size: var(--text-base); font-weight: 700; color: var(--color-grigio-saggio); line-height: 1.3;">{articoloSucc.data.titolo}</span>
+            </a>
+          ) : <div></div>}
+        </div>
+      )}
+    </footer>
+
+  </article>
+</BaseLayout>
+
+<style>
+/* =====================
+   BREADCRUMB
+   ===================== */
+.case-breadcrumb {
+  padding: var(--space-4) var(--space-4) 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+}
+.breadcrumb-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-grigio-saggio-soft);
+}
+.breadcrumb-list a {
+  color: var(--color-grigio-saggio-soft);
+  text-decoration: none;
+  transition: color var(--transition-quick);
+}
+.breadcrumb-list a:hover {
+  color: var(--color-arancio-ribelle);
+}
+.breadcrumb-list li:last-child {
+  color: var(--color-grigio-saggio);
+  font-weight: var(--weight-medium);
+}
+.breadcrumb-separator {
+  color: rgba(74, 94, 120, 0.3);
+  font-size: var(--text-xs);
+}
+</style>

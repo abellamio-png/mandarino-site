@@ -1,0 +1,48 @@
+/* Animazione di ingresso per i titoli h1 delle pagine interne */
+/* Si attiva automaticamente su ogni h1 che NON è .hero-title-animated */
+.page-hero h1:not(.hero-title-animated),
+.metodo-hero h1,
+.agenzia-hero h1,
+.lavori-hero h1,
+.case-hero .case-title {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: page-title-enter 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 100ms;
+}
+
+@keyframes page-title-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Anche i lead delle pagine interne entrano dopo il titolo */
+.metodo-hero .lead,
+.agenzia-hero .hero-sub,
+.lavori-hero .lead {
+  opacity: 0;
+  animation: page-title-enter 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 250ms;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-hero h1:not(.hero-title-animated),
+  .metodo-hero h1,
+  .agenzia-hero h1,
+  .lavori-hero h1,
+  .case-hero .case-title,
+  .metodo-hero .lead,
+  .agenzia-hero .hero-sub,
+  .lavori-hero .lead {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

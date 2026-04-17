@@ -8,8 +8,8 @@ tesi: "[TESI DI APERTURA DA SCRIVERE]"
 inVetrina: true
 ordineVetrina: 3
 draft: false
-heroImage: "/assets/lavori/todis-hero.png"
-heroImageAlt: "Progetto strategico per Todis"
+heroImage: ""
+heroImageAlt: ""
 descrizione: "[META DESCRIPTION DA SCRIVERE - 140-155 caratteri]"
 ---
 

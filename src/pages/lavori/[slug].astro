@@ -3,6 +3,9 @@ import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PixelCluster from '../../components/visuals/PixelCluster.astro';
+import MediaImmagine from '../../components/media/MediaImmagine.astro';
+import MediaGallery from '../../components/media/MediaGallery.astro';
+import MediaVideo from '../../components/media/MediaVideo.astro';
 import '../../styles/pages/lavori.css';
 
 export async function getStaticPaths() {
@@ -42,6 +45,31 @@ const jsonLd = {
   },
   "url": `https://mandarino.agency/lavori/${lavoro.id}/`,
 };
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://mandarino.agency/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Lavori",
+      "item": "https://mandarino.agency/lavori/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": lavoro.data.cliente,
+      "item": `https://mandarino.agency/lavori/${lavoro.id}/`
+    }
+  ]
+};
 ---
 
 <BaseLayout
@@ -50,9 +78,40 @@ const jsonLd = {
   path={`/lavori/${lavoro.id}/`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(breadcrumbLd)}
+  />
 
   <article class="case-page">
-    <header class="case-hero">
+    <!-- Breadcrumb -->
+    <nav class="case-breadcrumb" aria-label="Percorso di navigazione">
+      <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item">
+            <span itemprop="name">Home</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li aria-hidden="true">
+          <span class="breadcrumb-separator">→</span>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/lavori/" itemprop="item">
+            <span itemprop="name">Lavori</span>
+          </a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li aria-hidden="true">
+          <span class="breadcrumb-separator">→</span>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">{lavoro.data.cliente}</span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </nav>
+    <header class="case-hero" data-reveal style="transition-delay: 0ms;">
       <span class="section-label">(Case)</span>
 
       <div class="case-meta-row">
@@ -77,48 +136,73 @@ const jsonLd = {
       <h1 class="case-title">{lavoro.data.titolo}</h1>
       <p class="case-tesi">{lavoro.data.tesi}</p>
 
-      <div class="case-hero-image" aria-label={lavoro.data.heroImageAlt || ''} style="overflow: hidden; position: relative; background-color: var(--color-grigio-saggio); border-radius: var(--space-4);">
-        {lavoro.data.heroVideo ? (
-          <video src={lavoro.data.heroVideo} autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
-        ) : (
-          <img src={lavoro.data.heroImage} alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-        )}
-        <div style="position: absolute; bottom: 0; right: 0;">
+      {lavoro.data.heroImage ? (
+        <div class="case-hero-image case-hero-image--reale">
+          <img
+            src={lavoro.data.heroImage}
+            alt={lavoro.data.heroImageAlt || `Immagine del progetto ${lavoro.data.cliente}`}
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      ) : (
+        <div class="case-hero-image" role="presentation">
           <PixelCluster size="medium" variant="corner" color="arancio" />
         </div>
-      </div>
+      )}
     </header>
 
-    <div class="case-body">
-      <Content />
+    <div class="case-body" data-reveal>
+      <Content
+        components={{
+          MediaImmagine,
+          MediaGallery,
+          MediaVideo,
+        }}
+      />
     </div>
 
-    <footer class="case-footer">
+    <footer class="case-footer" data-reveal>
       <PixelCluster size="medium" variant="separator" color="arancio" />
 
       <p style="margin-top: var(--space-6);">
         <a href="/contatti/" class="section-link">Parliamone insieme →</a>
       </p>
 
-      <nav class="case-navigation" aria-label="Altri lavori">
+      <!-- Navigazione prev/next migliorata -->
+      <nav class="case-navigation" aria-label="Altri case study">
         {casePrec ? (
-          <a href={`/lavori/${casePrec.id}/`} class="case-nav-link">
-            <span class="case-nav-link-label">← Case precedente</span>
-            <span>{casePrec.data.cliente}</span>
+          <a
+            href={`/lavori/${casePrec.id}/`}
+            class="case-nav-card case-nav-card--prev"
+          >
+            <span class="case-nav-card-label">← Case precedente</span>
+            <span class="case-nav-card-cliente">{casePrec.data.cliente}</span>
+            <span class="case-nav-card-titolo">{casePrec.data.titolo}</span>
           </a>
-        ) : <div></div>}
+        ) : (
+          <div class="case-nav-empty"></div>
+        )}
 
         {caseSucc ? (
-          <a href={`/lavori/${caseSucc.id}/`} class="case-nav-link" style="text-align: right;">
-            <span class="case-nav-link-label">Case successivo →</span>
-            <span>{caseSucc.data.cliente}</span>
+          <a
+            href={`/lavori/${caseSucc.id}/`}
+            class="case-nav-card case-nav-card--next"
+          >
+            <span class="case-nav-card-label">Case successivo →</span>
+            <span class="case-nav-card-cliente">{caseSucc.data.cliente}</span>
+            <span class="case-nav-card-titolo">{caseSucc.data.titolo}</span>
           </a>
-        ) : <div></div>}
+        ) : (
+          <div class="case-nav-empty"></div>
+        )}
       </nav>
 
-      <p style="margin-top: var(--space-8);">
-        <a href="/lavori/" class="section-link">← Tutti i lavori</a>
-      </p>
+      <div style="text-align: center; margin-top: var(--space-8);">
+        <a href="/lavori/" class="section-link">
+          ← Tutti i lavori
+        </a>
+      </div>
     </footer>
   </article>
 </BaseLayout>

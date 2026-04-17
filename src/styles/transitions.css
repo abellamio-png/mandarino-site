@@ -19,19 +19,12 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Transizione speciale per le card dei lavori:
-   quando si naviga da /lavori/ a un singolo case,
-   il titolo del case fa una transizione "expanding" */
-.vetrina-card-title,
+.work-card-title,
 .case-title {
   view-transition-name: case-title;
 }
 
-/* Evita conflitti su pagine con più card */
-.bento-card:nth-child(1) .work-card-title { view-transition-name: case-title-1; }
-.bento-card:nth-child(2) .work-card-title { view-transition-name: case-title-2; }
-.bento-card:nth-child(3) .work-card-title { view-transition-name: case-title-3; }
-.bento-card:nth-child(4) .work-card-title { view-transition-name: case-title-4; }
+/* Regole singole per card rimosse per evitare conflitti durante page-load */
 
 /* Il logo nell'header non deve animarsi durante le transizioni */
 .site-logo {

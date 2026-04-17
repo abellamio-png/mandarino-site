@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PixelCluster from '../../components/visuals/PixelCluster.astro';
+import '../../styles/pages/pensiero.css';
+
+// Recupera articoli non-draft, ordinati per data (più recente prima)
+const articoli = (await getCollection('pensiero', ({ data }) => !data.draft))
+  .sort((a, b) => new Date(b.data.data).getTime() - new Date(a.data.data).getTime());
+
+// Formatta data in italiano
+function formatData(dataStr: string): string {
+  const data = new Date(dataStr);
+  return data.toLocaleDateString('it-IT', {
+    year: 'numeric',
+    month: 'long',
+  });
+}
+---
+
+<BaseLayout
+  title="Pensiero"
+  description="Riflessioni di Mandarino su strategia, comunicazione e posizionamento. Non post frequenti — pensiero lungo, pubblicato quando c'è qualcosa di vero da dire."
+  path="/pensiero/"
+>
+  <div class="pensiero-page">
+
+    <header class="pensiero-hero" data-reveal>
+      <span class="section-label">(Pensiero)</span>
+      <h1>Pensiero lungo.</h1>
+      <p class="lead">
+        Non pubblichiamo spesso. Pubblichiamo quando abbiamo
+        qualcosa di vero da dire sulla strategia e sulla comunicazione.
+      </p>
+      <PixelCluster size="medium" variant="corner" color="arancio" />
+    </header>
+
+    <section
+      class="pensiero-lista"
+      aria-labelledby="lista-title"
+      data-reveal
+    >
+      <h2 id="lista-title" class="visually-hidden">Articoli</h2>
+
+      {articoli.map((articolo) => (
+        <a
+          href={`/pensiero/${articolo.id}/`}
+          class="articolo-item"
+        >
+          <div class="articolo-meta">
+            <span class="articolo-data">
+              {formatData(articolo.data.data)}
+            </span>
+            <span class="articolo-separatore" aria-hidden="true">·</span>
+            <span class="articolo-tempo">
+              {articolo.data.tempoLettura} min
+            </span>
+          </div>
+          <h3 class="articolo-titolo">{articolo.data.titolo}</h3>
+          {articolo.data.sottotitolo && (
+            <p class="articolo-sottotitolo">
+              {articolo.data.sottotitolo}
+            </p>
+          )}
+        </a>
+      ))}
+    </section>
+
+  </div>
+</BaseLayout>

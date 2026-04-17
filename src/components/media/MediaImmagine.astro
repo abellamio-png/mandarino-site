@@ -1,0 +1,89 @@
+---
+// MediaImmagine — singola immagine nel corpo di un case study
+// Uso in MDX: <MediaImmagine src="/assets/lavori/as-roma/camp-hero.webp" alt="..." didascalia="..." />
+
+interface Props {
+  src: string;
+  alt: string;
+  didascalia?: string;
+  dimensione?: 'normale' | 'grande' | 'piena'; // default: normale
+}
+
+const {
+  src,
+  alt,
+  didascalia,
+  dimensione = 'normale'
+} = Astro.props;
+---
+
+<figure class={`media-immagine media-immagine--${dimensione}`}>
+  <div class="media-immagine-frame">
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  {didascalia && (
+    <figcaption class="media-didascalia">
+      {didascalia}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .media-immagine {
+    margin: var(--space-10) 0;
+  }
+
+  .media-immagine-frame {
+    width: 100%;
+    overflow: hidden;
+    background: var(--color-grigio-saggio);
+    position: relative;
+  }
+
+  .media-immagine-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 400ms ease-out;
+  }
+
+  /* Leggero zoom al hover — senso di profondità */
+  .media-immagine-frame:hover img {
+    transform: scale(1.01);
+  }
+
+  /* Dimensione normale — larghezza container di lettura */
+  .media-immagine--normale .media-immagine-frame {
+    max-width: var(--container-reading);
+    margin: 0 auto;
+  }
+
+  /* Dimensione grande — più larga del testo */
+  .media-immagine--grande .media-immagine-frame {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Dimensione piena — larghezza massima disponibile */
+  .media-immagine--piena .media-immagine-frame {
+    max-width: 100%;
+  }
+
+  /* Didascalia */
+  .media-didascalia {
+    font-family: var(--font-ribelle);
+    font-size: var(--text-sm);
+    color: var(--color-grigio-saggio-soft);
+    margin-top: var(--space-2);
+    text-align: center;
+    font-style: italic;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

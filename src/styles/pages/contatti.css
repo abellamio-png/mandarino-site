@@ -1,0 +1,297 @@
+/* =====================
+   PAGINA CONTATTI
+   ===================== */
+
+.contatti-page {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* Hero */
+.contatti-hero {
+  padding-block: var(--space-16) var(--space-8);
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding-inline: var(--space-4);
+  position: relative;
+}
+
+.contatti-hero h1 {
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-3);
+}
+
+.contatti-hero .lead {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-grigio-saggio-soft);
+  line-height: var(--leading-normal);
+}
+
+/* Layout a due colonne */
+.contatti-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4) var(--space-16);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .contatti-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
+
+/* Colonna sinistra — form */
+.contatti-form-col {
+  /* niente */
+}
+
+/* Colonna destra — dati diretti */
+.contatti-info-col {
+  /* niente */
+}
+
+/* =====================
+   FORM
+   ===================== */
+
+.contatti-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.form-label {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-grigio-saggio);
+  letter-spacing: 0.02em;
+}
+
+.form-label-optional {
+  font-weight: var(--weight-regular);
+  color: var(--color-grigio-saggio-soft);
+  font-size: var(--text-xs);
+  margin-left: var(--space-1);
+}
+
+.form-input,
+.form-textarea {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  color: var(--color-nero-testo);
+  background: var(--color-bianco);
+  border: 1px solid rgba(74, 94, 120, 0.3);
+  border-radius: 0; /* Sistema Nitido — niente arrotondamenti */
+  padding: var(--space-3);
+  transition: border-color var(--transition-quick),
+              box-shadow var(--transition-quick);
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-grigio-saggio);
+  box-shadow: 0 0 0 2px rgba(46, 64, 87, 0.1);
+}
+
+.form-input.is-error,
+.form-textarea.is-error {
+  border-color: #c0392b;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 160px;
+  line-height: var(--leading-relaxed);
+}
+
+.form-error {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: #c0392b;
+  display: none;
+}
+
+.form-error.is-visible {
+  display: block;
+}
+
+/* Submit button */
+.form-submit {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-bianco-sporco);
+  background: var(--color-grigio-saggio);
+  border: none;
+  padding: var(--space-3) var(--space-6);
+  cursor: pointer;
+  border-radius: 0;
+  transition: background var(--transition-quick),
+              transform var(--transition-quick);
+  align-self: flex-start;
+  position: relative;
+}
+
+.form-submit:hover {
+  background: var(--color-arancio-ribelle);
+}
+
+.form-submit:active {
+  transform: translateY(1px);
+}
+
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form-submit.is-loading::after {
+  content: '...';
+  margin-left: var(--space-1);
+}
+
+/* Messaggio di conferma inline */
+.form-success {
+  display: none;
+  padding: var(--space-8);
+  background: var(--color-bianco);
+  border: 1px solid rgba(74, 94, 120, 0.2);
+  border-left: 4px solid var(--color-arancio-ribelle);
+}
+
+.form-success.is-visible {
+  display: block;
+}
+
+.form-success-title {
+  font-family: var(--font-saggio);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  margin-bottom: var(--space-3);
+}
+
+.form-success-text {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  color: var(--color-nero-testo);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* Messaggio di errore generale */
+.form-general-error {
+  display: none;
+  padding: var(--space-3) var(--space-4);
+  background: rgba(192, 57, 43, 0.05);
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: #c0392b;
+}
+
+.form-general-error.is-visible {
+  display: block;
+}
+
+/* =====================
+   COLONNA INFO
+   ===================== */
+
+.contatti-info-col {
+  position: sticky;
+  top: calc(70px + var(--space-8));
+  /* 70px = altezza header sticky */
+}
+
+.contatti-info-section {
+  margin-bottom: var(--space-8);
+}
+
+.contatti-info-section:last-child {
+  margin-bottom: 0;
+}
+
+.contatti-info-label {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-arancio-ribelle);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-3);
+  display: block;
+}
+
+.contatti-info-value {
+  font-family: var(--font-saggio);
+  font-size: var(--text-base);
+  color: var(--color-grigio-saggio);
+  line-height: var(--leading-relaxed);
+  margin: 0 0 var(--space-2);
+}
+
+.contatti-info-link {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-lg);
+  color: var(--color-grigio-saggio);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  display: block;
+  margin-bottom: var(--space-2);
+  transition: color var(--transition-quick);
+}
+
+.contatti-info-link:hover {
+  color: var(--color-arancio-ribelle);
+}
+
+/* Tabella colophon mini */
+.contatti-colophon {
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(74, 94, 120, 0.15);
+}
+
+.contatti-colophon-row {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid rgba(74, 94, 120, 0.08);
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+}
+
+.contatti-colophon-row:last-child {
+  border-bottom: none;
+}
+
+.contatti-colophon-key {
+  color: var(--color-arancio-ribelle);
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.contatti-colophon-val {
+  color: var(--color-grigio-saggio);
+}

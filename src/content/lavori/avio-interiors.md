@@ -8,9 +8,9 @@ tesi: "[TESI DI APERTURA DA SCRIVERE]"
 inVetrina: true
 ordineVetrina: 2
 draft: false
-heroImage: "/assets/lavori/avio-interiors-hero.png"
-heroVideo: "/assets/video/showreel.mp4"
-heroImageAlt: "Progetto strategico per Avio Interiors"
+heroImage: ""
+heroVideo: ""
+heroImageAlt: ""
 descrizione: "[META DESCRIPTION DA SCRIVERE - 140-155 caratteri]"
 ---
 

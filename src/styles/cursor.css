@@ -30,9 +30,10 @@
 
 /* Hover su link e elementi interattivi: il pixel si ingrandisce */
 .custom-cursor.is-hovering {
-  width: 20px;
-  height: 20px;
-  background: var(--color-grigio-saggio);
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 2px solid var(--color-arancio-ribelle);
 }
 
 /* Hover su testo: il pixel diventa un underscore */

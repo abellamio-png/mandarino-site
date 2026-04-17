@@ -95,48 +95,55 @@ const schemaOrg = {
     <script is:inline src="/scripts/reveal.js" defer></script>
 
     <script is:inline>
-      // Flag per evitare registrazioni multiple dei listener post-transizione
-      if (!window.customCursorInitialized && window.matchMedia('(pointer: fine)').matches) {
-        window.customCursorInitialized = true;
-        
-        // Move cursor with mouse
+      function initCursor() {
+        // Solo su dispositivi con mouse preciso (non touch)
+        if (!window.matchMedia('(pointer: fine)').matches) return;
+
+        const cursor = document.querySelector('.custom-cursor');
+        if (!cursor) return;
+
+        // Rimuovi listener precedenti per evitare duplicati
+        // (importante dopo le View Transitions)
+        const newCursor = cursor.cloneNode(true);
+        cursor.parentNode.replaceChild(newCursor, cursor);
+        const activeCursor = document.querySelector('.custom-cursor');
+
+        // Muovi il cursore
         document.addEventListener('mousemove', (e) => {
-          const cursor = document.querySelector('.custom-cursor');
-          if (cursor) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-          }
+          activeCursor.style.left = e.clientX + 'px';
+          activeCursor.style.top = e.clientY + 'px';
         });
 
         // Hover states
-        const interactiveElements = 'a, button, [role="button"], input, textarea, select, label';
-        const textElements = 'p, h1, h2, h3, h4, h5, h6, span, li';
+        const interactive = 'a, button, [role="button"], input, textarea, select, label';
+        const textual = 'p, h1, h2, h3, h4, h5, h6, span, li, blockquote';
 
         document.addEventListener('mouseover', (e) => {
-          const cursor = document.querySelector('.custom-cursor');
-          if (!cursor) return;
-          const target = e.target;
-          if (target.closest(interactiveElements)) {
-            cursor.classList.add('is-hovering');
-            cursor.classList.remove('is-text');
-          } else if (target.closest(textElements)) {
-            cursor.classList.add('is-text');
-            cursor.classList.remove('is-hovering');
+          if (e.target.closest(interactive)) {
+            activeCursor.classList.add('is-hovering');
+            activeCursor.classList.remove('is-text');
+          } else if (e.target.closest(textual)) {
+            activeCursor.classList.add('is-text');
+            activeCursor.classList.remove('is-hovering');
           } else {
-            cursor.classList.remove('is-hovering', 'is-text');
+            activeCursor.classList.remove('is-hovering', 'is-text');
           }
         });
 
-        // Hide when leaving window
+        // Nascondi quando il mouse esce dalla finestra
         document.addEventListener('mouseleave', () => {
-          const cursor = document.querySelector('.custom-cursor');
-          if (cursor) cursor.style.opacity = '0';
+          activeCursor.style.opacity = '0';
         });
         document.addEventListener('mouseenter', () => {
-          const cursor = document.querySelector('.custom-cursor');
-          if (cursor) cursor.style.opacity = '1';
+          activeCursor.style.opacity = '1';
         });
       }
+
+      // Inizializzazione
+      document.addEventListener('DOMContentLoaded', initCursor);
+
+      // Re-inizializzazione dopo View Transitions
+      document.addEventListener('astro:page-load', initCursor);
     </script>
   </body>
 </html>

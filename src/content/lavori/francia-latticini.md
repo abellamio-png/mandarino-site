@@ -8,8 +8,8 @@ tesi: "[TESI DI APERTURA DA SCRIVERE]"
 inVetrina: true
 ordineVetrina: 4
 draft: false
-heroImage: "/assets/lavori/francia-latticini-hero.png"
-heroImageAlt: "Progetto strategico per Gruppo Francia Latticini"
+heroImage: ""
+heroImageAlt: ""
 descrizione: "[META DESCRIPTION DA SCRIVERE - 140-155 caratteri]"
 ---
 

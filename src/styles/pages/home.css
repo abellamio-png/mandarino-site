@@ -26,73 +26,71 @@
   }
 }
 
-.home .hero-section {
-  padding-block: var(--space-20) 0;
+/* =====================
+   HERO — LAYOUT DUE COLONNE
+   ===================== */
+
+.hero-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
   align-items: center;
-  gap: var(--space-12);
-}
-
-.home .hero-visual {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: var(--space-4); /* Curvatura accentuata come Ikea */
-  overflow: hidden;
-  background: var(--color-grigio-saggio);
-  position: relative;
-}
-
-.home .hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 2s ease;
-  transform: scale(1.02);
-}
-.home .hero-visual:hover .hero-video {
-  transform: scale(1.05);
-}
-
-/* Stile Overlay Testo "Sottostante" */
-.hero-visual-overlay {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  box-sizing: border-box;
-  padding: var(--space-8);
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
-  color: var(--color-bianco-sporco);
-  pointer-events: none;
-}
-.hero-visual-caption {
-  font-family: var(--font-ribelle);
-  font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: var(--space-1);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-}
-.hero-visual-title {
-  font-family: var(--font-saggio);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-bold);
-  line-height: var(--leading-tight);
-  color: #ffffff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  min-height: 80vh;
+  padding-block: var(--space-16) var(--space-12);
+  padding-inline: var(--space-4);
+  max-width: var(--container-max);
+  margin: 0 auto;
 }
 
 @media (max-width: 900px) {
-  .home .hero-section {
+  .hero-section {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
-    padding-block: var(--space-16) 0;
+    min-height: auto;
+    padding-block: var(--space-12) var(--space-8);
   }
-  .home .hero-visual {
-    aspect-ratio: 16/9;
+}
+
+/* Colonna sinistra — testo */
+.hero-content {
+  max-width: 560px;
+}
+
+/* Il titolo animato mantiene gli stili esistenti */
+/* (quelli del Prompt 4b rimangono invariati) */
+
+/* Colonna destra — illustrazione */
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-visual svg {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 0; /* Sistema Nitido — niente arrotondamenti */
+}
+
+/* Su mobile l'illustrazione va sotto il testo */
+@media (max-width: 900px) {
+  .hero-visual {
+    order: 2; /* Viene dopo il testo */
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    order: 1;
+    max-width: 100%;
+  }
+}
+
+/* Su mobile molto piccolo riduci l'illustrazione */
+@media (max-width: 480px) {
+  .hero-visual {
+    max-width: 280px;
   }
 }
 
@@ -671,4 +669,85 @@
 .method-section .section-link:hover {
   background: var(--color-arancio-ribelle);
   color: var(--color-bianco-sporco);
+}
+
+/* ==========================================================================
+   WORK CARDS (HOME)
+   ========================================================================== */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.work-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  border: 1px solid rgba(74, 94, 120, 0.2);
+  transition: border-color var(--transition-smooth),
+              transform var(--transition-smooth);
+  background: var(--color-bianco-sporco);
+}
+
+.work-card:hover {
+  border-color: var(--color-grigio-saggio);
+  transform: translateY(-2px);
+}
+
+/* Blocco immagine — placeholder grigio pulito */
+.work-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--color-grigio-saggio);
+  position: relative;
+  display: block;
+  /* Nessuna immagine di sfondo, nessun overlay, nessun gradiente */
+}
+
+/* PixelCluster posizionato in basso a destra del blocco immagine */
+.work-card-image .pixel-cluster {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+}
+
+/* Blocco testo — sempre sotto l'immagine */
+.work-card-body {
+  padding: var(--space-4);
+}
+
+.work-card-meta {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-arancio-ribelle);
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-2);
+  margin-top: 0;
+}
+
+.work-card-title {
+  font-family: var(--font-saggio);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-2);
+  margin-top: 0;
+}
+
+.work-card-tesi {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  color: var(--color-nero-testo);
+  line-height: var(--leading-normal);
+  margin: 0;
 }

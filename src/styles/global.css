@@ -5,6 +5,7 @@
 @import './components/bento.css';
 @import './transitions.css';
 @import './cursor.css';
+@import './utilities.css';
 
 .visually-hidden {
   position: absolute;

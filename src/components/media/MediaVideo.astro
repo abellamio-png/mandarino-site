@@ -1,0 +1,125 @@
+---
+// MediaVideo — video embed nel corpo di un case study
+// Uso in MDX:
+// YouTube:  <MediaVideo tipo="youtube" id="dQw4w9WgXcQ" didascalia="..." />
+// Vimeo:    <MediaVideo tipo="vimeo" id="123456789" didascalia="..." />
+// Nativo:   <MediaVideo tipo="nativo" src="/assets/lavori/video.mp4" didascalia="..." />
+
+interface Props {
+  tipo: 'youtube' | 'vimeo' | 'nativo';
+  id?: string;       // per youtube e vimeo
+  src?: string;      // per video nativi
+  didascalia?: string;
+  autoplay?: boolean; // solo per video nativi, default false
+}
+
+const {
+  tipo,
+  id,
+  src,
+  didascalia,
+  autoplay = false
+} = Astro.props;
+
+const youtubeUrl = tipo === 'youtube'
+  ? `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`
+  : null;
+
+const vimeoUrl = tipo === 'vimeo'
+  ? `https://player.vimeo.com/video/${id}?byline=0&portrait=0&title=0`
+  : null;
+---
+
+<figure class="media-video">
+  <div class="media-video-frame">
+    {tipo === 'youtube' && (
+      <iframe
+        src={youtubeUrl}
+        title={didascalia || 'Video del progetto'}
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    )}
+
+    {tipo === 'vimeo' && (
+      <iframe
+        src={vimeoUrl}
+        title={didascalia || 'Video del progetto'}
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    )}
+
+    {tipo === 'nativo' && src && (
+      <video
+        src={src}
+        controls
+        autoplay={autoplay}
+        muted={autoplay}
+        loop={autoplay}
+        playsinline
+        preload="metadata"
+      >
+        Il tuo browser non supporta il tag video.
+      </video>
+    )}
+  </div>
+
+  {didascalia && (
+    <figcaption class="media-didascalia">{didascalia}</figcaption>
+  )}
+</figure>
+
+<style>
+  .media-video {
+    margin: var(--space-10) 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Wrapper 16:9 responsivo */
+  .media-video-frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    background: var(--color-grigio-saggio);
+    overflow: hidden;
+  }
+
+  .media-video-frame iframe,
+  .media-video-frame video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* Per i video nativi non serve il padding-bottom trick */
+  .media-video-frame:has(video) {
+    padding-bottom: 0;
+    height: auto;
+  }
+
+  .media-video-frame video {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .media-didascalia {
+    font-family: var(--font-ribelle);
+    font-size: var(--text-sm);
+    color: var(--color-grigio-saggio-soft);
+    margin-top: var(--space-3);
+    text-align: center;
+    font-style: italic;
+  }
+</style>

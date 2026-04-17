@@ -1,0 +1,294 @@
+/* =====================
+   PAGINA PENSIERO — INDICE
+   ===================== */
+
+.pensiero-hero {
+  padding-block: var(--space-16) var(--space-8);
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding-inline: var(--space-4);
+  position: relative;
+}
+
+.pensiero-hero h1 {
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-3);
+}
+
+.pensiero-hero .lead {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-grigio-saggio-soft);
+  line-height: var(--leading-normal);
+  max-width: var(--container-reading);
+}
+
+/* Lista editoriale articoli */
+.pensiero-lista {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4) var(--space-16);
+}
+
+.articolo-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: var(--space-8) 0;
+  border-top: 1px solid rgba(74, 94, 120, 0.15);
+  transition: opacity var(--transition-quick);
+}
+
+.articolo-item:last-child {
+  border-bottom: 1px solid rgba(74, 94, 120, 0.15);
+}
+
+.articolo-item:hover {
+  opacity: 0.75;
+}
+
+.articolo-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-grigio-saggio-soft);
+}
+
+.articolo-data {
+  /* colore ereditato dal meta */
+}
+
+.articolo-separatore {
+  color: rgba(74, 94, 120, 0.3);
+  font-size: var(--text-xs);
+}
+
+.articolo-tempo {
+  color: var(--color-arancio-ribelle);
+}
+
+.articolo-titolo {
+  font-family: var(--font-saggio);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+}
+
+@media (max-width: 768px) {
+  .articolo-titolo {
+    font-size: var(--text-xl);
+  }
+}
+
+.articolo-sottotitolo {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-base);
+  color: var(--color-grigio-saggio-soft);
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+
+/* =====================
+   PAGINA SINGOLO ARTICOLO
+   ===================== */
+
+.articolo-page {
+  /* wrapper principale */
+}
+
+.articolo-header {
+  padding-block: var(--space-12) var(--space-8);
+  max-width: 800px;
+  margin: 0 auto;
+  padding-inline: var(--space-4);
+  position: relative;
+  border-bottom: 1px solid rgba(74, 94, 120, 0.15);
+  margin-bottom: var(--space-8);
+}
+
+.articolo-header-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-grigio-saggio-soft);
+}
+
+.articolo-header-titolo {
+  font-family: var(--font-saggio);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .articolo-header-titolo {
+    font-size: var(--text-3xl);
+  }
+}
+
+.articolo-header-sottotitolo {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-xl);
+  color: var(--color-grigio-saggio-soft);
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+
+/* Body dell'articolo — stile editoriale denso */
+.articolo-body {
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding: 0 var(--space-4) var(--space-16);
+}
+
+/* Paragrafi */
+.articolo-body p {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+  color: var(--color-nero-testo);
+}
+
+/* Prima lettera del primo paragrafo */
+.articolo-body > p:first-child::first-letter {
+  font-family: var(--font-saggio);
+  font-size: 3.5em;
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  float: left;
+  line-height: 0.75;
+  margin-right: 0.08em;
+  margin-top: 0.1em;
+}
+
+/* Titoli delle sezioni (h2) */
+.articolo-body h2 {
+  font-family: var(--font-saggio);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(74, 94, 120, 0.12);
+  line-height: var(--leading-tight);
+}
+
+/* Prima h2 senza border-top */
+.articolo-body h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* Testo in corsivo (Lora) */
+.articolo-body em {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  color: var(--color-grigio-saggio);
+}
+
+/* Testo in grassetto */
+.articolo-body strong {
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+}
+
+/* Footer articolo */
+.articolo-footer {
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4) var(--space-16);
+  border-top: 1px solid rgba(74, 94, 120, 0.15);
+}
+
+.articolo-footer-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.articolo-back {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-grigio-saggio-soft);
+  text-decoration: none;
+  transition: color var(--transition-quick);
+}
+
+.articolo-back:hover {
+  color: var(--color-arancio-ribelle);
+}
+
+.articolo-firma {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-sm);
+  color: var(--color-grigio-saggio-soft);
+  text-align: right;
+}
+
+/* =====================
+   BREADCRUMB
+   ===================== */
+
+.case-breadcrumb {
+  padding: var(--space-4) var(--space-4) 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+}
+
+.breadcrumb-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-grigio-saggio-soft);
+}
+
+.breadcrumb-list a {
+  color: var(--color-grigio-saggio-soft);
+  text-decoration: none;
+  transition: color var(--transition-quick);
+}
+
+.breadcrumb-list a:hover {
+  color: var(--color-arancio-ribelle);
+}
+
+.breadcrumb-list li:last-child {
+  color: var(--color-grigio-saggio);
+  font-weight: var(--weight-medium);
+}
+
+.breadcrumb-separator {
+  color: rgba(74, 94, 120, 0.3);
+  font-size: var(--text-xs);
+}

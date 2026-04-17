@@ -1,0 +1,11 @@
+---
+export const prerender = false;
+
+// In produzione, verifica che Keystatic sia configurato
+// Se le variabili d'ambiente non sono presenti, reindirizza
+if (import.meta.env.PROD) {
+  if (!import.meta.env.KEYSTATIC_GITHUB_CLIENT_ID) {
+    return Astro.redirect('/');
+  }
+}
+---

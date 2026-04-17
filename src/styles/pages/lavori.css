@@ -71,36 +71,16 @@
   position: relative;
 }
 
-.vetrina-card-image :global(svg) {
+.vetrina-card-image svg {
   position: absolute;
-  bottom: var(--space-2);
-  right: var(--space-2);
+  top: var(--space-3);
+  left: var(--space-3);
 }
 
 .vetrina-card-content {
   padding: var(--space-4);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   position: relative;
   overflow: hidden;
-}
-.vetrina-card-text {
-  flex: 1;
-  padding-right: var(--space-12);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.vetrina-card-hover-element {
-  position: absolute;
-  right: var(--space-4);
-  top: 50%;
-  transform: translateY(-50%) translateX(20px);
-  opacity: 0;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.vetrina-card:hover .vetrina-card-hover-element {
-  transform: translateY(-50%) translateX(0);
-  opacity: 1;
 }
 
 .vetrina-card-meta {
@@ -270,10 +250,24 @@
   margin-bottom: var(--space-12);
 }
 
-.case-hero-image :global(svg) {
+.case-hero-image--reale {
+  padding-bottom: 0;
+  background: transparent;
+}
+
+.case-hero-image--reale img {
+  position: static;
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: cover;
+  display: block;
+}
+
+.case-hero-image svg {
   position: absolute;
   top: var(--space-3);
-  right: var(--space-3);
+  left: var(--space-3);
 }
 
 .case-body {
@@ -303,6 +297,46 @@
   line-height: var(--leading-relaxed);
   margin-bottom: var(--space-3);
   color: var(--color-nero-testo);
+}
+
+/* =====================
+   CASE BODY — MDX RICCO
+   ===================== */
+
+/* Separazione visiva tra sezione testo e blocco media */
+.case-body .media-immagine,
+.case-body .media-gallery,
+.case-body .media-video {
+  /* Margini già definiti nei componenti stessi */
+  /* Aggiungi solo regole di override se necessario */
+}
+
+/* Quando un'immagine grande segue un paragrafo,
+   dai un respiro maggiore */
+.case-body p + .media-immagine--grande,
+.case-body p + .media-immagine--piena,
+.case-body p + .media-gallery,
+.case-body p + .media-video {
+  margin-top: var(--space-12);
+}
+
+/* Quando un paragrafo segue un blocco media,
+   dai un respiro maggiore */
+.case-body .media-immagine + p,
+.case-body .media-gallery + p,
+.case-body .media-video + p {
+  margin-top: var(--space-12);
+}
+
+/* I titoli h2 dentro il case body hanno il loro stile —
+   già definito ma lo rinforziamo */
+.case-body h2 {
+  margin-top: var(--space-12);
+}
+
+/* Prima h2 del body — non ha margin-top */
+.case-body > h2:first-child {
+  margin-top: 0;
 }
 
 .case-footer {
@@ -339,4 +373,248 @@
   font-size: var(--text-xs);
   color: var(--color-grigio-saggio-soft);
   margin-bottom: 2px;
+}
+
+/* =====================
+   ARCHIVIO CLIENTI
+   ===================== */
+
+.archivio-section {
+  background: var(--color-grigio-saggio);
+  color: var(--color-bianco-sporco);
+  padding: var(--space-12) var(--space-8);
+  margin-top: var(--space-16);
+  position: relative;
+}
+
+.archivio-section .section-label {
+  color: var(--color-arancio-ribelle);
+}
+
+.archivio-intro {
+  max-width: var(--container-reading);
+  margin-bottom: var(--space-8);
+}
+
+.archivio-intro h2 {
+  color: var(--color-bianco-sporco);
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-3);
+}
+
+.archivio-intro p {
+  color: rgba(250, 247, 242, 0.7);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+}
+
+/* Griglia settori */
+.archivio-settori {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 1024px) {
+  .archivio-settori {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .archivio-settori {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.archivio-settore-gruppo {
+  /* niente */
+}
+
+.archivio-settore-nome {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-arancio-ribelle);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid rgba(232, 119, 34, 0.3);
+}
+
+.archivio-settore-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.archivio-settore-lista li {
+  font-family: var(--font-saggio);
+  font-size: var(--text-base);
+  color: var(--color-bianco-sporco);
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid rgba(250, 247, 242, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.archivio-settore-lista li:last-child {
+  border-bottom: none;
+}
+
+.archivio-anno {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: rgba(250, 247, 242, 0.35);
+  flex-shrink: 0;
+}
+
+/* =====================
+   BREADCRUMB
+   ===================== */
+
+.case-breadcrumb {
+  padding: var(--space-4) var(--space-4) 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+}
+
+.breadcrumb-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-grigio-saggio-soft);
+}
+
+.breadcrumb-list a {
+  color: var(--color-grigio-saggio-soft);
+  text-decoration: none;
+  transition: color var(--transition-quick);
+}
+
+.breadcrumb-list a:hover {
+  color: var(--color-arancio-ribelle);
+}
+
+.breadcrumb-list li:last-child {
+  color: var(--color-grigio-saggio);
+  font-weight: var(--weight-medium);
+}
+
+.breadcrumb-separator {
+  color: rgba(74, 94, 120, 0.3);
+  font-size: var(--text-xs);
+}
+
+/* =====================
+   NAVIGAZIONE SINGOLO CASE — MIGLIORATA
+   ===================== */
+
+/* Link "tutti i lavori" prominente IN CIMA al case */
+.case-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-grigio-saggio-soft);
+  text-decoration: none;
+  padding: var(--space-4) var(--space-4) 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: block;
+  transition: color var(--transition-quick);
+}
+
+.case-back-link:hover {
+  color: var(--color-arancio-ribelle);
+}
+
+/* Navigazione prev/next — più visibile */
+.case-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(74, 94, 120, 0.15);
+}
+
+.case-nav-card {
+  display: block;
+  padding: var(--space-4);
+  border: 1px solid rgba(74, 94, 120, 0.2);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition-quick),
+              transform var(--transition-quick);
+  position: relative;
+}
+
+.case-nav-card:hover {
+  border-color: var(--color-grigio-saggio);
+  transform: translateY(-2px);
+}
+
+.case-nav-card--next {
+  text-align: right;
+}
+
+.case-nav-card-label {
+  display: block;
+  font-family: var(--font-ribelle);
+  font-size: var(--text-xs);
+  color: var(--color-arancio-ribelle);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.case-nav-card-cliente {
+  display: block;
+  font-family: var(--font-saggio);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-grigio-saggio);
+  margin-bottom: var(--space-1);
+  line-height: var(--leading-tight);
+}
+
+.case-nav-card-titolo {
+  display: block;
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-grigio-saggio-soft);
+  line-height: var(--leading-normal);
+}
+
+/* Placeholder se non c'è caso precedente/successivo */
+.case-nav-empty {
+  /* Cella vuota nel grid — mantiene la struttura */
+}
+
+/* =====================
+   JSON-LD BREADCRUMB (visivamente nascosto)
+   ===================== */
+
+.breadcrumb-jsonld {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
 }

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PixelCluster from '../components/visuals/PixelCluster.astro';
+import HeroIllustrazione from '../components/visuals/HeroIllustrazione.astro';
 import '../styles/pages/home.css';
 
 const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft && data.inVetrina))
@@ -17,7 +18,11 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
     <!-- Sezione 1: Hero (Split Layout) -->
     <section class="hero-section" aria-labelledby="hero-title">
       <div class="hero-content">
-        <h1 id="hero-title" class="hero-title-animated" aria-label="Il Perché viene prima del Cosa.">
+        <h1
+          id="hero-title"
+          class="hero-title-animated"
+          aria-label="Il Perché viene prima del Cosa."
+        >
           <span class="word" style="--delay: 0ms">Il</span>
           <span class="word word--accent" style="--delay: 80ms">Perché</span>
           <span class="word" style="--delay: 160ms">viene</span>
@@ -25,19 +30,15 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
           <span class="word" style="--delay: 320ms">del</span>
           <span class="word" style="--delay: 400ms">Cosa.</span>
         </h1>
-        <p class="lead">Mandarino è un'agenzia di comunicazione strategica. Costruiamo le fondamenta di senso prima dei contenuti, della creatività, dei media.</p>
+        <p class="lead">
+          Mandarino è un'agenzia di comunicazione strategica.
+          Costruiamo le fondamenta di senso prima dei contenuti,
+          della creatività, dei media.
+        </p>
       </div>
-      
+
       <div class="hero-visual">
-        <video autoplay loop muted playsinline class="hero-video">
-          <!-- Playback garantito con video locale -->
-          <source src="/assets/video/showreel.mp4" type="video/mp4" />
-        </video>
-        <!-- Overlay testuale "Sottostante" stile Ikea -->
-        <div class="hero-visual-overlay">
-          <p class="hero-visual-caption">The Mandarino Tape</p>
-          <h3 class="hero-visual-title">Mettiamo in fila<br>i pensieri</h3>
-        </div>
+        <HeroIllustrazione />
       </div>
     </section>
 
@@ -105,28 +106,18 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
       <span class="section-label">(Lavori)</span>
       <h2 id="works-title">Quattro casi, quattro pensieri.</h2>
 
-      <div class="works-grid bento-grid">
+      <div class="works-grid">
         {lavoriVetrina.map((lavoro, index) => (
-          <a href={`/lavori/${lavoro.id}/`} class={`bento-card fade-up-element bento-${index % 4}`} data-reveal>
+          <a href={`/lavori/${lavoro.id}/`} class="work-card fade-up-element" data-reveal>
             <div class="work-card-image" aria-hidden="true">
-              {lavoro.data.heroVideo ? (
-                <video src={lavoro.data.heroVideo} autoplay loop muted playsinline></video>
-              ) : (
-                <img src={lavoro.data.heroImage} alt="" />
-              )}
-              <div style="position: absolute; bottom: 0; right: 0;">
-                <PixelCluster size="small" variant="corner" color="arancio" />
-              </div>
+              <PixelCluster size="small" variant="corner" color="arancio" />
             </div>
-            
-            <div class="work-card-content">
-              <p class="work-card-meta">{lavoro.data.cliente} · {lavoro.data.settore}</p>
+            <div class="work-card-body">
+              <p class="work-card-meta">
+                {lavoro.data.cliente} · {lavoro.data.settore}
+              </p>
               <h3 class="work-card-title">{lavoro.data.titolo}</h3>
               <p class="work-card-tesi">{lavoro.data.tesi}</p>
-              
-              <div class="work-card-hover-element" aria-hidden="true">
-                <PixelCluster size="medium" variant="corner" color="grigio" />
-              </div>
             </div>
           </a>
         ))}

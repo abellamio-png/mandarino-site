@@ -3,6 +3,12 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PixelCluster from '../../components/visuals/PixelCluster.astro';
 import '../../styles/pages/lavori.css';
+import {
+  archivioClienti,
+  groupBySector
+} from '../../data/archivio-clienti.ts';
+
+const settoriArchivio = groupBySector(archivioClienti);
 
 // Recupera tutti i case non-draft
 const tuttiLavori = await getCollection('lavori', ({ data }) => !data.draft);
@@ -22,60 +28,83 @@ const archivio = tuttiLavori
   path="/lavori/"
 >
   <div class="lavori-page">
-    <section class="lavori-hero fade-up-element">
+    <section class="lavori-hero" data-reveal>
       <span class="section-label">(Lavori)</span>
       <h1>Quattro casi, quattro pensieri.</h1>
       <p class="lead">Ogni progetto Mandarino parte da una domanda strategica. Qui ne vedete quattro, raccontati per quello che sono davvero.</p>
     </section>
 
-    <section class="vetrina-section" aria-labelledby="vetrina-title">
+    <section class="vetrina-section" aria-labelledby="vetrina-title" data-reveal>
       <h2 id="vetrina-title" class="visually-hidden">Lavori in vetrina</h2>
 
-      <div class="bento-grid">
+      <div class="vetrina-grid">
         {vetrina.map((lavoro, index) => (
-          <a href={`/lavori/${lavoro.id}/`} class={`bento-card fade-up-element bento-${index % 4}`}>
-            <div class="work-card-image" aria-hidden="true">
-              {lavoro.data.heroVideo ? (
-                <video src={lavoro.data.heroVideo} autoplay loop muted playsinline></video>
-              ) : (
-                <img src={lavoro.data.heroImage} alt="" />
-              )}
-              <div style="position: absolute; bottom: 0; right: 0;">
-                <PixelCluster size="small" variant="corner" color="arancio" />
-              </div>
+          <a href={`/lavori/${lavoro.id}/`} class="vetrina-card fade-up-element">
+            <div class="vetrina-card-image" aria-hidden="true">
+              <PixelCluster size="small" variant="corner" color="arancio" />
             </div>
             
-            <div class="work-card-content">
-              <p class="work-card-meta">{lavoro.data.cliente} · {lavoro.data.settore}</p>
-              <h3 class="work-card-title">{lavoro.data.titolo}</h3>
-              <p class="work-card-tesi">{lavoro.data.tesi}</p>
-              
-              <div class="work-card-hover-element" aria-hidden="true">
-                <PixelCluster size="medium" variant="corner" color="grigio" />
-              </div>
+            <div class="vetrina-card-content">
+              <p class="vetrina-card-meta">
+                {lavoro.data.cliente} · {lavoro.data.settore}
+              </p>
+              <h3 class="vetrina-card-title">{lavoro.data.titolo}</h3>
+              <p class="vetrina-card-tesi">{lavoro.data.tesi}</p>
             </div>
           </a>
         ))}
       </div>
     </section>
 
-    {archivio.length > 0 && (
-      <section class="archivio-section" aria-labelledby="archivio-title">
-        <span class="section-label">(Archivio completo)</span>
-        <h2 id="archivio-title">Altri clienti e progetti.</h2>
-        <p>Vent'anni di lavoro non entrano in una vetrina. Qui gli array dei clienti storici.</p>
+    <!-- ARCHIVIO CLIENTI STORICI -->
+    <section
+      class="archivio-section"
+      aria-labelledby="archivio-title"
+      data-reveal
+    >
+      <PixelCluster size="large" variant="corner" color="arancio" />
 
-        <div class="archivio-grid">
-          {archivio.map(lavoro => (
-            <a href={`/lavori/${lavoro.id}/`} class="archivio-item fade-up-element">
-              <h3 class="archivio-cliente">{lavoro.data.cliente}</h3>
-              <p class="archivio-ambito">{lavoro.data.settore}</p>
-              <p class="archivio-anno">{lavoro.data.durata || '—'}</p>
-            </a>
-          ))}
-        </div>
-      </section>
-    )}
+      <div class="archivio-intro">
+        <span class="section-label">(Archivio)</span>
+        <h2 id="archivio-title">Vent'anni di clienti.</h2>
+        <p>
+          I case study in vetrina raccontano il nostro metodo in profondità.
+          Qui trovate gli altri clienti con cui abbiamo lavorato
+          in vent'anni di attività.
+        </p>
+      </div>
+
+      <div class="archivio-settori">
+        {Object.entries(settoriArchivio).map(([settore, clienti]) => (
+          <div class="archivio-settore-gruppo">
+            <p class="archivio-settore-nome">{settore}</p>
+            <ul class="archivio-settore-lista">
+              {clienti.map(cliente => (
+                <li>
+                  <span>{cliente.nome}</span>
+                  {cliente.anno && (
+                    <span class="archivio-anno">{cliente.anno}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- Anche i 4 case in vetrina compaiono nell'archivio
+           come riferimento visivo alla vetrina sopra -->
+      <p style="
+        margin-top: var(--space-8);
+        font-family: var(--font-ribelle);
+        font-size: var(--text-sm);
+        color: rgba(250, 247, 242, 0.45);
+        font-style: italic;
+      ">
+        AS Roma, Avio Interiors, Todis e Gruppo Francia Latticini
+        sono raccontati in dettaglio nella vetrina qui sopra.
+      </p>
+    </section>
   </div>
 
 </BaseLayout>
