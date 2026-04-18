@@ -6,7 +6,7 @@ const { showLabels = false } = Astro.props;
 ---
 
 <figure class="nitido-pixel-composition" aria-hidden="true">
-  <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg"
+  <svg viewBox="-80 0 1360 850" xmlns="http://www.w3.org/2000/svg"
        class="nitido-pixel-svg">
     
     <style>
@@ -19,18 +19,17 @@ const { showLabels = false } = Astro.props;
       .fill-rosa { fill: #E8729A; }
     </style>
 
-    <!-- NITIDO: grande cerchio grigio saggio - ANCORATO IN BASSO -->
-    <circle cx="240" cy="460" r="280" fill="var(--color-grigio-saggio)"/>
+    <!-- NITIDO: grande cerchio grigio saggio - POSIZIONATO PER NON ESSERE TAGLIATO -->
+    <circle cx="280" cy="500" r="320" fill="var(--color-grigio-saggio)"/>
 
     <!-- PIXEL: forma a gradini arancio ribelle - ANCORATA IN BASSO -->
-    <!-- Costruiamo dal basso (y=600) verso l'alto -->
-    <rect x="700" y="400" width="500" height="200" fill="var(--color-arancio-ribelle)"/>
-    <rect x="780" y="240" width="420" height="160" fill="var(--color-arancio-ribelle)"/>
-    <rect x="880" y="120" width="320" height="120" fill="var(--color-arancio-ribelle)"/>
-    <rect x="1000" y="40"  width="200" height="80"  fill="var(--color-arancio-ribelle)"/>
+    <rect x="760" y="550" width="500" height="200" fill="var(--color-arancio-ribelle)"/>
+    <rect x="840" y="390" width="420" height="160" fill="var(--color-arancio-ribelle)"/>
+    <rect x="940" y="270" width="320" height="120" fill="var(--color-arancio-ribelle)"/>
+    <rect x="1060" y="190" width="200" height="80"  fill="var(--color-arancio-ribelle)"/>
 
     <!-- PERSONAGGIO SAGGIO (dentro il cerchio Nitido) -->
-    <g class="saggio-embed" transform="translate(140, 240) scale(0.65)">
+    <g class="saggio-embed" transform="translate(180, 280) scale(0.65)">
        <ellipse cx="108" cy="365" rx="32" ry="18" class="fill-ombra"/>
        <ellipse cx="108" cy="365" rx="32" ry="18" class="outline"/>
        <ellipse cx="192" cy="365" rx="32" ry="18" class="fill-ombra"/>
@@ -59,8 +58,7 @@ const { showLabels = false } = Astro.props;
     </g>
 
     <!-- PERSONAGGIO RIBELLE (seduto su un gradino Pixel) -->
-    <!-- Posizionato sul secondo gradino (y=240) -->
-    <g class="ribelle-embed" transform="translate(685, -25) scale(0.68)">
+    <g class="ribelle-embed" transform="translate(745, 125) scale(0.68)">
        <rect x="120" y="355" width="100" height="60" class="fill-arancio"/>
        <rect x="120" y="355" width="100" height="60" class="outline"/>
        <rect x="180" y="390" width="60" height="30" class="fill-arancio"/>
@@ -94,6 +92,7 @@ const { showLabels = false } = Astro.props;
     </g>
 
   </svg>
+
 
   {showLabels && (
     <div class="nitido-pixel-labels">

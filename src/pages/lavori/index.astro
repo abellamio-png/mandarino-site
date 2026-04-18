@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PixelCluster from '../../components/visuals/PixelCluster.astro';
+import TramaSfondo from '../../components/visuals/TramaSfondo.astro';
 import '../../styles/pages/lavori.css';
 import {
   archivioClienti,
@@ -28,10 +29,13 @@ const archivio = tuttiLavori
   path="/lavori/"
 >
   <div class="lavori-page">
-    <section class="lavori-hero" data-reveal>
-      <span class="section-label">(Lavori)</span>
-      <h1>Quattro casi, quattro pensieri.</h1>
-      <p class="lead">Ogni progetto Mandarino parte da una domanda strategica. Qui ne vedete quattro, raccontati per quello che sono davvero.</p>
+    <section class="lavori-hero" data-reveal style="position: relative;">
+      <TramaSfondo variante="chiaro" opacita={0.05} />
+      <div style="position: relative; z-index: 1;">
+        <span class="section-label">(Lavori)</span>
+        <h1 class="hero-title reveal">Quattro casi, quattro pensieri.</h1>
+        <p class="lead reveal reveal-delay-1">Ogni progetto Mandarino parte da una domanda strategica. Qui ne vedete quattro, raccontati per quello che sono davvero.</p>
+      </div>
     </section>
 
     <section class="vetrina-section" aria-labelledby="vetrina-title" data-reveal>
@@ -39,7 +43,7 @@ const archivio = tuttiLavori
 
       <div class="vetrina-grid">
         {vetrina.map((lavoro, index) => (
-          <a href={`/lavori/${lavoro.id}/`} class="vetrina-card fade-up-element">
+          <a href={`/lavori/${lavoro.id}/`} class={`vetrina-card reveal reveal-delay-${Math.min(index, 3)}`}>
             <div class="vetrina-card-image" aria-hidden="true">
               {lavoro.data.coverImage && (
                 <img 
@@ -65,11 +69,15 @@ const archivio = tuttiLavori
 
     <!-- ARCHIVIO CLIENTI STORICI -->
     <section
-      class="archivio-section"
+      class="archivio-section reveal"
       aria-labelledby="archivio-title"
       data-reveal
+      style="position: relative;"
     >
-      <PixelCluster size="large" variant="corner" color="arancio" />
+      <TramaSfondo variante="scuro" opacita={0.08} />
+      
+      <div style="position: relative; z-index: 1;">
+        <PixelCluster size="large" variant="corner" color="arancio" />
 
       <div class="archivio-intro">
         <span class="section-label">(Archivio)</span>
@@ -111,6 +119,7 @@ const archivio = tuttiLavori
         AS Roma, Avio Interiors, Todis e Gruppo Francia Latticini
         sono raccontati in dettaglio nella vetrina qui sopra.
       </p>
+      </div>
     </section>
   </div>
 

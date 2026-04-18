@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PixelCluster from '../../components/visuals/PixelCluster.astro';
+import TramaSfondo from '../../components/visuals/TramaSfondo.astro';
 import '../../styles/pages/pensiero.css';
 
 // Recupera articoli non-draft, ordinati per data (più recente prima)
@@ -25,14 +26,17 @@ function formatData(dataStr: string): string {
 >
   <div class="pensiero-page">
 
-    <header class="pensiero-hero" data-reveal>
-      <span class="section-label">(Pensiero)</span>
-      <h1>Pensiero lungo.</h1>
-      <p class="lead">
-        Non pubblichiamo spesso. Pubblichiamo quando abbiamo
-        qualcosa di vero da dire sulla strategia e sulla comunicazione.
-      </p>
-      <PixelCluster size="medium" variant="corner" color="arancio" />
+    <header class="pensiero-hero" data-reveal style="position: relative;">
+      <TramaSfondo variante="chiaro" opacita={0.05} />
+      <div style="position: relative; z-index: 1;">
+        <span class="section-label">(Pensiero)</span>
+        <h1 class="hero-title reveal">Pensiero lungo.</h1>
+        <p class="lead reveal reveal-delay-1">
+          Non pubblichiamo spesso. Pubblichiamo quando abbiamo
+          qualcosa di vero da dire sulla strategia e sulla comunicazione.
+        </p>
+        <PixelCluster size="medium" variant="corner" color="arancio" />
+      </div>
     </header>
 
     <section
@@ -42,10 +46,10 @@ function formatData(dataStr: string): string {
     >
       <h2 id="lista-title" class="visually-hidden">Articoli</h2>
 
-      {articoli.map((articolo) => (
+      {articoli.map((articolo, index) => (
         <a
           href={`/pensiero/${articolo.id}/`}
-          class="articolo-item"
+          class={`articolo-item reveal ${index > 0 ? `reveal-delay-${Math.min(index, 4)}` : ''}`}
         >
           <div class="articolo-meta">
             <span class="articolo-data">

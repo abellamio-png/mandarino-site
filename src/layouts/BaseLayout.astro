@@ -76,8 +76,7 @@ const schemaOrg = {
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
   </head>
   <body>
-    <!-- Custom cursor — pixel arancione -->
-    <div class="custom-cursor" aria-hidden="true"></div>
+    <div id="cursor-custom" aria-hidden="true"></div>
 
     <!-- Skip link accessibile per tastiera -->
     <a class="skip-link" href="#main">Salta al contenuto principale</a>
@@ -91,59 +90,64 @@ const schemaOrg = {
 
     <Footer />
     
-    <!-- Animazioni Native (Niente GSAP) -->
-    <script is:inline src="/scripts/reveal.js" defer></script>
+    <!-- Scroll Reveal Centralizzato -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      );
 
-    <script is:inline>
+      function initReveal() {
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      }
+
+      initReveal();
+      document.addEventListener('astro:page-load', initReveal);
+    </script>
+
+    <script>
       function initCursor() {
-        // Solo su dispositivi con mouse preciso (non touch)
-        if (!window.matchMedia('(pointer: fine)').matches) return;
+        const cursor = document.getElementById('cursor-custom');
+        if (cursor && window.matchMedia('(pointer: fine)').matches) {
+          document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+          });
+          document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+          document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+        } else if (cursor) {
+          cursor.style.display = 'none';
+          document.body.style.cursor = 'auto';
+        }
+      }
 
-        const cursor = document.querySelector('.custom-cursor');
-        if (!cursor) return;
+      initCursor();
+      document.addEventListener('astro:page-load', initCursor);
 
-        // Rimuovi listener precedenti per evitare duplicati
-        // (importante dopo le View Transitions)
-        const newCursor = cursor.cloneNode(true);
-        cursor.parentNode.replaceChild(newCursor, cursor);
-        const activeCursor = document.querySelector('.custom-cursor');
+      // Hero titles word-by-word animation
+      function initHeroTitles() {
+        document.querySelectorAll('.hero-title').forEach(el => {
+          if (el.dataset.animated) return;
+          el.dataset.animated = 'true';
 
-        // Muovi il cursore
-        document.addEventListener('mousemove', (e) => {
-          activeCursor.style.left = e.clientX + 'px';
-          activeCursor.style.top = e.clientY + 'px';
-        });
-
-        // Hover states
-        const interactive = 'a, button, [role="button"], input, textarea, select, label';
-        const textual = 'p, h1, h2, h3, h4, h5, h6, span, li, blockquote';
-
-        document.addEventListener('mouseover', (e) => {
-          if (e.target.closest(interactive)) {
-            activeCursor.classList.add('is-hovering');
-            activeCursor.classList.remove('is-text');
-          } else if (e.target.closest(textual)) {
-            activeCursor.classList.add('is-text');
-            activeCursor.classList.remove('is-hovering');
-          } else {
-            activeCursor.classList.remove('is-hovering', 'is-text');
-          }
-        });
-
-        // Nascondi quando il mouse esce dalla finestra
-        document.addEventListener('mouseleave', () => {
-          activeCursor.style.opacity = '0';
-        });
-        document.addEventListener('mouseenter', () => {
-          activeCursor.style.opacity = '1';
+          const words = el.textContent.trim().split(/\s+/);
+          el.innerHTML = words
+            .map((word, i) => 
+              `<span class="hero-title-word" style="animation-delay: ${i * 80}ms">${word}</span>`
+            )
+            .join(' ');
         });
       }
 
-      // Inizializzazione
-      document.addEventListener('DOMContentLoaded', initCursor);
-
-      // Re-inizializzazione dopo View Transitions
-      document.addEventListener('astro:page-load', initCursor);
+      initHeroTitles();
+      document.addEventListener('astro:page-load', initHeroTitles);
     </script>
   </body>
 </html>

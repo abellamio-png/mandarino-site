@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PixelCluster from '../components/visuals/PixelCluster.astro';
+import TramaSfondo from '../components/visuals/TramaSfondo.astro';
 import '../styles/pages/metodo.css';
 
 // JSON-LD per il Metodo come Service
@@ -33,15 +34,16 @@ const jsonLd = {
   <article class="metodo-page">
 
     <!-- HERO -->
-    <header class="metodo-hero">
-      <span class="section-label">(Metodo)</span>
-      <h1 class="hero-title-animated" aria-label="Il Metodo Fondamenta">
-        <span class="word" style="--delay: 0ms">Il</span>
-        <span class="word word--accent" style="--delay: 100ms">Metodo</span>
-        <span class="word" style="--delay: 200ms">Fondamenta</span>
-      </h1>
-      <p class="lead">Un processo in cinque fasi per costruire la comunicazione dall'interno verso l'esterno. Prima di produrre qualunque contenuto, aiutiamo i nostri clienti a capire chi sono, cosa promettono, e dove vogliono stare nel mercato.</p>
-      <PixelCluster size="medium" variant="corner" color="arancio" />
+    <header class="metodo-hero" style="position: relative;">
+      <TramaSfondo variante="chiaro" opacita={0.05} />
+      <div style="position: relative; z-index: 1;">
+        <span class="section-label">(Metodo)</span>
+        <h1 class="hero-title reveal">
+          Il Metodo Fondamenta
+        </h1>
+        <p class="lead reveal reveal-delay-1">Un processo in cinque fasi per costruire la comunicazione dall'interno verso l'esterno. Prima di produrre qualunque contenuto, aiutiamo i nostri clienti a capire chi sono, cosa promettono, e dove vogliono stare nel mercato.</p>
+        <PixelCluster size="medium" variant="corner" color="arancio" />
+      </div>
     </header>
 
     <!-- PERCHÉ UN METODO -->
@@ -62,7 +64,7 @@ const jsonLd = {
       <h2 id="fasi-title" class="visually-hidden">Le cinque fasi del Metodo Fondamenta</h2>
 
       <!-- Fase 01 -->
-      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.1s">
+      <div class="metodo-fase reveal" style="--transition-delay: 0.1s">
         <div class="metodo-fase-numero" aria-hidden="true">01</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -74,7 +76,7 @@ const jsonLd = {
       </div>
 
       <!-- Fase 02 -->
-      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.2s">
+      <div class="metodo-fase reveal reveal-delay-1" style="--transition-delay: 0.2s">
         <div class="metodo-fase-numero" aria-hidden="true">02</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -86,7 +88,7 @@ const jsonLd = {
       </div>
 
       <!-- Fase 03 -->
-      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.3s">
+      <div class="metodo-fase reveal reveal-delay-2" style="--transition-delay: 0.3s">
         <div class="metodo-fase-numero" aria-hidden="true">03</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -98,7 +100,7 @@ const jsonLd = {
       </div>
 
       <!-- Fase 04 -->
-      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.4s">
+      <div class="metodo-fase reveal reveal-delay-3" style="--transition-delay: 0.4s">
         <div class="metodo-fase-numero" aria-hidden="true">04</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -110,7 +112,7 @@ const jsonLd = {
       </div>
 
       <!-- Fase 05 -->
-      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.5s">
+      <div class="metodo-fase reveal reveal-delay-4" style="--transition-delay: 0.5s">
         <div class="metodo-fase-numero" aria-hidden="true">05</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -179,7 +181,7 @@ const jsonLd = {
     </div>
 
     <!-- CTA -->
-    <section class="metodo-cta" aria-labelledby="cta-title" data-reveal>
+    <section class="metodo-cta reveal" aria-labelledby="cta-title">
       <span class="section-label">(Iniziamo)</span>
       <h2 id="cta-title">Le Fondamenta iniziano con una conversazione.</h2>
       <p>Scriveteci raccontandoci chi siete e cosa state cercando. Rispondiamo entro 48 ore.</p>

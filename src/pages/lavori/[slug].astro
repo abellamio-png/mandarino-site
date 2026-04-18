@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PixelCluster from '../../components/visuals/PixelCluster.astro';
+import TramaSfondo from '../../components/visuals/TramaSfondo.astro';
 import MediaImmagine from '../../components/media/MediaImmagine.astro';
 import MediaGallery from '../../components/media/MediaGallery.astro';
 import MediaVideo from '../../components/media/MediaVideo.astro';
@@ -111,10 +112,12 @@ const breadcrumbLd = {
         </li>
       </ol>
     </nav>
-    <header class="case-hero" data-reveal style="transition-delay: 0ms;">
-      <span class="section-label">(Case)</span>
+    <header class="case-hero" data-reveal style="transition-delay: 0ms; position: relative;">
+      <TramaSfondo variante="chiaro" opacita={0.05} />
+      <div style="position: relative; z-index: 1;">
+        <span class="section-label">(Case)</span>
 
-      <div class="case-meta-row">
+      <div class="case-meta-row reveal reveal-delay-1">
         <div class="case-meta-item">
           <span class="case-meta-label">(Cliente)</span>
           <span class="case-meta-value">{lavoro.data.cliente}</span>
@@ -133,11 +136,11 @@ const breadcrumbLd = {
         </div>
       </div>
 
-      <h1 class="case-title">{lavoro.data.titolo}</h1>
-      <p class="case-tesi">{lavoro.data.tesi}</p>
+      <h1 class="case-title hero-title reveal reveal-delay-1">{lavoro.data.titolo}</h1>
+      <p class="case-tesi reveal reveal-delay-2">{lavoro.data.tesi}</p>
 
       {lavoro.data.heroImage ? (
-        <div class="case-hero-image case-hero-image--reale">
+        <div class="case-hero-image case-hero-image--reale reveal reveal-delay-3">
           <img
             src={lavoro.data.heroImage}
             alt={lavoro.data.heroImageAlt || `Immagine del progetto ${lavoro.data.cliente}`}
@@ -146,13 +149,14 @@ const breadcrumbLd = {
           />
         </div>
       ) : (
-        <div class="case-hero-image" role="presentation">
+        <div class="case-hero-image reveal reveal-delay-3" role="presentation">
           <PixelCluster size="medium" variant="corner" color="arancio" />
         </div>
       )}
+      </div>
     </header>
 
-    <div class="case-body" data-reveal>
+    <div class="case-body reveal">
       <Content
         components={{
           MediaImmagine,

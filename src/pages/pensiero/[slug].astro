@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PixelCluster from '../../components/visuals/PixelCluster.astro';
+import TramaSfondo from '../../components/visuals/TramaSfondo.astro';
 import MediaImmagine from '../../components/media/MediaImmagine.astro';
 import MediaGallery from '../../components/media/MediaGallery.astro';
 import MediaVideo from '../../components/media/MediaVideo.astro';
@@ -104,30 +105,34 @@ const breadcrumbLd = {
     </nav>
 
     <!-- Header -->
-    <header class="articolo-header" data-reveal>
-      <div class="articolo-header-meta">
+    <header class="articolo-header" data-reveal style="position: relative;">
+      <TramaSfondo variante="chiaro" opacita={0.05} />
+      <div style="position: relative; z-index: 1;">
+      <div class="articolo-header-meta reveal">
         <span>{formatData(articolo.data.data)}</span>
         <span aria-hidden="true">·</span>
         <span style="color: var(--color-arancio-ribelle);">
           {articolo.data.tempoLettura} min
         </span>
       </div>
-      <h1 class="articolo-header-titolo">{articolo.data.titolo}</h1>
+      <h1 class="articolo-header-titolo hero-title reveal reveal-delay-1">{articolo.data.titolo}</h1>
       {articolo.data.sottotitolo && (
-        <p class="articolo-header-sottotitolo">
+        <p class="articolo-header-sottotitolo reveal reveal-delay-2">
           {articolo.data.sottotitolo}
         </p>
       )}
       <PixelCluster size="small" variant="corner" color="arancio" />
+      </div>
     </header>
 
     <!-- Body -->
-    <div class="articolo-body" data-reveal>
+    <div class="articolo-body reveal">
       <Content
         components={{
           MediaImmagine,
           MediaGallery,
           MediaVideo,
+          h2: (props) => <h2 {...props} class="reveal" />,
         }}
       />
     </div>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PixelCluster from '../components/visuals/PixelCluster.astro';
+import TramaSfondo from '../components/visuals/TramaSfondo.astro';
 import '../styles/pages/contatti.css';
 
 const jsonLd = {
@@ -34,14 +35,17 @@ const jsonLd = {
   <div class="contatti-page">
 
     <!-- HERO -->
-    <header class="contatti-hero" data-reveal>
-      <span class="section-label">(Contatti)</span>
-      <h1>Le Fondamenta iniziano con una conversazione.</h1>
-      <p class="lead">
-        Scriveteci raccontandoci chi siete e cosa state cercando.
-        Rispondiamo entro 48 ore.
-      </p>
-      <PixelCluster size="medium" variant="corner" color="arancio" />
+    <header class="contatti-hero" data-reveal style="position: relative;">
+      <TramaSfondo variante="chiaro" opacita={0.05} />
+      <div style="position: relative; z-index: 1;">
+        <span class="section-label">(Contatti)</span>
+        <h1 class="hero-title reveal">Le Fondamenta iniziano con una conversazione.</h1>
+        <p class="lead reveal reveal-delay-1">
+          Scriveteci raccontandoci chi siete e cosa state cercando.
+          Rispondiamo entro 48 ore.
+        </p>
+        <PixelCluster size="medium" variant="corner" color="arancio" />
+      </div>
     </header>
 
     <!-- GRID: FORM + INFO -->
@@ -70,7 +74,7 @@ const jsonLd = {
 
         <!-- Il form -->
         <form
-          class="contatti-form"
+          class="contatti-form reveal reveal-delay-1"
           id="contatti-form"
           novalidate
           aria-label="Modulo di contatto"
@@ -181,7 +185,7 @@ const jsonLd = {
       </div>
 
       <!-- COLONNA DESTRA: INFO -->
-      <div class="contatti-info-col">
+      <div class="contatti-info-col reveal reveal-delay-2">
 
         <div class="contatti-info-section">
           <span class="contatti-info-label">(Email)</span>

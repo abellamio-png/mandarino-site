@@ -41,11 +41,13 @@ function extractVimeoId(input: string) {
 
 const finalId = tipo === 'youtube' ? extractYoutubeId(rawId || '') : extractVimeoId(rawId || '');
 
-const youtubeUrl = tipo === 'youtube'
+const isValidId = finalId && finalId.length > 0;
+
+const youtubeUrl = (tipo === 'youtube' && isValidId)
   ? `https://www.youtube-nocookie.com/embed/${finalId}?rel=0&modestbranding=1`
   : null;
 
-const vimeoUrl = tipo === 'vimeo'
+const vimeoUrl = (tipo === 'vimeo' && isValidId)
   ? `https://player.vimeo.com/video/${finalId}?byline=0&portrait=0&title=0`
   : null;
 ---

@@ -1,54 +1,31 @@
-/* Nascondi il cursore di sistema globalmente */
-* {
-  cursor: none !important;
+/* Nascondi il cursore di sistema */
+body { 
+  cursor: none; 
 }
 
-/* Solo su dispositivi touch non mostrare il cursore custom */
-@media (pointer: coarse) {
-  * {
-    cursor: auto !important;
-  }
-  .custom-cursor {
-    display: none !important;
-  }
-}
-
-/* Il pixel cursore */
-.custom-cursor {
+#cursor-custom {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 10px;
   height: 10px;
   background: var(--color-arancio-ribelle);
   pointer-events: none;
   z-index: 9999;
+  top: 0; left: 0;
   transform: translate(-50%, -50%);
-  transition: transform 80ms linear, width 200ms ease, height 200ms ease, background 200ms ease;
-  /* Niente border-radius — è un pixel, non un cerchio */
+  transition: transform 80ms ease-out, opacity 200ms ease;
+  border-radius: 0;
 }
 
-/* Hover su link e elementi interattivi: il pixel si ingrandisce */
-.custom-cursor.is-hovering {
-  width: 24px;
-  height: 24px;
-  background: transparent;
-  border: 2px solid var(--color-arancio-ribelle);
+body:has(a:hover, button:hover) #cursor-custom {
+  transform: translate(-50%, -50%) scale(2);
 }
 
-/* Hover su testo: il pixel diventa un underscore */
-.custom-cursor.is-text {
-  width: 2px;
-  height: 20px;
-  background: var(--color-arancio-ribelle);
+@media (pointer: coarse) {
+  body { cursor: auto; }
+  #cursor-custom { display: none; }
 }
 
-/* Reduced motion e no-hover: nascondi il cursore custom */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    cursor: auto !important;
-  }
-  .custom-cursor {
-    display: none;
-  }
+  body { cursor: auto; }
+  #cursor-custom { display: none; }
 }

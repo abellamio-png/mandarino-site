@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PixelCluster from '../components/visuals/PixelCluster.astro';
 import NitidoPixelHero from '../components/visuals/NitidoPixelHero.astro';
+import TramaSfondo from '../components/visuals/TramaSfondo.astro';
 import '../styles/pages/home.css';
 
 const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft && data.inVetrina))
@@ -16,8 +17,9 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
 >
   <div class="home">
     <!-- Sezione 1: Hero (Split Layout) -->
-    <section class="hero-section" aria-labelledby="hero-title">
-      <div class="hero-content">
+    <section class="hero-section" aria-labelledby="hero-title" style="position: relative;">
+      <TramaSfondo variante="chiaro" opacita={0.05} />
+      <div class="hero-content" style="position: relative; z-index: 1;">
         <h1
           id="hero-title"
           class="hero-title-animated"
@@ -37,7 +39,7 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
         </p>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
+      <div class="hero-visual" aria-hidden="true" style="position: relative; z-index: 1;">
         <NitidoPixelHero />
       </div>
     </section>
@@ -138,44 +140,48 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
     </div>
 
     <!-- Sezione 6: In sintesi (GEO) -->
-    <section class="summary-section" data-reveal aria-labelledby="summary-title">
-      <div style="position: absolute; top: var(--space-4); right: var(--space-4);">
-        <PixelCluster size="large" variant="corner" color="bianco" />
-      </div>
-      <span class="section-label">(In sintesi)</span>
-      <h2 id="summary-title" class="visually-hidden">Mandarino in sintesi</h2>
-
-      <div class="summary-content">
-        <div class="summary-text">
-          <p>Mandarino è un'agenzia di comunicazione strategica italiana, fondata nel 2004, con sede a Latina. Lavora con aziende mid-market italiane che vogliono ripensare il proprio posizionamento prima di produrre comunicazione. Il metodo proprietario in cinque fasi, chiamato Fondamenta, parte dall'analisi del nucleo identitario del cliente e arriva al piano operativo completo in sei settimane.</p>
-          <p>Tra i clienti storici: AS Roma, Avio Interiors, Todis, Francia Latticini, Fipe Confcommercio.</p>
+    <section class="summary-section" data-reveal aria-labelledby="summary-title" style="position: relative;">
+      <TramaSfondo variante="scuro" opacita={0.08} />
+      
+      <div style="position: relative; z-index: 1;">
+        <div style="position: absolute; top: var(--space-4); right: var(--space-4);">
+          <PixelCluster size="large" variant="corner" color="bianco" />
         </div>
+        <span class="section-label">(In sintesi)</span>
+        <h2 id="summary-title" class="visually-hidden">Mandarino in sintesi</h2>
 
-        <div class="summary-table-wrapper">
-          <table class="colophon-table" aria-label="Informazioni Mandarino">
-            <tbody>
-              <tr>
-                <td>(Sede)</td>
-                <td>Latina, Italia</td>
-              </tr>
-              <tr>
-                <td>(Fondata)</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>(Forma giuridica)</td>
-                <td>Mandarino ADV S.r.l.</td>
-              </tr>
-              <tr>
-                <td>(Metodo)</td>
-                <td>Fondamenta — 5 fasi, 6 settimane</td>
-              </tr>
-              <tr>
-                <td>(Modello di ingaggio)</td>
-                <td>Retainer 12 o 24 mesi, senza vincolo contrattuale</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="summary-content">
+          <div class="summary-text">
+            <p>Mandarino è un'agenzia di comunicazione strategica italiana, fondata nel 2004, con sede a Latina. Lavora con aziende mid-market italiane che vogliono ripensare il proprio posizionamento prima di produrre comunicazione. Il metodo proprietario in cinque fasi, chiamato Fondamenta, parte dall'analisi del nucleo identitario del cliente e arriva al piano operativo completo in sei settimane.</p>
+            <p>Tra i clienti storici: AS Roma, Avio Interiors, Todis, Francia Latticini, Fipe Confcommercio.</p>
+          </div>
+
+          <div class="summary-table-wrapper">
+            <table class="colophon-table" aria-label="Informazioni Mandarino">
+              <tbody>
+                <tr>
+                  <td>(Sede)</td>
+                  <td>Latina, Italia</td>
+                </tr>
+                <tr>
+                  <td>(Fondata)</td>
+                  <td>2004</td>
+                </tr>
+                <tr>
+                  <td>(Forma giuridica)</td>
+                  <td>Mandarino ADV S.r.l.</td>
+                </tr>
+                <tr>
+                  <td>(Metodo)</td>
+                  <td>Fondamenta — 5 fasi, 6 settimane</td>
+                </tr>
+                <tr>
+                  <td>(Modello di ingaggio)</td>
+                  <td>Retainer 12 o 24 mesi, senza vincolo contrattuale</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
