@@ -643,12 +643,10 @@
   max-height: 64px;
   object-fit: contain;
   object-position: left center;
-  /* Forza il logo a grigio saggio — coerente col brand */
-  filter: brightness(0) saturate(100%)
-          invert(24%) sepia(16%) saturate(967%)
-          hue-rotate(177deg) brightness(92%) contrast(92%);
-  opacity: 0.75;
+  opacity: 0.85; /* Leggermente aumentata per i loghi veri */
+  transition: opacity var(--transition-smooth);
 }
 
-/* Al caricamento dei loghi veri, rimuovere il filter
-   e usare solo opacity per lasciare i colori originali */
+.case-logo-img:hover {
+  opacity: 1;
+}
