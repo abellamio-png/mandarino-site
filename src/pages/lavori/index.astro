@@ -41,6 +41,13 @@ const archivio = tuttiLavori
         {vetrina.map((lavoro, index) => (
           <a href={`/lavori/${lavoro.id}/`} class="vetrina-card fade-up-element">
             <div class="vetrina-card-image" aria-hidden="true">
+              {lavoro.data.coverImage && (
+                <img 
+                  src={lavoro.data.coverImage} 
+                  alt={lavoro.data.coverImageAlt || ""} 
+                  loading="lazy"
+                />
+              )}
               <PixelCluster size="small" variant="corner" color="arancio" />
             </div>
             

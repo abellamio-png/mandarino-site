@@ -213,3 +213,29 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+/* =====================
+   SEZIONE AI NEL METODO
+   ===================== */
+
+.metodo-ai {
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding: var(--space-10) var(--space-4);
+  border-top: 1px solid rgba(74, 94, 120, 0.15);
+  position: relative;
+}
+
+.metodo-ai-inner p {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-nero-testo);
+  margin-bottom: var(--space-3);
+  max-width: var(--container-reading);
+}
+
+.metodo-ai-inner p:last-child {
+  margin-bottom: 0;
+}
+

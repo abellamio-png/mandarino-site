@@ -23,6 +23,8 @@ const lavoriCollection = defineCollection({
     heroImage: z.string().optional(),       // Path relativo all'immagine hero
     heroVideo: z.string().optional(),       // Path relativo al video hero se fornito
     heroImageAlt: z.string().optional(),
+    coverImage: z.string().optional(),
+    coverImageAlt: z.string().optional(),
 
     // SEO
     descrizione: z.string(),                // Meta description della pagina singolo case

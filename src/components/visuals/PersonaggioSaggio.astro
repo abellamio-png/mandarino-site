@@ -4,36 +4,107 @@
 ---
 
 <svg
-  viewBox="0 0 120 140"
+  viewBox="0 0 200 240"
   xmlns="http://www.w3.org/2000/svg"
   aria-hidden="true"
   class="personaggio-saggio"
 >
-  <!-- Corpo seduto (cerchio schiacciato) -->
-  <ellipse cx="60" cy="90" rx="35" ry="28" fill="none" stroke="#FAF7F2" stroke-width="2.5"/>
+  <!-- Ombra sotto il Saggio -->
+  <ellipse cx="100" cy="210" rx="38" ry="8" fill="rgba(0,0,0,0.2)"/>
 
-  <!-- Testa (mandarino verde) -->
-  <circle cx="60" cy="52" r="22" fill="none" stroke="#FAF7F2" stroke-width="2.5"/>
+  <!-- Corpo seduto -->
+  <ellipse cx="100" cy="182" rx="38" ry="26" fill="#1A4D2E" stroke="#2D8659" stroke-width="1.5"/>
 
-  <!-- Dettaglio mandarino — solchi verticali -->
-  <path d="M60 30 Q55 41 60 52 Q65 41 60 30" fill="none" stroke="#FAF7F2" stroke-width="1.5" opacity="0.6"/>
+  <!-- Braccia e Mani -->
+  <path d="M68 172 Q52 164 46 172 Q44 178 50 182"
+    fill="none" stroke="#FAF7F2" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="49" cy="183" r="5.5" fill="#FAF7F2" opacity="0.9"/>
 
-  <!-- Occhi chiusi (sereni) -->
-  <path d="M51 50 Q53 48 55 50" fill="none" stroke="#FAF7F2" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M65 50 Q67 48 69 50" fill="none" stroke="#FAF7F2" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M132 172 Q148 164 154 172 Q156 178 150 182"
+    fill="none" stroke="#FAF7F2" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="151" cy="183" r="5.5" fill="#FAF7F2" opacity="0.9"/>
+
+  <!-- Testa -->
+  <ellipse cx="100" cy="108" rx="40" ry="42" fill="#2D8659"/>
+
+  <!-- Texture mandarino verde -->
+  <path d="M100 67 Q93 87 100 108 Q107 87 100 67"
+    fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+  <path d="M90 69 Q80 88 85 108"
+    fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <path d="M110 69 Q120 88 115 108"
+    fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+  <!-- Fogliolina -->
+  <path d="M100 66 Q95 55 100 51 Q105 55 100 66" fill="#1A4D2E"/>
+  <path d="M100 62 Q93 51 88 49 Q92 57 100 62" fill="#1A4D2E"/>
+
+  <!-- Occhi chiusi sereni -->
+  <path d="M88 104 Q92 100 96 104"
+    fill="none" stroke="#FAF7F2" stroke-width="2"
+    stroke-linecap="round" class="occhio-sx"/>
+  <path d="M104 104 Q108 100 112 104"
+    fill="none" stroke="#FAF7F2" stroke-width="2"
+    stroke-linecap="round" class="occhio-dx"/>
 
   <!-- Sorriso -->
-  <path d="M54 57 Q60 62 66 57" fill="none" stroke="#FAF7F2" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M89 117 Q100 124 111 117"
+    fill="none" stroke="#FAF7F2" stroke-width="2"
+    stroke-linecap="round"/>
 
-  <!-- Braccia in meditazione -->
-  <path d="M25 85 Q40 78 45 90" fill="none" stroke="#FAF7F2" stroke-width="2" stroke-linecap="round"/>
-  <path d="M95 85 Q80 78 75 90" fill="none" stroke="#FAF7F2" stroke-width="2" stroke-linecap="round"/>
+  <!-- Aureola meditativa -->
+  <circle cx="100" cy="108" r="50"
+    fill="none" stroke="rgba(45,134,89,0.25)"
+    stroke-width="1" stroke-dasharray="3 5"
+    class="aureola"/>
 
-  <!-- Mani (gesture mudra semplificata) -->
-  <circle cx="45" cy="92" r="5" fill="none" stroke="#FAF7F2" stroke-width="1.5"/>
-  <circle cx="75" cy="92" r="5" fill="none" stroke="#FAF7F2" stroke-width="1.5"/>
-
-  <!-- Farfalla decorativa -->
-  <path d="M88 35 Q95 28 100 35 Q95 42 88 35" fill="none" stroke="#E87722" stroke-width="1.5"/>
-  <path d="M100 35 Q107 28 110 35 Q107 42 100 35" fill="none" stroke="#E87722" stroke-width="1.5"/>
+  <!-- Farfalle -->
+  <g class="farfalla-1">
+    <path d="M48 82 Q38 74 42 82 Q38 90 48 82" fill="#F4C430" opacity="0.8"/>
+    <path d="M48 82 Q58 74 54 82 Q58 90 48 82" fill="#F4C430" opacity="0.6"/>
+  </g>
+  <g class="farfalla-2">
+    <path d="M157 78 Q147 70 151 78 Q147 86 157 78" fill="#E87722" opacity="0.7"/>
+    <path d="M157 78 Q167 70 163 78 Q167 86 157 78" fill="#E87722" opacity="0.5"/>
+  </g>
 </svg>
+
+<style>
+  .personaggio-saggio {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Aureola del Saggio — ruota lentamente */
+  .aureola {
+    animation: aureola-rotate 14s linear infinite;
+    transform-origin: 100px 108px;
+  }
+  @keyframes aureola-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Farfalle */
+  .farfalla-1 {
+    animation: farfalla 4.2s ease-in-out infinite;
+    transform-origin: 48px 82px;
+  }
+  .farfalla-2 {
+    animation: farfalla 3.6s ease-in-out infinite reverse;
+    transform-origin: 157px 78px;
+  }
+  @keyframes farfalla {
+    0%, 100% { transform: translateY(0)    rotate(0deg); }
+    40%       { transform: translateY(-7px) rotate(4deg); }
+    70%       { transform: translateY(-3px) rotate(-2deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aureola, .farfalla-1, .farfalla-2 {
+      animation: none;
+    }
+  }
+</style>
+

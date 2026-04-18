@@ -110,6 +110,13 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
         {lavoriVetrina.map((lavoro, index) => (
           <a href={`/lavori/${lavoro.id}/`} class="work-card fade-up-element" data-reveal>
             <div class="work-card-image" aria-hidden="true">
+              {lavoro.data.coverImage && (
+                <img 
+                  src={lavoro.data.coverImage} 
+                  alt={lavoro.data.coverImageAlt || ""} 
+                  loading="lazy"
+                />
+              )}
               <PixelCluster size="small" variant="corner" color="arancio" />
             </div>
             <div class="work-card-body">

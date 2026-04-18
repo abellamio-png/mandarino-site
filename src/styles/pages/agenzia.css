@@ -42,6 +42,12 @@
   line-height: var(--leading-normal);
 }
 
+.agenzia-storia p:last-of-type em {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  color: var(--color-grigio-saggio-soft);
+}
+
 /* Team */
 .agenzia-team {
   padding: var(--space-12) var(--space-4);
@@ -289,3 +295,83 @@
   font-size: var(--text-xl);
   color: var(--color-grigio-saggio-soft);
 }
+
+/* =====================
+   SEZIONE AI NELL'AGENZIA
+   ===================== */
+
+.agenzia-ai {
+  padding: var(--space-12) var(--space-4);
+  border-top: 1px solid rgba(74, 94, 120, 0.1);
+  border-bottom: 1px solid rgba(74, 94, 120, 0.1);
+}
+
+.agenzia-ai-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.agenzia-ai-content {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-12);
+  align-items: start;
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 900px) {
+  .agenzia-ai-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+.agenzia-ai-testo p {
+  font-family: var(--font-ribelle);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-nero-testo);
+  margin-bottom: var(--space-3);
+  max-width: var(--container-reading);
+}
+
+.agenzia-ai-testo p:last-child {
+  margin-bottom: 0;
+}
+
+/* Box proof of concept — stile Ribelle */
+.agenzia-ai-proof-box {
+  background: var(--color-grigio-saggio);
+  color: var(--color-bianco-sporco);
+  padding: var(--space-6);
+  position: relative;
+  border-left: 4px solid var(--color-arancio-ribelle);
+}
+
+.agenzia-ai-proof-label {
+  display: block;
+  font-family: var(--font-ribelle);
+  font-size: var(--text-sm);
+  color: var(--color-arancio-ribelle);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-3);
+}
+
+.agenzia-ai-proof-testo {
+  font-family: var(--font-saggio);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-bianco-sporco);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-4);
+}
+
+.agenzia-ai-proof-box .section-link {
+  color: var(--color-bianco-sporco);
+  border-bottom-color: rgba(250, 247, 242, 0.4);
+}
+
+.agenzia-ai-proof-box .section-link:hover {
+  color: var(--color-arancio-ribelle);
+}
+

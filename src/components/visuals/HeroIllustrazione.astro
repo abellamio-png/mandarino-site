@@ -1,241 +1,113 @@
 ---
+import PersonaggioSaggio from './PersonaggioSaggio.astro';
+import PersonaggioRibelle from './PersonaggioRibelle.astro';
+
 // HeroIllustrazione — composizione prospettica Saggio + Ribelle
 // Ribelle in primo piano (grande, destra), Saggio sullo sfondo (piccolo, sinistra)
 // Linea di terra comune — stessa scena, stessa storia
 ---
 
-<div class="hero-illustrazione" aria-hidden="true">
-<svg
-  viewBox="0 0 520 460"
-  xmlns="http://www.w3.org/2000/svg"
-  class="hero-svg"
-  role="img"
-  aria-label="Mandarino — Saggi e Ribelli dal 2004"
->
+<div class="hero-scene" aria-hidden="true">
+  
+  <!-- Personaggi come componenti indipendenti -->
+  <div class="character-wrap character-wrap--saggio">
+    <PersonaggioSaggio />
+    <span class="character-label">SAGGIO</span>
+  </div>
 
-  <!-- SFONDO -->
-  <rect width="520" height="460" fill="#2E4057"/>
+  <div class="character-wrap character-wrap--ribelle">
+    <PersonaggioRibelle />
+    <span class="character-label">RIBELLE</span>
+  </div>
 
-  <!-- Griglia di sfondo — sistema Nitido, quasi invisibile -->
-  <line x1="0" y1="153" x2="520" y2="153" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
-  <line x1="0" y1="306" x2="520" y2="306" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
-  <line x1="173" y1="0" x2="173" y2="460" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
-  <line x1="346" y1="0" x2="346" y2="460" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
+  <!-- Sfondo e decorazioni (SVG per griglia, pixel e linea di terra) -->
+  <svg
+    viewBox="0 0 520 460"
+    xmlns="http://www.w3.org/2000/svg"
+    class="scene-base"
+  >
+    <!-- SFONDO -->
+    <rect width="520" height="460" fill="#2E4057"/>
 
-  <!-- PIXEL — direzione diagonale Saggio → Ribelle (filo di pensiero) -->
-  <rect x="180" y="240" width="10" height="10" fill="#E87722" class="pixel pixel-1"/>
-  <rect x="200" y="252" width="8"  height="8"  fill="#E87722" class="pixel pixel-2"/>
-  <rect x="220" y="262" width="6"  height="6"  fill="#E87722" class="pixel pixel-3"/>
-  <rect x="238" y="270" width="5"  height="5"  fill="#E87722" class="pixel pixel-4"/>
+    <!-- Griglia di sfondo — sistema Nitido, quasi invisibile -->
+    <line x1="0" y1="153" x2="520" y2="153" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
+    <line x1="0" y1="306" x2="520" y2="306" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
+    <line x1="173" y1="0" x2="173" y2="460" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
+    <line x1="346" y1="0" x2="346" y2="460" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
 
-  <!-- Cluster alto destra -->
-  <rect x="440" y="44"  width="12" height="12" fill="#E87722" class="pixel pixel-5"/>
-  <rect x="456" y="44"  width="12" height="12" fill="#E87722" class="pixel pixel-6"/>
-  <rect x="456" y="60"  width="12" height="12" fill="#E87722" class="pixel pixel-7"/>
+    <!-- PIXEL — direzione diagonale Saggio → Ribelle (filo di pensiero) -->
+    <rect x="180" y="240" width="10" height="10" fill="#E87722" class="pixel pixel-1"/>
+    <rect x="200" y="252" width="8"  height="8"  fill="#E87722" class="pixel pixel-2"/>
+    <rect x="220" y="262" width="6"  height="6"  fill="#E87722" class="pixel pixel-3"/>
+    <rect x="238" y="270" width="5"  height="5"  fill="#E87722" class="pixel pixel-4"/>
 
-  <!-- Pixel isolati sinistra bassa -->
-  <rect x="52"  y="360" width="8"  height="8"  fill="#E87722" class="pixel pixel-8" opacity="0.6"/>
-  <rect x="64"  y="374" width="6"  height="6"  fill="#E87722" class="pixel pixel-9" opacity="0.4"/>
+    <!-- Cluster alto destra -->
+    <rect x="440" y="44"  width="12" height="12" fill="#E87722" class="pixel pixel-5"/>
+    <rect x="456" y="44"  width="12" height="12" fill="#E87722" class="pixel pixel-6"/>
+    <rect x="456" y="60"  width="12" height="12" fill="#E87722" class="pixel pixel-7"/>
 
-  <!-- ==========================================
-       SAGGIO — sullo sfondo, più piccolo
-       Centro testa: 148, 198 — Raggio: 40
-       ========================================== -->
+    <!-- Pixel isolati sinistra bassa -->
+    <rect x="52"  y="360" width="8"  height="8"  fill="#E87722" class="pixel pixel-8" opacity="0.6"/>
+    <rect x="64"  y="374" width="6"  height="6"  fill="#E87722" class="pixel pixel-9" opacity="0.4"/>
 
-  <!-- Ombra sotto il Saggio -->
-  <ellipse cx="148" cy="300" rx="38" ry="8" fill="rgba(0,0,0,0.2)"/>
+    <!-- LINEA DI TERRA — li unisce nella stessa scena -->
+    <line x1="40" y1="392" x2="480" y2="392"
+      stroke="rgba(250,247,242,0.12)" stroke-width="1"/>
 
-  <!-- Corpo seduto -->
-  <ellipse cx="148" cy="272" rx="38" ry="26" fill="#1A4D2E" stroke="#2D8659" stroke-width="1.5"/>
-
-  <!-- Braccio sinistro -->
-  <path d="M116 262 Q100 254 94 262 Q92 268 98 272"
-    fill="none" stroke="#FAF7F2" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="97" cy="273" r="5.5" fill="#FAF7F2" opacity="0.9"/>
-
-  <!-- Braccio destro -->
-  <path d="M180 262 Q196 254 202 262 Q204 268 198 272"
-    fill="none" stroke="#FAF7F2" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="199" cy="273" r="5.5" fill="#FAF7F2" opacity="0.9"/>
-
-  <!-- Testa -->
-  <ellipse cx="148" cy="198" rx="40" ry="42" fill="#2D8659"/>
-
-  <!-- Texture mandarino verde -->
-  <path d="M148 157 Q141 177 148 198 Q155 177 148 157"
-    fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
-  <path d="M138 159 Q128 178 133 198"
-    fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-  <path d="M158 159 Q168 178 163 198"
-    fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-
-  <!-- Fogliolina -->
-  <path d="M148 156 Q143 145 148 141 Q153 145 148 156" fill="#1A4D2E"/>
-  <path d="M148 152 Q141 141 136 139 Q140 147 148 152" fill="#1A4D2E"/>
-
-  <!-- Occhi chiusi sereni -->
-  <path d="M136 194 Q140 190 144 194"
-    fill="none" stroke="#FAF7F2" stroke-width="2"
-    stroke-linecap="round" class="occhio-sx"/>
-  <path d="M152 194 Q156 190 160 194"
-    fill="none" stroke="#FAF7F2" stroke-width="2"
-    stroke-linecap="round" class="occhio-dx"/>
-
-  <!-- Sorriso -->
-  <path d="M137 207 Q148 214 159 207"
-    fill="none" stroke="#FAF7F2" stroke-width="2"
-    stroke-linecap="round"/>
-
-  <!-- Aureola meditativa — cerchio tratteggiato sottile -->
-  <circle cx="148" cy="198" r="50"
-    fill="none" stroke="rgba(45,134,89,0.25)"
-    stroke-width="1" stroke-dasharray="3 5"
-    class="aureola"/>
-
-  <!-- Farfalla sinistra -->
-  <path d="M96 172 Q86 164 90 172 Q86 180 96 172"
-    fill="#F4C430" opacity="0.8" class="farfalla-1"/>
-  <path d="M96 172 Q106 164 102 172 Q106 180 96 172"
-    fill="#F4C430" opacity="0.6" class="farfalla-1"/>
-
-  <!-- Farfalla destra -->
-  <path d="M205 168 Q195 160 199 168 Q195 176 205 168"
-    fill="#E87722" opacity="0.7" class="farfalla-2"/>
-  <path d="M205 168 Q215 160 211 168 Q215 176 205 168"
-    fill="#E87722" opacity="0.5" class="farfalla-2"/>
-
-  <!-- Label SAGGIO -->
-  <text x="148" y="320"
-    font-family="'Work Sans', sans-serif"
-    font-size="9" fill="rgba(250,247,242,0.3)"
-    text-anchor="middle" letter-spacing="2">SAGGIO</text>
-
-  <!-- ==========================================
-       RIBELLE — in primo piano, più grande
-       Centro testa: 340, 270 — Raggio: 64
-       ========================================== -->
-
-  <!-- Ombra sotto il Ribelle -->
-  <ellipse cx="340" cy="418" rx="58" ry="12" fill="rgba(0,0,0,0.25)"/>
-
-  <!-- Corpo -->
-  <rect x="290" y="370" width="100" height="80" rx="5" fill="#3D566E"/>
-
-  <!-- Dettaglio corpo -->
-  <line x1="290" y1="400" x2="390" y2="400"
-    stroke="rgba(250,247,242,0.1)" stroke-width="1"/>
-
-  <!-- Gambe -->
-  <rect x="305" y="445" width="24" height="14" rx="3" fill="#2A3F52"/>
-  <rect x="361" y="445" width="24" height="14" rx="3" fill="#2A3F52"/>
-
-  <!-- Scarpe -->
-  <rect x="301" y="455" width="30" height="10" rx="4" fill="#1A2A38"/>
-  <rect x="357" y="455" width="30" height="10" rx="4" fill="#1A2A38"/>
-
-  <!-- Braccio sinistro — lungo il corpo -->
-  <path d="M292 380 Q265 394 260 412 Q260 420 268 420"
-    fill="none" stroke="#FAF7F2" stroke-width="3.5"
-    stroke-linecap="round"/>
-  <circle cx="268" cy="422" r="8" fill="#FAF7F2" opacity="0.9"/>
-
-  <!-- Braccio destro — ALZATO con energia -->
-  <path d="M388 378 Q414 358 420 336 Q422 322 414 318"
-    fill="none" stroke="#FAF7F2" stroke-width="3.5"
-    stroke-linecap="round" class="braccio-alzato"/>
-  <!-- Mano alzata -->
-  <circle cx="413" cy="316" r="9" fill="#FAF7F2" opacity="0.9"/>
-  <!-- Dito puntato -->
-  <line x1="413" y1="307" x2="413" y2="294"
-    stroke="#FAF7F2" stroke-width="2.5" stroke-linecap="round"
-    class="dito"/>
-
-  <!-- Testa arancio grande -->
-  <ellipse cx="340" cy="270" rx="64" ry="66" fill="#E87722"/>
-
-  <!-- Texture mandarino arancio -->
-  <path d="M340 204 Q331 234 340 270 Q349 234 340 204"
-    fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
-  <path d="M326 206 Q312 236 318 270"
-    fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-  <path d="M354 206 Q368 236 362 270"
-    fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-
-  <!-- Fogliolina -->
-  <path d="M340 203 Q334 189 340 184 Q346 189 340 203" fill="#C0551A"/>
-  <path d="M340 198 Q332 186 326 184 Q330 192 340 198" fill="#C0551A"/>
-
-  <!-- CUFFIE -->
-  <path d="M276 268 Q276 200 340 200 Q404 200 404 268"
-    fill="none" stroke="#2E4057" stroke-width="7"
-    stroke-linecap="round"/>
-  <!-- Padiglione sinistro -->
-  <rect x="263" y="258" width="20" height="28" rx="7"
-    fill="#2E4057" stroke="#FAF7F2" stroke-width="1.5"/>
-  <!-- Padiglione destro -->
-  <rect x="437" y="258" width="20" height="28" rx="7"
-    fill="#2E4057" stroke="#FAF7F2" stroke-width="1.5"/>
-  <!-- Microfono -->
-  <path d="M437 276 Q452 276 456 286"
-    fill="none" stroke="#2E4057" stroke-width="2.5"
-    stroke-linecap="round"/>
-  <circle cx="457" cy="288" r="4.5" fill="#E87722" class="led"/>
-
-  <!-- Occhi aperti vivaci -->
-  <circle cx="322" cy="268" r="7.5" fill="#2E4057"/>
-  <circle cx="358" cy="268" r="7.5" fill="#2E4057"/>
-  <!-- Pupille con luce -->
-  <circle cx="324" cy="266" r="3" fill="#FAF7F2"/>
-  <circle cx="360" cy="266" r="3" fill="#FAF7F2"/>
-
-  <!-- Sorriso -->
-  <path d="M318 288 Q340 302 362 288"
-    fill="none" stroke="#2E4057" stroke-width="3"
-    stroke-linecap="round"/>
-
-  <!-- Pixel vicino al braccio alzato -->
-  <rect x="424" y="294" width="8"  height="8"  fill="#E87722" class="pixel pixel-10" opacity="0.9"/>
-  <rect x="436" y="284" width="6"  height="6"  fill="#E87722" class="pixel pixel-11" opacity="0.6"/>
-  <rect x="446" y="275" width="5"  height="5"  fill="#E87722" class="pixel pixel-12" opacity="0.4"/>
-
-  <!-- Label RIBELLE -->
-  <text x="340" y="442"
-    font-family="'Work Sans', sans-serif"
-    font-size="9" fill="rgba(250,247,242,0.3)"
-    text-anchor="middle" letter-spacing="2">RIBELLE</text>
-
-  <!-- ==========================================
-       LINEA DI TERRA — li unisce nella stessa scena
-       ========================================== -->
-  <line x1="40" y1="392" x2="480" y2="392"
-    stroke="rgba(250,247,242,0.12)" stroke-width="1"/>
-
-  <!-- Firma -->
-  <text x="260" y="452"
-    font-family="'Work Sans', sans-serif"
-    font-size="9" fill="rgba(250,247,242,0.18)"
-    text-anchor="middle" letter-spacing="3">SAGGI E RIBELLI · DAL 2004</text>
-
-</svg>
+    <!-- Firma -->
+    <text x="260" y="452"
+      font-family="'Work Sans', sans-serif"
+      font-size="9" fill="rgba(250,247,242,0.18)"
+      text-anchor="middle" letter-spacing="3">SAGGI E RIBELLI · DAL 2004</text>
+  </svg>
 </div>
 
 <style>
-  .hero-illustrazione {
+  .hero-scene {
+    position: relative;
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-width: 520px;
+    aspect-ratio: 520 / 460;
+    margin: 0 auto;
     opacity: 0;
     transform: translateY(20px);
     animation: hero-enter 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: 500ms;
   }
 
-  .hero-svg {
+  .scene-base {
     width: 100%;
-    height: auto;
-    max-width: 480px;
+    height: 100%;
+    display: block;
+  }
+
+  /* Posizionamento personaggi */
+  .character-wrap {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .character-wrap--saggio {
+    width: 15.3%; /* Ripristinato scala originale */
+    top: 47.4%;   /* Allineato alla linea di terra (300px / 460px) */
+    left: 20%;
+  }
+
+  .character-wrap--ribelle {
+    width: 25%;  /* Ridotto dal 38% per ripristinare la prospettiva */
+    top: 56.1%;  /* Allineato alla linea di terra (418px / 460px) */
+    right: 15%;
+  }
+
+  .character-label {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 9px;
+    color: rgba(250, 247, 242, 0.3);
+    letter-spacing: 2px;
+    margin-top: 5px;
   }
 
   @keyframes hero-enter {
@@ -243,7 +115,7 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Pixel — pulsano in sequenza */
+  /* Pixel animati (copiati dal hero originale) */
   .pixel { animation: pixel-pulse 3s ease-in-out infinite; }
   .pixel-1  { animation-delay: 0ms; }
   .pixel-2  { animation-delay: 180ms; }
@@ -254,74 +126,18 @@
   .pixel-7  { animation-delay: 600ms; }
   .pixel-8  { animation-delay: 100ms; }
   .pixel-9  { animation-delay: 300ms; }
-  .pixel-10 { animation-delay: 80ms; }
-  .pixel-11 { animation-delay: 260ms; }
-  .pixel-12 { animation-delay: 440ms; }
 
   @keyframes pixel-pulse {
     0%, 100% { opacity: 0.8; }
     50%       { opacity: 0.15; }
   }
 
-  /* Aureola del Saggio — ruota lentamente */
-  .aureola {
-    animation: aureola-rotate 14s linear infinite;
-    transform-origin: 148px 198px;
-  }
-  @keyframes aureola-rotate {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-
-  /* Farfalle */
-  .farfalla-1 {
-    animation: farfalla 4.2s ease-in-out infinite;
-    transform-origin: 96px 172px;
-  }
-  .farfalla-2 {
-    animation: farfalla 3.6s ease-in-out infinite reverse;
-    transform-origin: 205px 168px;
-  }
-  @keyframes farfalla {
-    0%, 100% { transform: translateY(0)    rotate(0deg); }
-    40%       { transform: translateY(-7px) rotate(4deg); }
-    70%       { transform: translateY(-3px) rotate(-2deg); }
-  }
-
-  /* Braccio alzato del Ribelle */
-  .braccio-alzato,
-  .dito {
-    animation: braccio 2.8s ease-in-out infinite;
-    transform-origin: 388px 378px;
-  }
-  @keyframes braccio {
-    0%, 100% { transform: rotate(0deg); }
-    35%       { transform: rotate(-7deg); }
-    65%       { transform: rotate(3deg); }
-  }
-
-  /* Led microfono — lampeggia */
-  .led {
-    animation: led-blink 4s ease-in-out infinite;
-  }
-  @keyframes led-blink {
-    0%, 88%, 100% { opacity: 1; }
-    92%            { opacity: 0.1; }
-  }
-
-  /* PREFERS-REDUCED-MOTION */
   @media (prefers-reduced-motion: reduce) {
-    .hero-illustrazione,
-    .pixel,
-    .aureola,
-    .farfalla-1,
-    .farfalla-2,
-    .braccio-alzato,
-    .dito,
-    .led {
+    .hero-scene, .pixel {
       animation: none;
       opacity: 1;
       transform: none;
     }
   }
 </style>
+

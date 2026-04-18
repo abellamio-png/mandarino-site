@@ -1,18 +1,80 @@
-/* ==========================================================================
-   BASE TYPOGRAPHY & ELEMENT STYLES
-   ========================================================================== */
+/* =====================
+   FILOSOFIA SAGGIO / RIBELLE
+   Applicata globalmente via base.css
+   ===================== */
 
-/* Base body typography */
+/* SAGGIO — Lora per tutto ciò che pensa */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-saggio);
+}
+
+/* Eccezione: i titoli delle fasi del Metodo sono già corretti */
+
+/* Lead e citazioni — il Saggio riflette */
+.lead {
+  font-family: var(--font-saggio);
+  font-style: italic;
+}
+
+blockquote,
+.citazione {
+  font-family: var(--font-saggio);
+  font-style: italic;
+}
+
+/* RIBELLE — Work Sans per tutto ciò che agisce */
 body {
   font-family: var(--font-ribelle);
+}
+
+/* Section label — il Ribelle classifica */
+.section-label {
+  font-family: var(--font-ribelle);
+  font-weight: var(--weight-medium);
+  color: var(--color-arancio-ribelle);
+  letter-spacing: 0.02em;
+}
+
+/* Meta informazioni — il Ribelle etichetta */
+.meta,
+.case-meta-label,
+.articolo-meta,
+.vetrina-card-meta,
+.work-card-meta {
+  font-family: var(--font-ribelle);
+  color: var(--color-arancio-ribelle);
+}
+
+/* Tempo di lettura — il Ribelle misura */
+.articolo-tempo {
+  font-family: var(--font-ribelle);
+  color: var(--color-arancio-ribelle);
+}
+
+/* Firma finale — il Saggio chiude */
+.firma-primary,
+.agenzia-firma-primary,
+.signature-primary {
+  font-family: var(--font-saggio);
+  font-weight: var(--weight-bold);
+}
+
+.firma-secondary,
+.agenzia-firma-secondary,
+.signature-secondary {
+  font-family: var(--font-saggio);
+  font-style: italic;
+}
+
+/* Base body typography supplements */
+body {
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
   color: var(--color-nero-testo);
 }
 
-/* Base headings */
+/* Base headings supplements */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-saggio);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   color: var(--color-grigio-saggio);
@@ -58,17 +120,6 @@ p {
 
 .prose p {
   max-width: var(--container-reading);
-}
-
-/* Blockquotes */
-blockquote {
-  font-family: var(--font-saggio);
-  font-style: italic;
-  font-size: var(--text-lg);
-  color: var(--color-grigio-saggio-soft);
-  border-left: 3px solid var(--color-arancio-ribelle);
-  padding-left: var(--space-3);
-  margin: var(--space-4) 0;
 }
 
 /* Links */

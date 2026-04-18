@@ -81,6 +81,18 @@ export default config({
           description: 'Descrizione testuale per accessibilità e SEO.',
         }),
 
+        coverImage: fields.image({
+          label: 'Immagine di copertina (per la vetrina)',
+          description: 'Consigliato: 1280x800px (16:10). Appare nelle card della homepage e della pagina Lavori.',
+          directory: 'public/assets/lavori',
+          publicPath: '/assets/lavori/',
+        }),
+
+        coverImageAlt: fields.text({
+          label: 'Descrizione immagine copertina (alt text)',
+          description: 'Descrizione per accessibilità.',
+        }),
+
         inVetrina: fields.checkbox({
           label: 'Mostra in vetrina',
           description: 'Se attivo, il case appare nella griglia principale della pagina Lavori.',
