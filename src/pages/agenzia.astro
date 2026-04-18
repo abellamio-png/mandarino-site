@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PixelCluster from '../components/visuals/PixelCluster.astro';
 import PersonaggioSaggio from '../components/visuals/PersonaggioSaggio.astro';
@@ -70,7 +70,7 @@ const jsonLd = {
   <div class="agenzia-page">
 
     <!-- HERO -->
-    <header class="agenzia-hero" data-reveal style="--reveal-delay: 0ms; position: relative;">
+    <header class="agenzia-hero reveal" style="--reveal-delay: 0ms; position: relative;">
       <TramaSfondo variante="chiaro" opacita={0.05} />
       <div style="position: relative; z-index: 1;">
         <span class="section-label">(Agenzia)</span>
@@ -81,7 +81,7 @@ const jsonLd = {
     </header>
 
     <!-- STORIA -->
-    <section class="agenzia-storia reveal" aria-labelledby="storia-title" data-reveal>
+    <section class="agenzia-storia reveal" aria-labelledby="storia-title" class="reveal">
       <h2 id="storia-title" class="visually-hidden">La nostra storia</h2>
       <p>Tutto ebbe inizio da un campo di calcio di Latina, nei primi anni duemila. Tra un calcio al pallone e un esame all'università, nasceva l'idea Mandarino.</p>
       <p>Nel 2004 aprimmo la prima sede — sedici metri quadri nel centro di Latina. Qui nacque il nome, qui condividemmo i valori fondanti, qui costruimmo il modello che ancora oggi è l'identità dell'agenzia. Da allora abbiamo cambiato quattro sedi, attraversato vent'anni di cambiamenti, rivoluzioni piccole e grandi. Gente di passaggio e gente entrata per restare. Scoperte, sperimentazioni, giornate spese a costruire — a volte lucidamente, a volte no.</p>
@@ -95,7 +95,7 @@ const jsonLd = {
     </div>
 
     <!-- TEAM -->
-    <section class="agenzia-team" aria-labelledby="team-title" data-reveal>
+    <section class="agenzia-team" aria-labelledby="team-title" class="reveal">
       <span class="section-label">(Il team)</span>
       <h2 id="team-title" class="visually-hidden">Il team</h2>
 
@@ -181,7 +181,7 @@ const jsonLd = {
     </section>
 
     <!-- VALORI OPERATIVI -->
-    <section class="agenzia-valori" aria-labelledby="valori-title" data-reveal>
+    <section class="agenzia-valori" aria-labelledby="valori-title" class="reveal">
       <div class="agenzia-valori-inner">
         <span class="section-label">(Come lavoriamo)</span>
         <h2 id="valori-title" class="visually-hidden">Come lavoriamo</h2>
@@ -208,7 +208,7 @@ const jsonLd = {
     </section>
 
     <!-- SEZIONE AI -->
-    <section class="agenzia-ai" aria-labelledby="agenzia-ai-title" data-reveal>
+    <section class="agenzia-ai" aria-labelledby="agenzia-ai-title" class="reveal">
       <div class="agenzia-ai-inner">
         <span class="section-label">(Come usiamo l'AI)</span>
         <h2 id="agenzia-ai-title" class="visually-hidden">
@@ -250,7 +250,7 @@ const jsonLd = {
     </section>
 
     <!-- COLOPHON -->
-    <section class="agenzia-colophon" aria-labelledby="colophon-title" data-reveal style="position: relative;">
+    <section class="agenzia-colophon" aria-labelledby="colophon-title" class="reveal" style="position: relative;">
       <TramaSfondo variante="scuro" opacita={0.08} />
       <div style="position: relative; z-index: 1;">
         <span class="section-label">(Colophon)</span>
@@ -273,7 +273,7 @@ const jsonLd = {
     </div>
 
     <!-- FIRMA -->
-    <section class="agenzia-firma reveal" aria-label="Firma Mandarino" data-reveal>
+    <section class="agenzia-firma reveal" aria-label="Firma Mandarino" class="reveal">
       <p class="agenzia-firma-primary">Orgogliosamente indipendenti.</p>
       <p class="agenzia-firma-secondary">Saggi e Ribelli. Dal 2004.</p>
       <div style="margin-top: var(--space-6);" aria-hidden="true">

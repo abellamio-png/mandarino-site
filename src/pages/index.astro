@@ -1,4 +1,4 @@
----
+﻿---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PixelCluster from '../components/visuals/PixelCluster.astro';
@@ -45,7 +45,7 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
     </section>
 
     <!-- Sezione 2: Tesi -->
-    <section class="thesis-section" data-reveal aria-labelledby="thesis-title">
+    <section class="thesis-section reveal" aria-labelledby="thesis-title">
       <h2 id="thesis-title" class="visually-hidden">La nostra tesi</h2>
       <p>L'era delle agenzie integrate è finita. Per vent'anni il mercato ha chiesto esecuzione: siti, campagne, contenuti, social, eventi. E le agenzie hanno risposto con più servizi, più strumenti, più canali.</p>
       <p>Oggi il problema non è più produrre comunicazione. Il problema è sapere cosa dire, a chi, perché, e in che ordine. <em>La strategia non è un servizio a corredo: è il punto di partenza di tutto.</em></p>
@@ -56,7 +56,7 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
     </div>
 
     <!-- Sezione 3: Il Metodo Fondamenta -->
-    <section class="method-section" data-reveal aria-labelledby="method-title">
+    <section class="method-section reveal" aria-labelledby="method-title">
       <div style="position: absolute; top: var(--space-3); right: var(--space-3);">
         <PixelCluster size="medium" variant="corner" color="arancio" />
       </div>
@@ -64,23 +64,23 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
       <h2 id="method-title">Il Metodo Fondamenta</h2>
       <p class="lead">Cinque fasi. Sei settimane. Un documento strategico completo.</p>
       <ol class="method-phases">
-        <li class="fade-up-element ikea-fade delay-1">
+        <li class="reveal reveal-delay-1">
           <span class="method-phase-name">Nucleo Identitario.</span>
           <span class="method-phase-question">Chi sei.</span>
         </li>
-        <li class="fade-up-element ikea-fade delay-2">
+        <li class="reveal reveal-delay-2">
           <span class="method-phase-name">Proposta di Valore.</span>
           <span class="method-phase-question">Cosa prometti.</span>
         </li>
-        <li class="fade-up-element ikea-fade delay-3">
+        <li class="reveal reveal-delay-3">
           <span class="method-phase-name">Posizionamento.</span>
           <span class="method-phase-question">Dove giochi.</span>
         </li>
-        <li class="fade-up-element ikea-fade" style="transition-delay: 0.6s;">
+        <li class="reveal reveal-delay-4">
           <span class="method-phase-name">Attivazione.</span>
           <span class="method-phase-question">Come lo dimostri.</span>
         </li>
-        <li class="fade-up-element ikea-fade" style="transition-delay: 0.75s;">
+        <li class="reveal reveal-delay-4">
           <span class="method-phase-name">Allineamento.</span>
           <span class="method-phase-question">Sei coerente?</span>
         </li>
@@ -89,7 +89,7 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
     </section>
 
     <!-- Sezione 4: Per chi lavoriamo -->
-    <section class="audience-section" data-reveal aria-labelledby="audience-title">
+    <section class="audience-section reveal" aria-labelledby="audience-title">
       <div style="position: absolute; top: var(--space-3); left: var(--space-3);">
         <PixelCluster size="small" variant="corner" color="arancio" />
       </div>
@@ -104,13 +104,13 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
     </div>
 
     <!-- Sezione 5: Lavori in evidenza -->
-    <section class="works-section" data-reveal aria-labelledby="works-title">
+    <section class="works-section reveal" aria-labelledby="works-title">
       <span class="section-label">(Lavori)</span>
       <h2 id="works-title">Quattro casi, quattro pensieri.</h2>
 
       <div class="works-grid">
         {lavoriVetrina.map((lavoro, index) => (
-          <a href={`/lavori/${lavoro.id}/`} class="work-card fade-up-element" data-reveal>
+          <a href={`/lavori/${lavoro.id}/`} class="work-card reveal">
             <div class="work-card-image" aria-hidden="true">
               {lavoro.data.coverImage && (
                 <img 
@@ -123,7 +123,7 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
             </div>
             <div class="work-card-body">
               <p class="work-card-meta">
-                {lavoro.data.cliente} · {lavoro.data.settore}
+                {lavoro.data.cliente} Â· {lavoro.data.settore}
               </p>
               <h3 class="work-card-title">{lavoro.data.titolo}</h3>
               <p class="work-card-tesi">{lavoro.data.tesi}</p>
@@ -140,7 +140,7 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
     </div>
 
     <!-- Sezione 6: In sintesi (GEO) -->
-    <section class="summary-section" data-reveal aria-labelledby="summary-title" style="position: relative;">
+    <section class="summary-section reveal" aria-labelledby="summary-title" style="position: relative;">
       <TramaSfondo variante="scuro" opacita={0.08} />
       
       <div style="position: relative; z-index: 1;">
@@ -187,7 +187,7 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
     </section>
 
     <!-- Sezione 7: Contatti -->
-    <section class="contact-section" data-reveal aria-labelledby="contact-title">
+    <section class="contact-section reveal" aria-labelledby="contact-title">
       <div style="display: flex; justify-content: center; margin-bottom: var(--space-4);">
         <PixelCluster size="medium" variant="separator" color="arancio" />
       </div>
@@ -203,7 +203,7 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
     </section>
 
     <!-- Sezione 8: Firma -->
-    <section class="signature-section signature" data-reveal aria-label="Firma Mandarino">
+    <section class="signature-section signature reveal" aria-label="Firma Mandarino">
       <p class="signature-primary">Orgogliosamente indipendenti.</p>
       <p class="signature-secondary">Saggi e Ribelli. Dal 2004.</p>
       <div style="display: flex; justify-content: center; margin-top: var(--space-6);">

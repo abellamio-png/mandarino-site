@@ -1,4 +1,4 @@
----
+﻿---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PixelCluster from '../../components/visuals/PixelCluster.astro';
@@ -29,7 +29,7 @@ const archivio = tuttiLavori
   path="/lavori/"
 >
   <div class="lavori-page">
-    <section class="lavori-hero" data-reveal style="position: relative;">
+    <section class="lavori-hero reveal" style="position: relative;">
       <TramaSfondo variante="chiaro" opacita={0.05} />
       <div style="position: relative; z-index: 1;">
         <span class="section-label">(Lavori)</span>
@@ -38,7 +38,7 @@ const archivio = tuttiLavori
       </div>
     </section>
 
-    <section class="vetrina-section" aria-labelledby="vetrina-title" data-reveal>
+    <section class="vetrina-section" aria-labelledby="vetrina-title" class="reveal">
       <h2 id="vetrina-title" class="visually-hidden">Lavori in vetrina</h2>
 
       <div class="vetrina-grid">
@@ -57,7 +57,7 @@ const archivio = tuttiLavori
             
             <div class="vetrina-card-content">
               <p class="vetrina-card-meta">
-                {lavoro.data.cliente} · {lavoro.data.settore}
+                {lavoro.data.cliente} Â· {lavoro.data.settore}
               </p>
               <h3 class="vetrina-card-title">{lavoro.data.titolo}</h3>
               <p class="vetrina-card-tesi">{lavoro.data.tesi}</p>
@@ -71,7 +71,7 @@ const archivio = tuttiLavori
     <section
       class="archivio-section reveal"
       aria-labelledby="archivio-title"
-      data-reveal
+      class="reveal"
       style="position: relative;"
     >
       <TramaSfondo variante="scuro" opacita={0.08} />
