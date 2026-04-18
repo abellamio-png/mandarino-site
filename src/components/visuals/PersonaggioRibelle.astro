@@ -1,83 +1,99 @@
+---
+// Personaggio Ribelle — il mandarino creativo
+// Basato sul design ufficiale ribelle.svg
+---
+
 <svg
-  viewBox="0 0 220 280"
+  viewBox="0 0 340 460"
   xmlns="http://www.w3.org/2000/svg"
   aria-hidden="true"
   class="personaggio-ribelle"
 >
-  <!-- Ombra sotto il Ribelle -->
-  <ellipse cx="110" cy="260" rx="58" ry="12" fill="rgba(0,0,0,0.25)"/>
+  <style>
+    .personaggio-ribelle .outline { fill: none; stroke: #1a1a1a; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .personaggio-ribelle .fill-arancio { fill: #E87722; }
+    .personaggio-ribelle .fill-grigio { fill: #2E4057; }
+    .personaggio-ribelle .fill-body { fill: #FAF7F2; }
+    .personaggio-ribelle .fill-ombra { fill: #2E4057; }
+    .personaggio-ribelle .fill-rosa { fill: #E8729A; }
+  </style>
 
-  <!-- Corpo -->
-  <rect x="60" y="212" width="100" height="80" rx="5" fill="#3D566E"/>
-  <line x1="60" y1="242" x2="160" y2="242" stroke="rgba(250,247,242,0.1)" stroke-width="1"/>
+  <!-- Blocco arancione sotto -->
+  <rect x="120" y="355" width="100" height="60" class="fill-arancio"/>
+  <rect x="120" y="355" width="100" height="60" class="outline"/>
+  <rect x="180" y="390" width="60" height="30" class="fill-arancio"/>
+  <rect x="180" y="390" width="60" height="30" class="outline"/>
 
-  <!-- Gambe e Scarpe -->
-  <rect x="75" y="287" width="24" height="14" rx="3" fill="#2A3F52"/>
-  <rect x="131" y="287" width="24" height="14" rx="3" fill="#2A3F52"/>
-  <rect x="71" y="297" width="30" height="10" rx="4" fill="#1A2A38"/>
-  <rect x="127" y="297" width="30" height="10" rx="4" fill="#1A2A38"/>
-
-  <!-- Braccio sinistro -->
-  <path d="M62 222 Q35 236 30 254 Q30 262 38 262"
-    fill="none" stroke="#FAF7F2" stroke-width="3.5"
-    stroke-linecap="round"/>
-  <circle cx="38" cy="264" r="8" fill="#FAF7F2" opacity="0.9"/>
-
-  <!-- Braccio destro — ALZATO -->
-  <g class="braccio-alzato-group">
-    <path d="M158 220 Q184 200 190 178 Q192 164 184 160"
-      fill="none" stroke="#FAF7F2" stroke-width="3.5"
-      stroke-linecap="round" class="braccio-alzato"/>
-    <circle cx="183" cy="158" r="9" fill="#FAF7F2" opacity="0.9"/>
-    <line x1="183" y1="149" x2="183" y2="136"
-      stroke="#FAF7F2" stroke-width="2.5" stroke-linecap="round"
-      class="dito"/>
+  <!-- Gambe penzolanti -->
+  <g class="gambe-ribelle">
+    <path d="M152 338 Q132 363 126 383" fill="none" stroke="#1a1a1a" stroke-width="12" stroke-linecap="round"/>
+    <ellipse cx="126" cy="386" rx="14" ry="9" class="fill-ombra"/>
+    <ellipse cx="126" cy="386" rx="14" ry="9" class="outline"/>
+    <path d="M188 338 Q208 363 214 383" fill="none" stroke="#1a1a1a" stroke-width="12" stroke-linecap="round"/>
+    <ellipse cx="214" cy="386" rx="14" ry="9" class="fill-ombra"/>
+    <ellipse cx="214" cy="386" rx="14" ry="9" class="outline"/>
   </g>
 
-  <!-- Testa arancio -->
-  <ellipse cx="110" cy="112" rx="64" ry="66" fill="#E87722"/>
+  <!-- Torso -->
+  <ellipse cx="170" cy="315" rx="52" ry="38" class="fill-body"/>
+  <ellipse cx="170" cy="315" rx="52" ry="38" class="outline"/>
 
-  <!-- Texture mandarino -->
-  <path d="M110 46 Q101 76 110 112 Q119 76 110 46"
-    fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
-  <path d="M96 48 Q82 78 88 112"
-    fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-  <path d="M124 48 Q138 78 132 112"
-    fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <!-- Braccia -->
+  <g class="braccia-ribelle">
+    <!-- Braccio sinistro alzato con dito -->
+    <path d="M128 298 Q100 265 104 244" fill="none" stroke="#1a1a1a" stroke-width="11" stroke-linecap="round" class="avambraccio-sx"/>
+    <ellipse cx="105" cy="238" rx="11" ry="13" class="fill-body"/>
+    <ellipse cx="105" cy="238" rx="11" ry="13" class="outline"/>
+    <line x1="105" y1="225" x2="105" y2="210" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round" class="dito"/>
 
-  <!-- Fogliolina -->
-  <path d="M110 45 Q104 31 110 26 Q116 31 110 45" fill="#C0551A"/>
-  <path d="M110 40 Q102 28 96 26 Q100 34 110 40" fill="#C0551A"/>
+    <!-- Braccio destro al mento -->
+    <path d="M212 305 Q240 302 247 315" fill="none" stroke="#1a1a1a" stroke-width="11" stroke-linecap="round"/>
+    <ellipse cx="251" cy="319" rx="13" ry="11" class="fill-body"/>
+    <ellipse cx="251" cy="319" rx="13" ry="11" class="outline"/>
+  </g>
 
-  <!-- CUFFIE -->
-  <path d="M46 110 Q46 42 110 42 Q174 110 174 110"
-    fill="none" stroke="#2E4057" stroke-width="7"
-    stroke-linecap="round"/>
-  <rect x="33" y="100" width="20" height="28" rx="7"
-    fill="#2E4057" stroke="#FAF7F2" stroke-width="1.5"/>
-  <rect x="207" y="100" width="20" height="28" rx="7"
-    fill="#2E4057" stroke="#FAF7F2" stroke-width="1.5"/>
-  
-  <!-- Microfono -->
-  <path d="M207 118 Q222 118 226 128"
-    fill="none" stroke="#2E4057" stroke-width="2.5"
-    stroke-linecap="round"/>
-  <circle cx="227" cy="130" r="4.5" fill="#E87722" class="led"/>
+  <!-- Collo -->
+  <rect x="158" y="261" width="24" height="22" rx="4" class="fill-body"/>
+  <rect x="158" y="261" width="24" height="22" rx="4" class="outline"/>
 
-  <!-- Occhi aperti -->
-  <circle cx="92" cy="110" r="7.5" fill="#2E4057"/>
-  <circle cx="128" cy="110" r="7.5" fill="#2E4057"/>
-  <circle cx="94" cy="108" r="3" fill="#FAF7F2"/>
-  <circle cx="130" cy="108" r="3" fill="#FAF7F2"/>
+  <!-- Testa mandarino arancio -->
+  <g class="testa-ribelle">
+    <ellipse cx="170" cy="222" rx="56" ry="58" class="fill-arancio"/>
+    <ellipse cx="170" cy="222" rx="56" ry="58" class="outline"/>
 
-  <!-- Sorriso -->
-  <path d="M88 130 Q110 144 132 130"
-    fill="none" stroke="#2E4057" stroke-width="3"
-    stroke-linecap="round"/>
+    <!-- Texture mandarino -->
+    <path d="M170 165 Q162 194 170 222 Q178 194 170 165" fill="none" stroke="#C05A0A" stroke-width="2"/>
+    <path d="M154 168 Q142 198 148 222" fill="none" stroke="#C05A0A" stroke-width="1.5"/>
+    <path d="M186 168 Q198 198 192 222" fill="none" stroke="#C05A0A" stroke-width="1.5"/>
 
-  <!-- Pixel -->
-  <rect x="194" y="136" width="8"  height="8"  fill="#E87722" class="pixel" style="animation-delay: 0s" opacity="0.9"/>
-  <rect x="206" y="126" width="6"  height="6"  fill="#E87722" class="pixel" style="animation-delay: 0.2s" opacity="0.6"/>
+    <!-- Fogliolina arancio -->
+    <path d="M170 164 Q165 147 170 140 Q175 147 170 164" fill="#C05A0A" stroke="#1a1a1a" stroke-width="2"/>
+    <path d="M170 159 Q160 145 153 142 Q158 152 170 159" fill="#C05A0A" stroke="#1a1a1a" stroke-width="1.5"/>
+
+    <!-- Cuffie rosa — archetto -->
+    <path d="M116 222 Q118 162 170 160 Q222 162 224 222" fill="none" stroke="#E8729A" stroke-width="7" stroke-linecap="round"/>
+    <!-- Padiglione sinistro -->
+    <rect x="103" y="212" width="22" height="30" rx="8" class="fill-rosa"/>
+    <rect x="103" y="212" width="22" height="30" rx="8" class="outline" stroke-width="2.5"/>
+    <!-- Padiglione destro -->
+    <rect x="215" y="212" width="22" height="30" rx="8" class="fill-rosa"/>
+    <rect x="215" y="212" width="22" height="30" rx="8" class="outline" stroke-width="2.5"/>
+    <!-- Microfono -->
+    <path d="M237 227 Q252 227 256 237" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="258" cy="239" r="5" class="fill-arancio" stroke="#1a1a1a" stroke-width="2" class="led"/>
+
+    <!-- Occhi -->
+    <circle cx="154" cy="216" r="9" class="fill-grigio"/>
+    <circle cx="186" cy="216" r="9" class="fill-grigio"/>
+    <circle cx="156" cy="214" r="3.5" fill="#FAF7F2"/>
+    <circle cx="188" cy="214" r="3.5" fill="#FAF7F2"/>
+
+    <!-- Sorriso -->
+    <path d="M148 240 Q170 257 192 240" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Label (opzionale) -->
+  <text x="170" y="428" text-anchor="middle" font-family="var(--font-ribelle)" font-size="11" letter-spacing="3" fill="#E87722" font-weight="500">RIBELLE</text>
 </svg>
 
 <style>
@@ -87,39 +103,38 @@
     overflow: visible;
   }
 
-  /* Braccio alzato */
-  .braccio-alzato-group {
-    animation: braccio 2.8s ease-in-out infinite;
-    transform-origin: 158px 220px;
+  /* Animazione Testa — ritmo cuffie */
+  .testa-ribelle {
+    animation: ribelle-beat 0.6s ease-in-out infinite alternate;
+    transform-origin: 170px 260px;
   }
-  @keyframes braccio {
-    0%, 100% { transform: rotate(0deg); }
-    35%       { transform: rotate(-7deg); }
-    65%       { transform: rotate(3deg); }
+  @keyframes ribelle-beat {
+    from { transform: rotate(-2deg); }
+    to   { transform: rotate(2deg); }
   }
 
-  /* Led microfono */
-  .led {
-    animation: led-blink 4s ease-in-out infinite;
+  /* Braccio che indica */
+  .avambraccio-sx {
+    animation: ribelle-point 3s ease-in-out infinite;
+    transform-origin: 128px 298px;
   }
-  @keyframes led-blink {
+  @keyframes ribelle-point {
+    0%, 100% { transform: rotate(0deg); }
+    50%       { transform: rotate(-5deg); }
+  }
+
+  /* Microfono led — lampeggia */
+  .led {
+    animation: ribelle-led 4s ease-in-out infinite;
+  }
+  @keyframes ribelle-led {
     0%, 88%, 100% { opacity: 1; }
     92%            { opacity: 0.1; }
   }
 
-  /* Pixel */
-  .pixel {
-    animation: pixel-pulse 3s ease-in-out infinite;
-  }
-  @keyframes pixel-pulse {
-    0%, 100% { opacity: 0.8; }
-    50%       { opacity: 0.15; }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .braccio-alzato-group, .led, .pixel {
+    .testa-ribelle, .avambraccio-sx, .led {
       animation: none;
     }
   }
 </style>
-
