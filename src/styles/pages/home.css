@@ -30,67 +30,68 @@
    HERO — LAYOUT DUE COLONNE
    ===================== */
 
+/* =====================
+   HERO — LAYOUT COESO
+   Testo e illustrazione nella stessa scena
+   ===================== */
+
 .hero-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-8);
+  position: relative;
+  min-height: 85vh;
+  display: flex;
   align-items: center;
-  min-height: 80vh;
   padding-block: var(--space-16) var(--space-12);
   padding-inline: var(--space-4);
   max-width: var(--container-max);
   margin: 0 auto;
+  overflow: hidden;
 }
 
-@media (max-width: 900px) {
-  .hero-section {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    padding-block: var(--space-12) var(--space-8);
-  }
-}
-
-/* Colonna sinistra — testo */
+/* Colonna testo — in primo piano (z-index alto) */
 .hero-content {
+  position: relative;
+  z-index: 2;
   max-width: 560px;
 }
 
-/* Il titolo animato mantiene gli stili esistenti */
-/* (quelli del Prompt 4b rimangono invariati) */
-
-/* Colonna destra — illustrazione */
+/* Illustrazione — sovrapposta in position absolute */
 .hero-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  position: absolute;
+  right: -40px;
+  bottom: -20px;
+  width: 52%;
+  max-width: 520px;
+  z-index: 1;
+  pointer-events: none; /* Non intercetta i click */
+  opacity: 0.92;        /* Leggermente trasparente per non
+                           sovrastare il testo */
 }
 
-.hero-visual svg {
-  width: 100%;
-  max-width: 480px;
-  height: auto;
-  border-radius: 0; /* Sistema Nitido — niente arrotondamenti */
-}
-
-/* Su mobile l'illustrazione va sotto il testo */
+/* Su mobile: layout verticale, illustrazione sotto il testo */
 @media (max-width: 900px) {
-  .hero-visual {
-    order: 2; /* Viene dopo il testo */
-    max-width: 360px;
-    margin: 0 auto;
+  .hero-section {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    overflow: visible;
   }
 
-  .hero-content {
-    order: 1;
-    max-width: 100%;
+  .hero-visual {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 80%;
+    max-width: 340px;
+    margin: var(--space-8) auto 0;
+    opacity: 1;
   }
 }
 
-/* Su mobile molto piccolo riduci l'illustrazione */
-@media (max-width: 480px) {
+/* Su schermi molto grandi: aggiusta posizione */
+@media (min-width: 1400px) {
   .hero-visual {
-    max-width: 280px;
+    right: 0;
+    width: 48%;
   }
 }
 
@@ -151,9 +152,7 @@
 }
 
 /* Classi contenitore specifiche */
-.hero-section {
-  background: none;
-}
+/* .hero-section decorativo rimosso */
 
 .thesis-section {
   max-width: var(--container-reading);
@@ -222,8 +221,9 @@
   position: relative;
   background-color: var(--color-grigio-saggio);
   color: var(--color-bianco-sporco);
-  padding: var(--space-16) var(--space-12);
-  margin: var(--space-16) 0; 
+  padding: var(--space-8);
+  margin: var(--space-12) auto; 
+  max-width: 1000px;
   border-radius: var(--space-4); 
 }
 
@@ -251,7 +251,7 @@
 }
 
 .summary-section .section-label {
-  color: var(--color-arancio-ribelle);
+  color: rgba(250, 247, 242, 0.6);
   margin-bottom: var(--space-8);
 }
 
@@ -637,14 +637,11 @@
 
 /* 5a - Summary Section */
 .summary-section {
-  border-left: 6px solid var(--color-arancio-ribelle);
-  padding-left: calc(var(--space-8) - 6px); /* Compensate per il bordo */
+  padding-left: var(--space-8);
 }
 
 @media (max-width: 768px) {
   .summary-section {
-    border-left: none;
-    border-top: 6px solid var(--color-arancio-ribelle);
     padding-left: var(--space-4);
   }
 }
@@ -677,7 +674,7 @@
 .works-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-6);
   margin-top: var(--space-6);
 }
 
@@ -693,6 +690,7 @@
   color: inherit;
   position: relative;
   border: 1px solid rgba(74, 94, 120, 0.2);
+  border-radius: 0 !important;
   transition: border-color var(--transition-smooth),
               transform var(--transition-smooth);
   background: var(--color-bianco-sporco);
@@ -711,13 +709,16 @@
   position: relative;
   display: block;
   overflow: hidden;
+  border-radius: 0 !important;
   /* Nessuna immagine di sfondo, nessun overlay, nessun gradiente */
 }
 
 .work-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
   display: block;
 }
 
@@ -736,7 +737,7 @@
 .work-card-meta {
   font-family: var(--font-ribelle);
   font-size: var(--text-sm);
-  color: var(--color-arancio-ribelle);
+  color: var(--color-grigio-saggio-soft);
   letter-spacing: 0.02em;
   margin-bottom: var(--space-2);
   margin-top: 0;

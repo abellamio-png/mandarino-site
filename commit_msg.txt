@@ -1,7 +1,0 @@
-feat: integrazione AI nel brand Mandarino
-
-- Nota AI nel Metodo Fondamenta (dopo "Come lavoriamo")
-- Sezione AI nella pagina Agenzia con box proof of concept
-- Articolo Pensiero: "Abbiamo costruito questo sito senza uno sviluppatore"
-- Link dalla pagina Agenzia all'articolo
-- llms.txt aggiornato con tesi AI (se già esistente)

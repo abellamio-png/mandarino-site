@@ -256,10 +256,100 @@ export default config({
           defaultValue: false,
         }),
 
-        // Il corpo dell'articolo — editor MDX semplice (solo testo)
+        // Il corpo dell'articolo — editor MDX con componenti media
         contenuto: fields.mdx({
           label: 'Contenuto dell\'articolo',
           description: 'Scrivi l\'articolo. Usa ## per i titoli delle sezioni.',
+          components: {
+
+            // Componente immagine singola
+            MediaImmagine: block({
+              label: 'Immagine',
+              schema: {
+                src: fields.image({
+                  label: 'Immagine',
+                  directory: 'public/assets/pensiero',
+                  publicPath: '/assets/pensiero/',
+                }),
+                alt: fields.text({
+                  label: 'Descrizione (alt text)',
+                }),
+                didascalia: fields.text({
+                  label: 'Didascalia (opzionale)',
+                }),
+                dimensione: fields.select({
+                  label: 'Dimensione',
+                  options: [
+                    { label: 'Normale (larghezza testo)', value: 'normale' },
+                    { label: 'Grande (900px)', value: 'grande' },
+                    { label: 'Piena (larghezza massima)', value: 'piena' },
+                  ],
+                  defaultValue: 'grande',
+                }),
+              },
+            }),
+
+            // Componente gallery
+            MediaGallery: block({
+              label: 'Gallery (più immagini)',
+              schema: {
+                immagini: fields.array(
+                  fields.object({
+                    src: fields.image({
+                      label: 'Immagine',
+                      directory: 'public/assets/pensiero',
+                      publicPath: '/assets/pensiero/',
+                    }),
+                    alt: fields.text({ label: 'Descrizione (alt text)' }),
+                    didascalia: fields.text({ label: 'Didascalia (opzionale)' }),
+                  }),
+                  {
+                    label: 'Immagini',
+                    itemLabel: (props) => props.fields.alt.value || 'Immagine',
+                  }
+                ),
+                colonne: fields.select({
+                  label: 'Numero di colonne',
+                  options: [
+                    { label: '2 colonne', value: '2' },
+                    { label: '3 colonne', value: '3' },
+                  ],
+                  defaultValue: '2',
+                }),
+                didascalia: fields.text({
+                  label: 'Didascalia generale (opzionale)',
+                }),
+              },
+            }),
+
+            // Componente video
+            MediaVideo: block({
+              label: 'Video',
+              schema: {
+                tipo: fields.select({
+                  label: 'Tipo di video',
+                  options: [
+                    { label: 'YouTube', value: 'youtube' },
+                    { label: 'Vimeo', value: 'vimeo' },
+                    { label: 'Video nativo (mp4)', value: 'nativo' },
+                  ],
+                  defaultValue: 'youtube',
+                }),
+                id: fields.text({
+                  label: 'ID video (YouTube o Vimeo)',
+                  description: 'Es: per https://youtu.be/dQw4w9WgXcQ inserisci dQw4w9WgXcQ',
+                }),
+                src: fields.text({
+                  label: 'Path video nativo',
+                  description: 'Solo per video mp4. Es: /assets/pensiero/video.mp4',
+                }),
+                didascalia: fields.text({
+                  label: 'Didascalia (opzionale)',
+                }),
+              },
+            }),
+
+          },
         }),
       },
     }),

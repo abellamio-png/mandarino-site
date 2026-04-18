@@ -26,14 +26,10 @@ import PersonaggioRibelle from './PersonaggioRibelle.astro';
     xmlns="http://www.w3.org/2000/svg"
     class="scene-base"
   >
-    <!-- SFONDO -->
-    <rect width="520" height="460" fill="#2E4057"/>
+    <!-- SFONDO — Rimosso per layout coeso -->
+    
+    <!-- Griglia di sfondo — Rimossa per layout coeso -->
 
-    <!-- Griglia di sfondo — sistema Nitido, quasi invisibile -->
-    <line x1="0" y1="153" x2="520" y2="153" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
-    <line x1="0" y1="306" x2="520" y2="306" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
-    <line x1="173" y1="0" x2="173" y2="460" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
-    <line x1="346" y1="0" x2="346" y2="460" stroke="rgba(250,247,242,0.04)" stroke-width="1"/>
 
     <!-- PIXEL — direzione diagonale Saggio → Ribelle (filo di pensiero) -->
     <rect x="180" y="240" width="10" height="10" fill="#E87722" class="pixel pixel-1"/>
@@ -52,12 +48,12 @@ import PersonaggioRibelle from './PersonaggioRibelle.astro';
 
     <!-- LINEA DI TERRA — li unisce nella stessa scena -->
     <line x1="40" y1="392" x2="480" y2="392"
-      stroke="rgba(250,247,242,0.12)" stroke-width="1"/>
+      stroke="rgba(46,64,87,0.15)" stroke-width="1"/>
 
     <!-- Firma -->
     <text x="260" y="452"
       font-family="'Work Sans', sans-serif"
-      font-size="9" fill="rgba(250,247,242,0.18)"
+      font-size="9" fill="rgba(46,64,87,0.18)"
       text-anchor="middle" letter-spacing="3">SAGGI E RIBELLI · DAL 2004</text>
   </svg>
 </div>
@@ -105,7 +101,7 @@ import PersonaggioRibelle from './PersonaggioRibelle.astro';
   .character-label {
     font-family: 'Work Sans', sans-serif;
     font-size: 9px;
-    color: rgba(250, 247, 242, 0.3);
+    color: rgba(46, 64, 87, 0.25);
     letter-spacing: 2px;
     margin-top: 5px;
   }

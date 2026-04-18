@@ -35,7 +35,11 @@ const jsonLd = {
     <!-- HERO -->
     <header class="metodo-hero">
       <span class="section-label">(Metodo)</span>
-      <h1>Il Metodo Fondamenta</h1>
+      <h1 class="hero-title-animated" aria-label="Il Metodo Fondamenta">
+        <span class="word" style="--delay: 0ms">Il</span>
+        <span class="word word--accent" style="--delay: 100ms">Metodo</span>
+        <span class="word" style="--delay: 200ms">Fondamenta</span>
+      </h1>
       <p class="lead">Un processo in cinque fasi per costruire la comunicazione dall'interno verso l'esterno. Prima di produrre qualunque contenuto, aiutiamo i nostri clienti a capire chi sono, cosa promettono, e dove vogliono stare nel mercato.</p>
       <PixelCluster size="medium" variant="corner" color="arancio" />
     </header>
@@ -58,7 +62,7 @@ const jsonLd = {
       <h2 id="fasi-title" class="visually-hidden">Le cinque fasi del Metodo Fondamenta</h2>
 
       <!-- Fase 01 -->
-      <div class="metodo-fase" data-reveal>
+      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.1s">
         <div class="metodo-fase-numero" aria-hidden="true">01</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -70,7 +74,7 @@ const jsonLd = {
       </div>
 
       <!-- Fase 02 -->
-      <div class="metodo-fase" data-reveal>
+      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.2s">
         <div class="metodo-fase-numero" aria-hidden="true">02</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -82,7 +86,7 @@ const jsonLd = {
       </div>
 
       <!-- Fase 03 -->
-      <div class="metodo-fase" data-reveal>
+      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.3s">
         <div class="metodo-fase-numero" aria-hidden="true">03</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -94,7 +98,7 @@ const jsonLd = {
       </div>
 
       <!-- Fase 04 -->
-      <div class="metodo-fase" data-reveal>
+      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.4s">
         <div class="metodo-fase-numero" aria-hidden="true">04</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -106,7 +110,7 @@ const jsonLd = {
       </div>
 
       <!-- Fase 05 -->
-      <div class="metodo-fase" data-reveal>
+      <div class="metodo-fase fade-up-element" data-reveal style="--transition-delay: 0.5s">
         <div class="metodo-fase-numero" aria-hidden="true">05</div>
         <div class="metodo-fase-contenuto">
           <div class="metodo-fase-header">
@@ -137,18 +141,20 @@ const jsonLd = {
       <PixelCluster size="large" variant="corner" color="arancio" />
     </section>
 
-    <section class="metodo-ai" aria-labelledby="metodo-ai-title" data-reveal>
-      <span class="section-label">(AI e il Metodo Fondamenta)</span>
-      <h2 id="metodo-ai-title" class="visually-hidden">
-        AI e il Metodo Fondamenta
-      </h2>
+    </section>
 
+    <!-- SEZIONE AI — Final Integrated Card -->
+    <section class="metodo-ai" aria-labelledby="metodo-ai-title" data-reveal>
       <div class="metodo-ai-inner">
+        <span class="section-label">(AI e il Metodo Fondamenta)</span>
+        <h2 id="metodo-ai-title" class="visually-hidden">
+          AI e il Metodo Fondamenta
+        </h2>
+
         <p>L'intelligenza artificiale è entrata stabilmente nel nostro
         processo di lavoro. La usiamo nella fase di ricerca e analisi
         (Fase 02 — Posizionamento), nella produzione di copy e contenuti
         (Fase 04 — Attivazione), e nell'automazione dei workflow operativi.</p>
-
 
         <p>Ma la usiamo come strumento di amplificazione del pensiero,
         non di sostituzione. Le cinque fasi del Metodo Fondamenta rimangono
@@ -161,6 +167,9 @@ const jsonLd = {
         l'AI nei propri processi di comunicazione — dalla produzione di
         contenuti all'automazione dei workflow, dalla ricerca di mercato
         al vibe coding per prodotti digitali.</p>
+      </div>
+      <div class="metodo-ai-pixel" aria-hidden="true">
+        <PixelCluster size="small" variant="corner" color="arancio" />
       </div>
     </section>
 

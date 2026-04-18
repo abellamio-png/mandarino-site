@@ -56,6 +56,7 @@
   position: relative;
   border: 1px solid rgba(74, 94, 120, 0.2);
   padding: 0;
+  border-radius: 0 !important;
   transition: border-color var(--transition-smooth), transform var(--transition-smooth);
 }
 
@@ -70,12 +71,15 @@
   background: var(--color-grigio-saggio);
   position: relative;
   overflow: hidden;
+  border-radius: 0 !important;
 }
 
 .vetrina-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
   display: block;
 }
 
