@@ -10,3 +10,4 @@ Clienti da aggiungere:
 - [ ] todis.svg
 - [ ] francia-latticini.svg
 - [ ] fipe.svg
+- [ ] agropontino-food.svg
