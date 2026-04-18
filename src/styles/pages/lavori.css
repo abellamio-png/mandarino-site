@@ -636,9 +636,13 @@
 }
 
 .case-logo-img {
-  height: 52px;
+  display: block;
+  height: 64px;
   width: auto;
-  max-width: 200px;
+  max-width: 240px;
+  max-height: 64px;
+  object-fit: contain;
+  object-position: left center;
   /* Forza il logo a grigio saggio — coerente col brand */
   filter: brightness(0) saturate(100%)
           invert(24%) sepia(16%) saturate(967%)
