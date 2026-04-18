@@ -136,6 +136,19 @@ const breadcrumbLd = {
         </div>
       </div>
 
+      {lavoro.data.logoCliente && (
+        <div class="case-logo-cliente reveal reveal-delay-1">
+          <img
+            src={lavoro.data.logoCliente}
+            alt={lavoro.data.logoClienteAlt || lavoro.data.cliente}
+            class="case-logo-img"
+            loading="lazy"
+            width="200"
+            height="80"
+          />
+        </div>
+      )}
+
       <h1 class="case-title hero-title reveal reveal-delay-1">{lavoro.data.titolo}</h1>
       <p class="case-tesi reveal reveal-delay-2">{lavoro.data.tesi}</p>
 

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60">
+  <rect width="160" height="60" fill="none"/>
+  <text x="80" y="30"
+    text-anchor="middle"
+    font-family="'Work Sans', sans-serif"
+    font-weight="700"
+    font-size="12"
+    fill="currentColor"
+    letter-spacing="1"
+  >GRUPPO FRANCIA</text>
+  <text x="80" y="46"
+    text-anchor="middle"
+    font-family="'Work Sans', sans-serif"
+    font-weight="700"
+    font-size="12"
+    fill="currentColor"
+    letter-spacing="1"
+  >LATTICINI</text>
+</svg>

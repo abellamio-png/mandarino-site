@@ -1,10 +1,15 @@
-﻿---
+---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PixelCluster from '../components/visuals/PixelCluster.astro';
 import NitidoPixelHero from '../components/visuals/NitidoPixelHero.astro';
 import TramaSfondo from '../components/visuals/TramaSfondo.astro';
 import '../styles/pages/home.css';
+import AsRoma from '../assets/loghi/as-roma.svg?raw';
+import AvioInteriors from '../assets/loghi/avio-interiors.svg?raw';
+import Todis from '../assets/loghi/todis.svg?raw';
+import FranciaLatticini from '../assets/loghi/francia-latticini.svg?raw';
+import Fipe from '../assets/loghi/fipe.svg?raw';
 
 const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft && data.inVetrina))
   .sort((a, b) => (a.data.ordineVetrina || 999) - (b.data.ordineVetrina || 999));
@@ -97,6 +102,30 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
       <h2 id="audience-title" class="visually-hidden">Per chi lavoriamo</h2>
       <p>Mandarino è per aziende che hanno già capito una cosa: produrre più comunicazione non risolve i problemi di comunicazione.</p>
       <p>Lavoriamo con chi vuole ragionare sul proprio posizionamento, ridefinire la propria voce, costruire una narrazione che regga nel tempo. Non siamo un fornitore di esecuzione: siamo un partner di pensiero. Se cercate contenuti a commessa, pacchetti tattici, o risultati veloci senza capire il contesto, ci sono agenzie più adatte di noi.</p>
+    </section>
+
+    <!-- Sezione 4b: Alcuni clienti -->
+    <section class="clienti-section reveal" aria-labelledby="clienti-title">
+      <span class="section-label">(Alcuni clienti)</span>
+      <h2 id="clienti-title" class="visually-hidden">Alcuni clienti</h2>
+
+      <ul class="clienti-lista" role="list">
+        <li class="cliente-item">
+          <Fragment set:html={AsRoma} />
+        </li>
+        <li class="cliente-item">
+          <Fragment set:html={AvioInteriors} />
+        </li>
+        <li class="cliente-item">
+          <Fragment set:html={Todis} />
+        </li>
+        <li class="cliente-item">
+          <Fragment set:html={FranciaLatticini} />
+        </li>
+        <li class="cliente-item">
+          <Fragment set:html={Fipe} />
+        </li>
+      </ul>
     </section>
 
     <div style="text-align: center; padding-block: var(--space-8);">

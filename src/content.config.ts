@@ -28,6 +28,10 @@ const lavoriCollection = defineCollection({
 
     // SEO
     descrizione: z.string(),                // Meta description della pagina singolo case
+
+    // Logo cliente
+    logoCliente: z.string().optional(),     // path del logo SVG (es. /assets/loghi/as-roma.svg)
+    logoClienteAlt: z.string().optional(),  // testo alternativo per il logo
   }),
 });
 

@@ -765,3 +765,56 @@
   line-height: var(--leading-normal);
   margin: 0;
 }
+
+/* ========================
+   SEZIONE CLIENTI
+   ======================== */
+
+.clienti-section {
+  padding-block: var(--space-8);
+  border-top: 1px solid rgba(74, 94, 120, 0.12);
+  border-bottom: 1px solid rgba(74, 94, 120, 0.12);
+}
+
+.clienti-lista {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0 0;
+}
+
+.cliente-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 52px;
+  color: var(--color-grigio-saggio);
+  opacity: 0.55;
+  transition: opacity var(--transition-smooth);
+  filter: none;
+}
+
+.cliente-item:hover {
+  opacity: 0.9;
+}
+
+.cliente-item svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .clienti-lista {
+    gap: var(--space-4);
+  }
+
+  .cliente-item {
+    width: 110px;
+    height: 42px;
+  }
+}

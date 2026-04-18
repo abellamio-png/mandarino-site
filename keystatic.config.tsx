@@ -115,6 +115,18 @@ export default config({
           defaultValue: false,
         }),
 
+        logoCliente: fields.image({
+          label: 'Logo cliente',
+          description: 'Carica il logo del cliente (SVG, PNG, WebP). Apparirà sopra il titolo nel case study.',
+          directory: 'public/assets/loghi',
+          publicPath: '/assets/loghi/',
+        }),
+
+        logoClienteAlt: fields.text({
+          label: 'Testo alternativo logo cliente',
+          description: 'Es: Logo A.S. Roma',
+        }),
+
         // Il corpo del case — editor visuale MDX
         contenuto: fields.mdx({
           label: 'Contenuto del case',
