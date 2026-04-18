@@ -739,6 +739,20 @@
   padding: var(--space-4);
 }
 
+.work-card-logo {
+  margin-bottom: var(--space-3);
+}
+
+.work-card-logo img {
+  display: block;
+  height: 48px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  object-position: left center;
+  opacity: 0.9;
+}
+
 .work-card-meta {
   font-family: var(--font-ribelle);
   font-size: var(--text-sm);

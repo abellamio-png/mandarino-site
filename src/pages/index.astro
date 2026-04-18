@@ -151,8 +151,13 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
               <PixelCluster size="small" variant="corner" color="arancio" />
             </div>
             <div class="work-card-body">
+              {lavoro.data.logoCliente && (
+                <div class="work-card-logo">
+                  <img src={lavoro.data.logoCliente} alt={lavoro.data.logoClienteAlt || lavoro.data.cliente} loading="lazy" />
+                </div>
+              )}
               <p class="work-card-meta">
-                {lavoro.data.cliente} Â· {lavoro.data.settore}
+                {lavoro.data.cliente} &middot; {lavoro.data.settore}
               </p>
               <h3 class="work-card-title">{lavoro.data.titolo}</h3>
               <p class="work-card-tesi">{lavoro.data.tesi}</p>
