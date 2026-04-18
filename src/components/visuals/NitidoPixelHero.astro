@@ -1,0 +1,105 @@
+---
+interface Props {
+  showLabels?: boolean;
+}
+const { showLabels = false } = Astro.props;
+---
+
+<figure class="nitido-pixel-composition" aria-hidden="true">
+  <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg"
+       class="nitido-pixel-svg">
+
+    <!-- NITIDO: grande cerchio grigio saggio -->
+    <circle cx="220" cy="300" r="260" fill="var(--color-grigio-saggio)"/>
+
+    <!-- PIXEL: forma a gradini arancio ribelle -->
+    <rect x="680" y="0"   width="520" height="200" fill="var(--color-arancio-ribelle)"/>
+    <rect x="740" y="200" width="460" height="160" fill="var(--color-arancio-ribelle)"/>
+    <rect x="820" y="360" width="380" height="140" fill="var(--color-arancio-ribelle)"/>
+    <rect x="900" y="500" width="300" height="100" fill="var(--color-arancio-ribelle)"/>
+  </svg>
+
+  {showLabels && (
+    <div class="nitido-pixel-labels">
+      <div class="label-nitido">
+        <span class="label-sistema">Nitido: Saggio,</span>
+        <strong class="label-ruolo">il Generale.</strong>
+        <p class="label-desc">La forma nitida rappresenta l'ordine, la chiarezza,
+        il risultato finale frutto dell'esperienza e della saggezza.
+        È la visione d'insieme, l'architettura completata.</p>
+      </div>
+      <div class="label-pixel">
+        <span class="label-sistema">Pixel: Ribelle,</span>
+        <strong class="label-ruolo">il Particolare.</strong>
+        <p class="label-desc">Il pixel rappresenta il caos creativo, l'elemento
+        grezzo, l'inizio non convenzionale. È il dettaglio, il singolo mattone.</p>
+      </div>
+    </div>
+  )}
+</figure>
+
+<style>
+  .nitido-pixel-composition {
+    margin: 0;
+    padding: 0;
+  }
+
+  .nitido-pixel-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  .nitido-pixel-labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .label-nitido,
+  .label-pixel {
+    font-family: var(--font-ribelle);
+  }
+
+  .label-sistema {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-grigio-saggio-soft);
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+    font-style: normal;
+  }
+
+  .label-ruolo {
+    display: block;
+    font-family: var(--font-saggio);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-grigio-saggio);
+    margin-bottom: var(--space-2);
+  }
+
+  .label-nitido .label-ruolo {
+    color: var(--color-grigio-saggio);
+  }
+
+  .label-pixel .label-ruolo {
+    color: var(--color-arancio-ribelle);
+  }
+
+  .label-desc {
+    font-size: var(--text-sm);
+    color: var(--color-grigio-saggio-soft);
+    line-height: var(--leading-relaxed);
+    max-width: 40ch;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .nitido-pixel-labels {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

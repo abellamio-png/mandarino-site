@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PixelCluster from '../components/visuals/PixelCluster.astro';
-import HeroIllustrazione from '../components/visuals/HeroIllustrazione.astro';
+import NitidoPixelHero from '../components/visuals/NitidoPixelHero.astro';
 import '../styles/pages/home.css';
 
 const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft && data.inVetrina))
@@ -37,8 +37,8 @@ const lavoriVetrina = (await getCollection('lavori', ({ data }) => !data.draft &
         </p>
       </div>
 
-      <div class="hero-visual">
-        <HeroIllustrazione />
+      <div class="hero-visual" aria-hidden="true">
+        <NitidoPixelHero />
       </div>
     </section>
 
