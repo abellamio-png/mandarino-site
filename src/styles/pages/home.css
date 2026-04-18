@@ -35,69 +35,58 @@
    Testo e illustrazione nella stessa scena
    ===================== */
 
+/* =====================
+   HERO — GRID DEFINITIVO
+   ===================== */
+
 .hero-section {
-  position: relative;
-  min-height: 85vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
   align-items: center;
-  padding-block: var(--space-16) var(--space-12);
-  padding-inline: var(--space-4);
-  max-width: var(--container-max);
+  min-height: 80vh;
+  padding-block: var(--space-16) var(--space-8);
+  padding-inline: var(--space-6);
+  max-width: 1200px;
   margin: 0 auto;
-  overflow: hidden;
 }
 
-/* Colonna testo — in primo piano (z-index alto) */
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 560px;
 }
 
-/* Illustrazione — sovrapposta in position absolute */
 .hero-visual {
-  position: absolute;
-  right: -40px;
-  bottom: -20px;
-  width: 52%;
-  max-width: 520px;
-  z-index: 1;
-  pointer-events: none; /* Non intercetta i click */
-  opacity: 0.92;        /* Leggermente trasparente per non
-                           sovrastare il testo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-/* Su mobile: layout verticale, illustrazione sotto il testo */
+.hero-visual svg {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+/* Mobile */
 @media (max-width: 900px) {
   .hero-section {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
     min-height: auto;
-    overflow: visible;
+    padding-block: var(--space-10) var(--space-6);
+    gap: var(--space-6);
   }
 
   .hero-visual {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: 80%;
-    max-width: 340px;
-    margin: var(--space-8) auto 0;
-    opacity: 1;
+    justify-content: center;
+  }
+
+  .hero-visual svg {
+    max-width: 320px;
   }
 }
 
-/* Su schermi molto grandi: aggiusta posizione */
-@media (min-width: 1400px) {
-  .hero-visual {
-    right: 0;
-    width: 48%;
-  }
-}
-
-.home .signature-section {
-  padding-bottom: var(--space-12);
-}
 
 /* Section label (etichette tra parentesi) */
 .section-label {

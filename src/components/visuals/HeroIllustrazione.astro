@@ -1,41 +1,24 @@
 ---
-import PersonaggioSaggio from './PersonaggioSaggio.astro';
-import PersonaggioRibelle from './PersonaggioRibelle.astro';
-
 // HeroIllustrazione — composizione prospettica Saggio + Ribelle
+// Versione 2: Più grandi e centrati verticalmente
 // Ribelle in primo piano (grande, destra), Saggio sullo sfondo (piccolo, sinistra)
-// Linea di terra comune — stessa scena, stessa storia
 ---
 
 <div class="hero-scene" aria-hidden="true">
-  
-  <!-- Personaggi come componenti indipendenti -->
-  <div class="character-wrap character-wrap--saggio">
-    <PersonaggioSaggio />
-    <span class="character-label">SAGGIO</span>
-  </div>
-
-  <div class="character-wrap character-wrap--ribelle">
-    <PersonaggioRibelle />
-    <span class="character-label">RIBELLE</span>
-  </div>
-
-  <!-- Sfondo e decorazioni (SVG per griglia, pixel e linea di terra) -->
   <svg
-    viewBox="0 0 520 460"
+    viewBox="74 101 411 430"
     xmlns="http://www.w3.org/2000/svg"
     class="scene-base"
   >
-    <!-- SFONDO — Rimosso per layout coeso -->
-    
-    <!-- Griglia di sfondo — Rimossa per layout coeso -->
 
+
+    <!-- SFONDO — Rimosso per layout coeso su sfondo crema della pagina -->
 
     <!-- PIXEL — direzione diagonale Saggio → Ribelle (filo di pensiero) -->
-    <rect x="180" y="240" width="10" height="10" fill="#E87722" class="pixel pixel-1"/>
-    <rect x="200" y="252" width="8"  height="8"  fill="#E87722" class="pixel pixel-2"/>
-    <rect x="220" y="262" width="6"  height="6"  fill="#E87722" class="pixel pixel-3"/>
-    <rect x="238" y="270" width="5"  height="5"  fill="#E87722" class="pixel pixel-4"/>
+    <rect x="192" y="254" width="10" height="10" fill="#E87722" class="pixel pixel-1"/>
+    <rect x="210" y="264" width="8"  height="8"  fill="#E87722" class="pixel pixel-2"/>
+    <rect x="228" y="273" width="6"  height="6"  fill="#E87722" class="pixel pixel-3"/>
+    <rect x="245" y="281" width="5"  height="5"  fill="#E87722" class="pixel pixel-4"/>
 
     <!-- Cluster alto destra -->
     <rect x="440" y="44"  width="12" height="12" fill="#E87722" class="pixel pixel-5"/>
@@ -46,15 +29,174 @@ import PersonaggioRibelle from './PersonaggioRibelle.astro';
     <rect x="52"  y="360" width="8"  height="8"  fill="#E87722" class="pixel pixel-8" opacity="0.6"/>
     <rect x="64"  y="374" width="6"  height="6"  fill="#E87722" class="pixel pixel-9" opacity="0.4"/>
 
-    <!-- LINEA DI TERRA — li unisce nella stessa scena -->
-    <line x1="40" y1="392" x2="480" y2="392"
+    <!-- ==========================================
+         SAGGIO — sullo sfondo, più piccolo
+         ========================================== -->
+    <g class="personaggio-saggio-gruppo">
+      <!-- Ombra sotto il Saggio -->
+      <ellipse cx="160" cy="314" rx="44" ry="9" fill="rgba(0,0,0,0.1)"/>
+
+      <!-- Corpo seduto -->
+      <ellipse cx="160" cy="284" rx="44" ry="30" fill="#1A4D2E" stroke="#2D8659" stroke-width="1.5"/>
+
+      <!-- Braccia -->
+      <path d="M128 274 Q112 266 106 274 Q104 280 110 284"
+        fill="none" stroke="#FAF7F2" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="109" cy="285" r="6.5" fill="#FAF7F2" opacity="0.9"/>
+      <path d="M192 274 Q208 266 214 274 Q216 280 210 284"
+        fill="none" stroke="#FAF7F2" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="211" cy="285" r="6.5" fill="#FAF7F2" opacity="0.9"/>
+
+      <!-- Testa -->
+      <ellipse cx="160" cy="210" rx="46" ry="48" fill="#2D8659"/>
+
+      <!-- Texture mandarino verde -->
+      <path d="M160 169 Q153 189 160 210 Q167 189 160 169"
+        fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+      <path d="M150 171 Q140 190 145 210"
+        fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <path d="M170 171 Q180 190 175 210"
+        fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+      <!-- Fogliolina -->
+      <path d="M160 168 Q155 157 160 153 Q165 157 160 168" fill="#1A4D2E"/>
+      <path d="M160 164 Q153 153 148 151 Q152 159 160 164" fill="#1A4D2E"/>
+
+      <!-- Occhi chiusi sereni -->
+      <path d="M148 206 Q152 202 156 206"
+        fill="none" stroke="#FAF7F2" stroke-width="2"
+        stroke-linecap="round" class="occhio-sx"/>
+      <path d="M164 206 Q168 202 172 206"
+        fill="none" stroke="#FAF7F2" stroke-width="2"
+        stroke-linecap="round" class="occhio-dx"/>
+
+      <!-- Sorriso -->
+      <path d="M149 219 Q160 226 171 219"
+        fill="none" stroke="#FAF7F2" stroke-width="2"
+        stroke-linecap="round"/>
+
+      <!-- Aureola meditativa -->
+      <circle cx="160" cy="210" r="58"
+        fill="none" stroke="rgba(45,134,89,0.25)"
+        stroke-width="1" stroke-dasharray="3 5"
+        class="aureola"/>
+
+      <!-- Farfalle -->
+      <path d="M108 184 Q98 176 102 184 Q98 192 108 184"
+        fill="#F4C430" opacity="0.8" class="farfalla-1"/>
+      <path d="M108 184 Q118 176 114 184 Q118 192 108 184"
+        fill="#F4C430" opacity="0.6" class="farfalla-1"/>
+      <path d="M217 180 Q207 172 211 180 Q207 188 217 180"
+        fill="#E87722" opacity="0.7" class="farfalla-2"/>
+      <path d="M217 180 Q227 172 223 180 Q227 188 217 180"
+        fill="#E87722" opacity="0.5" class="farfalla-2"/>
+
+      <!-- Label SAGGIO -->
+      <text x="160" y="336"
+        font-family="'Work Sans', sans-serif"
+        font-size="9"
+        text-anchor="middle"
+        letter-spacing="2"
+        class="label-saggio"
+      >SAGGIO</text>
+    </g>
+
+    <!-- ==========================================
+         RIBELLE — in primo piano, più grande
+         ========================================== -->
+    <g class="personaggio-ribelle-gruppo">
+      <!-- Ombra sotto il Ribelle -->
+      <ellipse cx="330" cy="438" rx="66" ry="14" fill="rgba(0,0,0,0.15)"/>
+
+      <!-- Corpo -->
+      <rect x="276" y="388" width="108" height="84" rx="5" fill="#3D566E"/>
+      <line x1="276" y1="418" x2="384" y2="418"
+        stroke="rgba(250,247,242,0.1)" stroke-width="1"/>
+
+      <!-- Gambe e Scarpe -->
+      <rect x="291" y="466" width="26" height="15" rx="3" fill="#2A3F52"/>
+      <rect x="347" y="466" width="26" height="15" rx="3" fill="#2A3F52"/>
+      <rect x="287" y="477" width="32" height="11" rx="4" fill="#1A2A38"/>
+      <rect x="343" y="477" width="32" height="11" rx="4" fill="#1A2A38"/>
+
+      <!-- Braccia -->
+      <path d="M278 398 Q251 412 246 430 Q246 438 254 438"
+        fill="none" stroke="#FAF7F2" stroke-width="3.5"
+        stroke-linecap="round"/>
+      <circle cx="254" cy="440" r="9" fill="#FAF7F2" opacity="0.9"/>
+      
+      <!-- Braccio alzato -->
+      <path d="M374 396 Q400 374 406 350 Q408 336 400 332"
+        fill="none" stroke="#FAF7F2" stroke-width="3.5"
+        stroke-linecap="round" class="braccio-alzato"/>
+      <circle cx="399" cy="330" r="10" fill="#FAF7F2" opacity="0.9"/>
+      <line x1="399" y1="320" x2="399" y2="306"
+        stroke="#FAF7F2" stroke-width="2.5" stroke-linecap="round"
+        class="dito"/>
+
+      <!-- Testa arancio -->
+      <ellipse cx="330" cy="285" rx="72" ry="74" fill="#E87722"/>
+
+      <!-- Texture mandarino -->
+      <path d="M330 211 Q321 249 330 285 Q339 249 330 211"
+        fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+
+      <!-- Fogliolina -->
+      <path d="M330 210 Q324 196 330 191 Q336 196 330 210" fill="#C0551A"/>
+      <path d="M330 205 Q322 193 316 191 Q320 199 330 205" fill="#C0551A"/>
+
+      <!-- CUFFIE -->
+      <path d="M258 283 Q258 211 330 211 Q402 211 402 283"
+        fill="none" stroke="#2E4057" stroke-width="7"
+        stroke-linecap="round"/>
+      <rect x="245" y="273" width="22" height="30" rx="7"
+        fill="#2E4057" stroke="#FAF7F2" stroke-width="1.5"/>
+      <rect x="423" y="273" width="22" height="30" rx="7"
+        fill="#2E4057" stroke="#FAF7F2" stroke-width="1.5"/>
+      <path d="M423 291 Q438 291 442 301"
+        fill="none" stroke="#2E4057" stroke-width="2.5"
+        stroke-linecap="round"/>
+      <circle cx="443" cy="303" r="5" fill="#E87722" class="led"/>
+
+      <!-- Occhi -->
+      <circle cx="312" cy="283" r="8.5" fill="#2E4057"/>
+      <circle cx="348" cy="283" r="8.5" fill="#2E4057"/>
+      <circle cx="314" cy="281" r="3.5" fill="#FAF7F2"/>
+      <circle cx="350" cy="281" r="3.5" fill="#FAF7F2"/>
+
+      <!-- Sorriso -->
+      <path d="M308 303 Q330 317 352 303"
+        fill="none" stroke="#2E4057" stroke-width="3"
+        stroke-linecap="round"/>
+
+      <!-- Pixel -->
+      <rect x="410" y="308" width="8" height="8"  fill="#E87722" class="pixel" opacity="0.9"/>
+      <rect x="422" y="298" width="6" height="6"  fill="#E87722" class="pixel" opacity="0.6"/>
+      <rect x="432" y="289" width="5" height="5"  fill="#E87722" class="pixel" opacity="0.4"/>
+
+      <!-- Label RIBELLE -->
+      <text x="330" y="460"
+        font-family="'Work Sans', sans-serif"
+        font-size="9"
+        text-anchor="middle"
+        letter-spacing="2"
+        class="label-ribelle"
+      >RIBELLE</text>
+    </g>
+
+    <!-- ==========================================
+         LINEA DI TERRA — posizionata a 412
+         ========================================== -->
+    <line x1="40" y1="412" x2="480" y2="412"
       stroke="rgba(46,64,87,0.15)" stroke-width="1"/>
 
     <!-- Firma -->
-    <text x="260" y="452"
+    <text x="260" y="470"
       font-family="'Work Sans', sans-serif"
       font-size="9" fill="rgba(46,64,87,0.18)"
       text-anchor="middle" letter-spacing="3">SAGGI E RIBELLI · DAL 2004</text>
+
+
   </svg>
 </div>
 
@@ -62,9 +204,10 @@ import PersonaggioRibelle from './PersonaggioRibelle.astro';
   .hero-scene {
     position: relative;
     width: 100%;
-    max-width: 520px;
-    aspect-ratio: 520 / 460;
-    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     transform: translateY(20px);
     animation: hero-enter 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -73,37 +216,10 @@ import PersonaggioRibelle from './PersonaggioRibelle.astro';
 
   .scene-base {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-width: 580px; /* Più grande come richiesto */
     display: block;
-  }
-
-  /* Posizionamento personaggi */
-  .character-wrap {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 10;
-  }
-
-  .character-wrap--saggio {
-    width: 15.3%; /* Ripristinato scala originale */
-    top: 47.4%;   /* Allineato alla linea di terra (300px / 460px) */
-    left: 20%;
-  }
-
-  .character-wrap--ribelle {
-    width: 25%;  /* Ridotto dal 38% per ripristinare la prospettiva */
-    top: 56.1%;  /* Allineato alla linea di terra (418px / 460px) */
-    right: 15%;
-  }
-
-  .character-label {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 9px;
-    color: rgba(46, 64, 87, 0.25);
-    letter-spacing: 2px;
-    margin-top: 5px;
+    overflow: visible;
   }
 
   @keyframes hero-enter {
@@ -111,7 +227,7 @@ import PersonaggioRibelle from './PersonaggioRibelle.astro';
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Pixel animati (copiati dal hero originale) */
+  /* Pixel — pulsano in sequenza */
   .pixel { animation: pixel-pulse 3s ease-in-out infinite; }
   .pixel-1  { animation-delay: 0ms; }
   .pixel-2  { animation-delay: 180ms; }
@@ -128,12 +244,116 @@ import PersonaggioRibelle from './PersonaggioRibelle.astro';
     50%       { opacity: 0.15; }
   }
 
+  /* Aureola del Saggio — ruota lentamente */
+  .aureola {
+    animation: aureola-rotate 14s linear infinite;
+    transform-origin: 160px 210px;
+  }
+  @keyframes aureola-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Farfalle */
+  .farfalla-1 {
+    animation: farfalla 4.2s ease-in-out infinite;
+    transform-origin: 108px 184px;
+  }
+  .farfalla-2 {
+    animation: farfalla 3.6s ease-in-out infinite reverse;
+    transform-origin: 217px 180px;
+  }
+  @keyframes farfalla {
+    0%, 100% { transform: translateY(0)    rotate(0deg); }
+    40%       { transform: translateY(-7px) rotate(4deg); }
+    70%       { transform: translateY(-3px) rotate(-2deg); }
+  }
+
+  /* Braccio alzato del Ribelle */
+  .braccio-alzato,
+  .dito {
+    animation: braccio 2.8s ease-in-out infinite;
+    transform-origin: 374px 396px;
+  }
+  @keyframes braccio {
+    0%, 100% { transform: rotate(0deg); }
+    35%       { transform: rotate(-7deg); }
+    65%       { transform: rotate(3deg); }
+  }
+
+  /* Led microfono — lampeggia */
+  .led {
+    animation: led-blink 4s ease-in-out infinite;
+  }
+  @keyframes led-blink {
+    0%, 88%, 100% { opacity: 1; }
+    92%            { opacity: 0.1; }
+  }
+
+  /* =====================
+     LABEL HOVER ANIMATE
+     ===================== */
+
+  /* Nascondi le label di default */
+  .label-saggio,
+  .label-ribelle {
+    fill: rgba(46, 64, 87, 0.0);
+    transition: fill 300ms ease;
+    cursor: default;
+  }
+
+  /* Al hover sul gruppo Saggio: mostra label Saggio */
+  .personaggio-saggio-gruppo:hover .label-saggio {
+    fill: rgba(46, 64, 87, 0.35);
+  }
+
+  /* Al hover sul gruppo Ribelle: mostra label Ribelle */
+  .personaggio-ribelle-gruppo:hover .label-ribelle {
+    fill: rgba(46, 64, 87, 0.35);
+  }
+
+  /* Il cursore sui personaggi diventa pointer */
+  .personaggio-saggio-gruppo,
+  .personaggio-ribelle-gruppo {
+    cursor: pointer;
+  }
+
+  /* Leggero scale al hover sul personaggio — risponde al tocco */
+  .personaggio-saggio-gruppo {
+    transform-origin: 160px 250px;
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .personaggio-saggio-gruppo:hover {
+    transform: scale(1.04);
+  }
+
+  .personaggio-ribelle-gruppo {
+    transform-origin: 330px 360px;
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .personaggio-ribelle-gruppo:hover {
+    transform: scale(1.03);
+  }
+
+  /* Reduced motion: disabilita scale, mantieni fade label */
   @media (prefers-reduced-motion: reduce) {
-    .hero-scene, .pixel {
+    .personaggio-saggio-gruppo,
+    .personaggio-ribelle-gruppo {
+      transition: none;
+    }
+    .personaggio-saggio-gruppo:hover,
+    .personaggio-ribelle-gruppo:hover {
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scene, .pixel, .aureola, .farfalla-1, .farfalla-2, .braccio-alzato, .dito, .led {
       animation: none;
       opacity: 1;
       transform: none;
     }
   }
 </style>
-
